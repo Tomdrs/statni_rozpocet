@@ -1,2 +1,2 @@
-pocketbase=0.2.2
-flask=2.2.2
+pocketbase==0.2.2
+flask==2.2.2
