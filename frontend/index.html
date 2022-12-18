@@ -1,10 +1,25 @@
+<!DOCTYPE html>
 <html>
     <head>
+        <script>
+            async function fetch_rozpocet(rok) {
+                let req = await fetch("/rozpocet/" + rok);
+                return await req.text()
+            }
+        </script>
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
-    <body>
+    <body x-init="console.log('start alpinejs')">
+        <section x-data="{ rok: '2022' }">
+            <div>
+                <input x-model="rok" type="radio" value="2020"><label>2020</label>
+                <input x-model="rok" type="radio" value="2021"><label>2021</label>
+                <input x-model="rok" type="radio" value="2022"><label>2022</label>
+            </div>
+            <span x-text="await fetch_rozpocet(rok)"></span>
+        </section>
         <div>
-            Tomáš Hozda © 2022
+            Tomáš Hozda © <span x-text="new Date().getFullYear()"></span>
         </div>
     </body>
 </html>
