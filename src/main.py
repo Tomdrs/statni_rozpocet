@@ -1,4 +1,6 @@
 from flask import Flask, render_template
+from pocketbase import PocketBase
+
 import os
 
 app = Flask(__name__)
@@ -8,16 +10,20 @@ def hello():
     index = str(open("frontend/index.html").read())
     return index
 
+# Potreba vlozit testovaci data
 @app.route('/rozpocet/<int:rok>')
 def rozpocet_na_rok(rok):
-    if rok == 2020:
-        return "23321847747474747"
-    elif rok == 2021:
-        return "2498743219982"
-    elif rok == 2022:
-        return "3"
-    else:
-        return "0"
+    client = PocketBase(os.environ["POCKETBASE_URL"])
+
+    rozpocty = client.records.get_full_list(
+        "budgets",
+        200,
+        { "sort": "-created" }
+    )
+
+    spravny_rozpocet = next(rozpocet for rozpocet in rozpocty if rozpocet.year == rok)
+
+    return str(spravny_rozpocet.total_income)
 
 @app.route('/na_druhou/<int:cislo>')
 def ahoj(cislo):
