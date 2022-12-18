@@ -1,10 +1,12 @@
-from flask import Flask
+from flask import Flask, render_template
+import os
 
 app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return "Hello World"
+    index = str(open("frontend/index.html").read())
+    return index
 
 @app.route('/na_druhou/<int:cislo>')
 def ahoj(cislo):
