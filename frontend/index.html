@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script>
-            async function fetch_rozpocet(rok) {
-                let req = await fetch("/rozpocet/" + rok);
-                return await req.text()
-            }
-        </script>
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <script src="/static/main.js"></script>
     </head>
     <body x-init="console.log('start alpinejs')">
         <section x-data="{ rok: '2022' }">
