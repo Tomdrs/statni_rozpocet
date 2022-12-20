@@ -1,0 +1,36 @@
+html {
+    font-family: sans-serif;
+    min-height: 100%;
+    display: flex;
+
+    justify-content: center;
+    align-items: stretch;
+}
+
+body {
+    max-width: 80%;
+    min-height: 100%;
+    display: grid;
+
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 1fr;
+
+    gap: 0px;
+}
+
+footer {
+   grid-row-start: 2;
+   grid-column-start: 1;
+
+   grid-row-end: 3;
+   grid-column-end: 2;
+   text-align: center;
+}
+
+main {
+   grid-row-start: 1;
+   grid-column-start: 1;
+
+   grid-row-end: 2;
+   grid-column-end: 2;
+}

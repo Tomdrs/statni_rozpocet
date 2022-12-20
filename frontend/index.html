@@ -3,19 +3,23 @@
     <head>
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <script src="/static/main.js"></script>
+        <link rel=stylesheet href="/static/main.css">
     </head>
     <body x-init="console.log('start alpinejs')">
-        <section x-data="{ rok: '2022' }">
+        <main x-data="{ rok: '2022' }">
+            <h1>Kalkulačka podílu na státním rozpočtu a výdajů</h1>
+            <p>Zobrazit rozpočet pro rok:</p>
             <div>
                 <input x-model="rok" type="radio" value="2020"><label>2020</label>
                 <input x-model="rok" type="radio" value="2021"><label>2021</label>
                 <input x-model="rok" type="radio" value="2022"><label>2022</label>
             </div>
-            <span x-text="await fetch_rozpocet(rok)"></span>
-        </section>
-        <div>
+
+            <strong>Rozpočet pro rok <span x-text="rok"></span> činí <span x-text="await fetch_rozpocet(rok)"></span> Kč.</strong>
+        </main>
+        <footer>
             Tomáš Hozda © <span x-text="new Date().getFullYear()"></span>
-        </div>
+        </footer>
     </body>
 </html>
 
