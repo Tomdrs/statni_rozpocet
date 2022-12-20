@@ -3,12 +3,11 @@ from pocketbase import PocketBase
 
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path = '/static', static_folder = '../static', template_folder = "../frontend")
 
 @app.route('/')
 def hello():
-    index = str(open("frontend/index.html").read())
-    return index
+    return render_template("index.html")
 
 # Potreba vlozit testovaci data
 @app.route('/rozpocet/<int:rok>')
@@ -25,6 +24,3 @@ def rozpocet_na_rok(rok):
 
     return str(spravny_rozpocet.total_income)
 
-@app.route('/na_druhou/<int:cislo>')
-def ahoj(cislo):
-    return str(cislo * cislo)
