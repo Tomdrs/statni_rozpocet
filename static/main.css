@@ -34,3 +34,7 @@ main {
    grid-row-end: 2;
    grid-column-end: 2;
 }
+
+:root:not([data-theme="dark"]), [data-theme="light"] {
+    --primary: #f4511e;
+}

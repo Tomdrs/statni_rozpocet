@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="light">
     <head>
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <script src="/static/main.js"></script>
+
+        <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
         <link rel=stylesheet href="/static/main.css">
     </head>
     <body x-init="console.log('start alpinejs')">
@@ -15,7 +17,7 @@
                 <input x-model="rok" type="radio" value="2022"><label>2022</label>
             </div>
 
-            <strong>Rozpočet pro rok <span x-text="rok"></span> činí <span x-text="await fetch_rozpocet(rok)"></span> Kč.</strong>
+            <strong>Rozpočet pro rok <span x-text="rok"></span> činí <span x-text="(await fetch_rozpocet(rok)).total_income"></span> Kč.</strong>
         </main>
         <footer>
             Tomáš Hozda © <span x-text="new Date().getFullYear()"></span>
