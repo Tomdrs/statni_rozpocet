@@ -104,7 +104,6 @@ class State_levies_average():
         self.year = record.year
         self.gross_income = record.gross_income
         self.supergross = record.supergross
-        self.income_from_eu = record.income_from_eu
         self.supergross_multiplier = record.supergross_multiplier
         self.vat_21 = record.vat_21
         self.social_insurance = record.social_insurance
@@ -123,7 +122,6 @@ class State_levies_average():
             year = self.year,
             gross_income = self.gross_income,
             supergross = self.supergross,
-            income_from_eu = self.income_from_eu,
             supergross_multiplier = self.supergross_multiplier,
             vat_21 = self.vat_21,
             social_insurance = self.social_insurance,
