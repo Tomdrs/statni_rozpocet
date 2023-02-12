@@ -10,14 +10,47 @@
     <body x-init="console.log('start alpinejs')">
         <main x-data="{ rok: '2022' }">
             <h1>Kalkulačka podílu na státním rozpočtu a výdajů</h1>
-            <p>Zobrazit rozpočet pro rok:</p>
+            <p>Tato webová kalkulačka slouží k výpočtu částky, jakou se podílíte na státním rozpočtu České republiky skrze daňe, které povinně odvádíte...</p>
+            <h4>Zobrazit údaje o státního rozpočtu za rok:</h4>
             <div>
                 <input x-model="rok" type="radio" value="2020"><label>2020</label>
                 <input x-model="rok" type="radio" value="2021"><label>2021</label>
                 <input x-model="rok" type="radio" value="2022"><label>2022</label>
             </div>
-
-            <strong>Rozpočet pro rok <span x-text="rok"></span> činí <span x-text="(await fetch_rozpocet(rok)).total_income"></span> Kč.</strong>
+            <br>
+            <strong>Příjem státního rozpočtu za rok <span x-text="rok"></span> činí <span x-text="(await fetch_rozpocet(rok)).total_income / 1000000000"></span> mld. Kč.<br></strong>
+            <strong>Výdaje státního rozpočtu za rok <span x-text="rok"></span> činí <span x-text="(await fetch_rozpocet(rok)).total_expense / 1000000000"></span> mld. Kč.<br></strong>
+            <br>
+            <h4>V následujících polích uveďte průměrnou měsíční hodnotu. Některá pole jsou předvyplněná průměrnými hodnotami, pro přesnější výpočet je však vhodné vyplnit co nejvíce polí.</h6>
+            <form>
+                <label for="hrub">Hrubý příjem:</label>
+                <input type="number" id="hrub" name="hrub" placeholder="39858"/>
+                <label for="deti">Počet dětí:</label>
+                <input type="number" id="deti" name="deti"/>
+                <label for="soc">Sociální zabezpečení (vyplní pouze OSVČ):</label>
+                <input type="number" id="soc" name="soc"/>
+                <label for="zdrav">Zdravotní zabezpečení(vyplní pouze OSVČ):</label>
+                <input type="number" id="zdrav" name="zdrav"/>
+                <label for="vat10">Vodné a stočné, knihy, hudba, léky, služby ubytování:</label>
+                <input type="number" id="vat10" name="vat10" placeholder="707"/> 
+                <label for="vat15">Potraviny a gastronomické služby, veřejná doprava, léčební pomůcky:</label>
+                <input type="number" id="vat15" name="vat15" placeholder="2861"/> 
+                <label for="vat21">Všechny ostatní útraty:</label>
+                <input type="number" id="vat21" name="vat21" placeholder="8475"/> 
+                <label for="kap">Kapitálové příjmy:</label>
+                <input type="number" id="kap" name="kap"/>
+                <label for="haz">Prohrané částky v neúspěšném hazardu:</label>
+                <input type="number" id="haz" name="haz"/>
+                <label for="pal">Palivo:</label>
+                <input type="number" id="pal" name="pal" placeholder="517"/>
+                <label for="piv">Počet vypitých litrů piva:</label>
+                <input type="number" id="piv" name="piv" placeholder="10.75"/>
+                <label for="tab">Počet krabiček cigaret:</label>
+                <input type="number" id="tab" name="tab" placeholder="8"/> 
+                <label for="lih">Objem vypitého ethanolu obsaženého v lihovinách:</label>
+                <input type="number" id="lih" name="lih" placeholder="0.83"/>
+                <input type="submit" value="Vypočítat">
+            </form>
         </main>
         <footer>
             Tomáš Hozda © <span x-text="new Date().getFullYear()"></span>
