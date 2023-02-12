@@ -1,13 +1,14 @@
 SUPERGROSS_MULTIPLIER = 1.38
 income_tax_multiplier = 0.15
+budgetary_determination = 0.6438
 
 #daň z příjmu:
 def yearly_income_tax(gross, is_supergross):
     if is_supergross == True:
         super_gross = gross * SUPERGROSS_MULTIPLIER
-        return (income_tax_multiplier * super_gross - 2570) * 12
+        return (income_tax_multiplier * super_gross - 2570) * 12 * budgetary_determination
     else:
-        return (income_tax_multiplier * gross - 2570) * 12
+        return (income_tax_multiplier * gross - 2570) * 12 * budgetary_determination
 
 #sleva na poplatníka podle počtu dětí:
 def yearly_kids_discount(is_kids, kids):
@@ -33,15 +34,15 @@ def yearly_health_insurance(gross):
 
 #výše odvedené daně z přidané hodnoty základní sazby:
 def yearly_vat_21(vat_21):
-    return vat_21 * 0.21 * 12
+    return vat_21 * 0.21 * 12 * budgetary_determination
 
 #výše odvedené daně z přidané hodnoty první snížené sazby:
 def yearly_vat_15(vat_15):
-    return vat_15 * 0.15 * 12
+    return vat_15 * 0.15 * 12 * budgetary_determination
 
 #výše odvedené daně z přidané hodnoty druhé snížené sazby:
 def yearly_vat_10(vat_10):
-    return vat_10 * 0.10 * 12
+    return vat_10 * 0.10 * 12 * budgetary_determination
 
 #výše odvedené daně z kapitálových příjmů:
 def yearly_capital(captial_gains):
@@ -52,7 +53,7 @@ def yearly_capital(captial_gains):
 
 #výše odvedené daně z neúspěšného hazardu:
 def yearly_gambling_tax(gamble):
-    return gamble * 0.23 * 12
+    return gamble * 0.23 * 12 * 0.7
 
 #výše odvedené spotřební daně z pohonných hmot (průměrná cena 38 kč/l):
 def consumer_tax_fuel(consumer_fuel):
