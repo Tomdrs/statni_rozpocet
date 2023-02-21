@@ -67,5 +67,6 @@ flask run
 - https://www.podnikatel.cz/zakony/zakon-c-235-2004-sb-o-dani-z-pridane-hodnoty/uplne/#prilohy
 - https://cs.wikipedia.org/wiki/Spot%C5%99ebn%C3%AD_da%C5%88
 - https://www.businessinfo.cz/navody/provozovani-hazardnich-her-ppbi/3/
+- https://www.vlada.cz/assets/media-centrum/aktualne/Narodni-investicni-plan-CR-2020_2050.pdf
 - Budget spreadsheets in resources/
 
