@@ -1,4 +1,5 @@
 from flask import jsonify
+import json
 
 class Budget():
     def __init__(self, record):
@@ -135,4 +136,16 @@ class State_levies_average():
             consumer_tax_tobacco = self.consumer_tax_tobacco,
             conumer_tax_alcohol = self.conumer_tax_alcohol,
         )
-    
+
+class Investment():
+    def __init__(self, record):
+        self.start_year = record.start_year
+        self.name = record.name
+        self.cost = record.cost
+        
+    def to_json(self):
+        return json.dumps({
+            'start_year': self.start_year,
+            'name': self.name,
+            'cost': self.cost,
+        })

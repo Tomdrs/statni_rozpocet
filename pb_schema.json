@@ -122,18 +122,6 @@
         }
       },
       {
-        "id": "5kciytkp",
-        "name": "capital_gains",
-        "type": "number",
-        "system": false,
-        "required": true,
-        "unique": false,
-        "options": {
-          "min": null,
-          "max": null
-        }
-      },
-      {
         "id": "pvvr9quh",
         "name": "income_tax_individual",
         "type": "number",
@@ -170,18 +158,6 @@
         }
       },
       {
-        "id": "ulyzn3ac",
-        "name": "mandatory_health_insurace",
-        "type": "number",
-        "system": false,
-        "required": true,
-        "unique": false,
-        "options": {
-          "min": null,
-          "max": null
-        }
-      },
-      {
         "id": "ysumq3ql",
         "name": "other_tax",
         "type": "number",
@@ -194,32 +170,92 @@
         }
       },
       {
-        "id": "ib7uj8lm",
-        "name": "incoming_transfers_noninvesting",
-        "type": "number",
-        "system": false,
-        "required": true,
-        "unique": false,
-        "options": {
-          "min": null,
-          "max": null
-        }
-      },
-      {
-        "id": "pnhi5c5f",
-        "name": "incoming_transfers_investing",
-        "type": "number",
-        "system": false,
-        "required": true,
-        "unique": false,
-        "options": {
-          "min": null,
-          "max": null
-        }
-      },
-      {
         "id": "5re0cyq2",
         "name": "other_nontax_income",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "9cnm2xh7",
+        "name": "consumer_tax_oils",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "duqfvlig",
+        "name": "consumer_tax_tobacco",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "0yicqh0j",
+        "name": "consumer_tax_solar_energy",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "jheawxtd",
+        "name": "trash_fees",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "sooa1oyy",
+        "name": "gambling_tax",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "voyzl4xv",
+        "name": "income_from_eu",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "x7rilvit",
+        "name": "income_connected_with_eu",
         "type": "number",
         "system": false,
         "required": true,
@@ -244,19 +280,6 @@
     "system": false,
     "schema": [
       {
-        "id": "sx193dwa",
-        "name": "name",
-        "type": "text",
-        "system": false,
-        "required": true,
-        "unique": false,
-        "options": {
-          "min": null,
-          "max": null,
-          "pattern": ""
-        }
-      },
-      {
         "id": "ledclgz3",
         "name": "year",
         "type": "number",
@@ -270,7 +293,271 @@
       },
       {
         "id": "ubfme45p",
-        "name": "amount",
+        "name": "total_expenses",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "vv6ngpcy",
+        "name": "salaries",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "axeyqpkq",
+        "name": "noninvestment_purchases",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "1fcc6wiv",
+        "name": "noninvestment_bussines",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "rom9zp31",
+        "name": "noninvestment_non_profit",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "0v3o9evy",
+        "name": "noninvestment_state_funds",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "idy0uvxv",
+        "name": "noninvestment_soc_and_health_funds",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "hml7jn0f",
+        "name": "noninvestment_regions",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "mk4k8bzv",
+        "name": "noninvestment_contribution",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "0vujbqhr",
+        "name": "pensions",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "onk26nrn",
+        "name": "unemployment_help",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "tkh3wv8t",
+        "name": "other_social_help",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "viafdrtn",
+        "name": "state_social_help",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "ivzx4mub",
+        "name": "building_savings",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "9jse0fx0",
+        "name": "pension_insurance_contribution",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "t9g4rrlp",
+        "name": "eu_payment",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "gmged44p",
+        "name": "other_usual_expenses",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "2pmileiv",
+        "name": "investment_purchases",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "vus87hjd",
+        "name": "investment_transfers_bussines",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "5u51hcws",
+        "name": "investment_state_funds",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "tri2apfb",
+        "name": "investment_regions",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "x72ypwom",
+        "name": "investment_contribution",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "apbr7ccu",
+        "name": "other_invetment",
         "type": "number",
         "system": false,
         "required": true,
@@ -323,7 +610,7 @@
         "name": "supergross",
         "type": "bool",
         "system": false,
-        "required": true,
+        "required": false,
         "unique": false,
         "options": {}
       },
@@ -340,20 +627,8 @@
         }
       },
       {
-        "id": "1hvj7bca",
-        "name": "income_tax",
-        "type": "number",
-        "system": false,
-        "required": true,
-        "unique": false,
-        "options": {
-          "min": null,
-          "max": null
-        }
-      },
-      {
         "id": "fwwmf6m8",
-        "name": "vat",
+        "name": "vat_21",
         "type": "number",
         "system": false,
         "required": true,
@@ -368,7 +643,7 @@
         "name": "social_insurance",
         "type": "number",
         "system": false,
-        "required": true,
+        "required": false,
         "unique": false,
         "options": {
           "min": null,
@@ -380,19 +655,7 @@
         "name": "health_insurance",
         "type": "number",
         "system": false,
-        "required": true,
-        "unique": false,
-        "options": {
-          "min": null,
-          "max": null
-        }
-      },
-      {
-        "id": "mdeh25av",
-        "name": "real_estate_tax",
-        "type": "number",
-        "system": false,
-        "required": true,
+        "required": false,
         "unique": false,
         "options": {
           "min": null,
@@ -404,43 +667,7 @@
         "name": "capital_gains",
         "type": "number",
         "system": false,
-        "required": true,
-        "unique": false,
-        "options": {
-          "min": null,
-          "max": null
-        }
-      },
-      {
-        "id": "4guuz6oq",
-        "name": "highway_fee",
-        "type": "number",
-        "system": false,
-        "required": true,
-        "unique": false,
-        "options": {
-          "min": null,
-          "max": null
-        }
-      },
-      {
-        "id": "tfzvmwpo",
-        "name": "toll_fee",
-        "type": "number",
-        "system": false,
-        "required": true,
-        "unique": false,
-        "options": {
-          "min": null,
-          "max": null
-        }
-      },
-      {
-        "id": "hihjsbwn",
-        "name": "road_tax",
-        "type": "number",
-        "system": false,
-        "required": true,
+        "required": false,
         "unique": false,
         "options": {
           "min": null,
@@ -452,7 +679,7 @@
         "name": "gambling_tax",
         "type": "number",
         "system": false,
-        "required": true,
+        "required": false,
         "unique": false,
         "options": {
           "min": null,
@@ -461,7 +688,7 @@
       },
       {
         "id": "6bfj3gxk",
-        "name": "consumer_tax",
+        "name": "consumer_tax_car_fuel",
         "type": "number",
         "system": false,
         "required": true,
@@ -472,8 +699,107 @@
         }
       },
       {
-        "id": "2itxo1m6",
-        "name": "other_tax",
+        "id": "qrpkelcd",
+        "name": "vat_food_mhd_medical_devices",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "xw52grmi",
+        "name": "vat_books_music_medicine_water_accomodations",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "8vfkog0e",
+        "name": "consmer_tax_beer",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "xjepjdhl",
+        "name": "consumer_tax_tobacco",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "sfl0zjcb",
+        "name": "conumer_tax_alcohol",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      }
+    ],
+    "listRule": "",
+    "viewRule": "",
+    "createRule": null,
+    "updateRule": null,
+    "deleteRule": null,
+    "options": {}
+  },
+  {
+    "id": "rktu6zkpulcmte1",
+    "name": "investments",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "id": "laymb38u",
+        "name": "start_year",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "iibiejum",
+        "name": "name",
+        "type": "text",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "id": "mndi6ht5",
+        "name": "cost",
         "type": "number",
         "system": false,
         "required": true,
