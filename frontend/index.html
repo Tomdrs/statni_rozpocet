@@ -9,7 +9,7 @@
     </head>
     <body x-init="console.log('start alpinejs')">
         <main x-data="{ rok: '2022' }">
-            <h1>Kalkulačka podílu na státním rozpočtu a výdajů</h1>
+            <center><h1>Kalkulačka podílu na státním rozpočtu a výdajů</h1></center>
             <p>Tato webová kalkulačka slouží k výpočtu částky, jakou se podílíte na státním rozpočtu České republiky skrze daňe, které povinně odvádíte...</p>
             <h4>Zobrazit údaje o státního rozpočtu za rok:</h4>
             <div>
@@ -22,35 +22,52 @@
             <strong>Výdaje státního rozpočtu za rok <span x-text="rok"></span> činí <span x-text="(await fetch_rozpocet(rok)).total_expense / 1000000000"></span> mld. Kč.<br></strong>
             <br>
             <h4>V následujících polích uveďte průměrnou měsíční hodnotu. Některá pole jsou předvyplněná průměrnými hodnotami, pro přesnější výpočet je však vhodné vyplnit co nejvíce polí.</h6>
-            <form>
-                <label for="hrub">Hrubý příjem:</label>
-                <input type="number" id="hrub" name="hrub" placeholder="39858"/>
-                <label for="deti">Počet dětí:</label>
-                <input type="number" id="deti" name="deti"/>
-                <label for="soc">Sociální zabezpečení (vyplní pouze OSVČ):</label>
-                <input type="number" id="soc" name="soc"/>
-                <label for="zdrav">Zdravotní zabezpečení(vyplní pouze OSVČ):</label>
-                <input type="number" id="zdrav" name="zdrav"/>
-                <label for="vat10">Vodné a stočné, knihy, hudba, léky, služby ubytování:</label>
-                <input type="number" id="vat10" name="vat10" placeholder="707"/> 
-                <label for="vat15">Potraviny a gastronomické služby, veřejná doprava, léčební pomůcky:</label>
-                <input type="number" id="vat15" name="vat15" placeholder="2861"/> 
-                <label for="vat21">Všechny ostatní útraty:</label>
-                <input type="number" id="vat21" name="vat21" placeholder="8475"/> 
-                <label for="kap">Kapitálové příjmy:</label>
-                <input type="number" id="kap" name="kap"/>
-                <label for="haz">Prohrané částky v neúspěšném hazardu:</label>
-                <input type="number" id="haz" name="haz"/>
-                <label for="pal">Palivo:</label>
-                <input type="number" id="pal" name="pal" placeholder="517"/>
-                <label for="piv">Počet vypitých litrů piva:</label>
-                <input type="number" id="piv" name="piv" placeholder="10.75"/>
-                <label for="tab">Počet krabiček cigaret:</label>
-                <input type="number" id="tab" name="tab" placeholder="8"/> 
-                <label for="lih">Objem vypitého ethanolu obsaženého v lihovinách:</label>
-                <input type="number" id="lih" name="lih" placeholder="0.83"/>
-                <input type="submit" value="Vypočítat">
-            </form>
+            <div>    
+                <form x-data="get_form_data_placeholder" x-init="
+                    data = await get_form_data();
+                    deti = data.deti;
+                    gross_income = data.gross_income;
+                    social_insurance = data.social_insurance;
+                    health_insurance = data.health_insurance;
+                    vat_books_music_medicine_water_accomodations = data.vat_books_music_medicine_water_accomodations;
+                    vat_food_mhd_medical_devices = data.vat_food_mhd_medical_devices;
+                    vat_21 = data.vat_21;
+                    capital_gains = data.capital_gains;
+                    gambling_tax = data.gambling_tax;
+                    consumer_tax_car_fuel = data.consumer_tax_car_fuel;
+                    consumer_tax_beer = data.consumer_tax_beer;
+                    consumer_tax_tobacco = data.consumer_tax_tobacco;
+                    consumer_tax_alcohol = data.consumer_tax_alcohol;
+                ">
+                    <label for="gross_income">Hrubý příjem:</label>
+                    <input type="text" id="gross_income" :placeholder="gross_income">
+                    <label for="deti">Počet dětí:</label>
+                    <input type="text" id="deti" :placeholder="deti || '0'"/>
+                    <label for="social_insurance">Sociální zabezpečení (vyplní pouze OSVČ):</label>
+                    <input type="text" id="social_insurance" :placeholder="social_insurance || '0'"/>
+                    <label for="health_insurance">Zdravotní zabezpečení(vyplní pouze OSVČ):</label>
+                    <input type="text" id="health_insurance" :placeholder="health_insurance || '0'"/>
+                    <label for="vat_books_music_medicine_water_accomodations">Vodné a stočné, knihy, hudba, léky, služby ubytování:</label>
+                    <input type="text" id="vat_books_music_medicine_water_accomodations" :placeholder="vat_books_music_medicine_water_accomodations"> 
+                    <label for="vat_food_mhd_medical_devices">Potraviny a gastronomické služby, veřejná doprava, léčební pomůcky:</label>
+                    <input type="text" id="vat_food_mhd_medical_devices" :placeholder="vat_food_mhd_medical_devices"/> 
+                    <label for="vat_21">Všechny ostatní útraty:</label>
+                    <input type="text" id="vat_21" :placeholder="vat_21"/> 
+                    <label for="capital_gains">Kapitálové příjmy:</label>
+                    <input type="text" id="capital_gains" :placeholder="capital_gains || '0'"/>
+                    <label for="gambling_tax">Prohrané částky v neúspěšném hazardu:</label>
+                    <input type="text" id="gambling_tax" :placeholder="gambling_tax"/>
+                    <label for="consumer_tax_car_fuel">Palivo:</label>
+                    <input type="text" id="consumer_tax_car_fuel" :placeholder="consumer_tax_car_fuel"/>
+                    <label for="consumer_tax_beer">Počet vypitých litrů piva:</label>
+                    <input type="text" id="consumer_tax_beer" :placeholder="consumer_tax_beer"/>
+                    <label for="consumer_tax_tobacco">Počet krabiček cigaret:</label>
+                    <input type="text" id="consumer_tax_tobacco" :placeholder="consumer_tax_tobacco"/> 
+                    <label for="consumer_tax_alcohol">Objem vypitého ethanolu obsaženého v lihovinách:</label>
+                    <input type="text" id="consumer_tax_alcohol" :placeholder="consumer_tax_alcohol"/>
+                    <input type="submit" value="Vypočítat">
+                </form>
+            </div>
         </main>
         <footer>
             Tomáš Hozda © <span x-text="new Date().getFullYear()"></span>

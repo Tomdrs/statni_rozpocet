@@ -114,9 +114,9 @@ class State_levies_average():
         self.consumer_tax_car_fuel = record.consumer_tax_car_fuel
         self.vat_food_mhd_medical_devices = record.vat_food_mhd_medical_devices
         self.vat_books_music_medicine_water_accomodations = record.vat_books_music_medicine_water_accomodations
-        self.consmer_tax_beer = record.consmer_tax_beer
+        self.consumer_tax_beer = record.consumer_tax_beer
         self.consumer_tax_tobacco = record.consumer_tax_tobacco
-        self.conumer_tax_alcohol = record.conumer_tax_alcohol
+        self.consumer_tax_alcohol = record.consumer_tax_alcohol
     
     def to_json(self):
         return jsonify(
@@ -132,9 +132,9 @@ class State_levies_average():
             consumer_tax_car_fuel = self.consumer_tax_car_fuel,
             vat_food_mhd_medical_devices = self.vat_food_mhd_medical_devices,
             vat_books_music_medicine_water_accomodations = self.vat_books_music_medicine_water_accomodations,
-            consmer_tax_beer = self.consmer_tax_beer,
+            consumer_tax_beer = self.consumer_tax_beer,
             consumer_tax_tobacco = self.consumer_tax_tobacco,
-            conumer_tax_alcohol = self.conumer_tax_alcohol,
+            consumer_tax_alcohol = self.consumer_tax_alcohol,
         )
 
 class Investment():

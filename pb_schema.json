@@ -724,7 +724,7 @@
       },
       {
         "id": "8vfkog0e",
-        "name": "consmer_tax_beer",
+        "name": "consumer_tax_beer",
         "type": "number",
         "system": false,
         "required": true,
@@ -748,7 +748,7 @@
       },
       {
         "id": "sfl0zjcb",
-        "name": "conumer_tax_alcohol",
+        "name": "consumer_tax_alcohol",
         "type": "number",
         "system": false,
         "required": true,
