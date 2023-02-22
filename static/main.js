@@ -19,3 +19,11 @@ async function fetch_prumerny_obcan() {
     console.log(prumerny_obcan);
     return prumerny_obcan;
 }
+
+async function fetch_investice() {
+    let req = await fetch("/investice");
+    let investice = await req.json();
+    investice = investice.investice_json.map((x) => JSON.parse(x));
+    console.log(investice);
+    return investice;
+}

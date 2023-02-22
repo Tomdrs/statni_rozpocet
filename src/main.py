@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify
 from pocketbase import PocketBase
 
-from models import Budget, Expenses, State_levies_average
+from models import Budget, Expenses, State_levies_average, Investment
 
 import os
 
@@ -50,3 +50,17 @@ def prumerny_obcan():
 
     prumer = prumerni_lide[0]
     return State_levies_average(prumer).to_json()
+
+@app.route('/investice')
+def investice():
+    client = PocketBase(os.environ["POCKETBASE_URL"])
+
+    investice = client.records.get_full_list(
+        "investments",
+        200,
+        { "sort": "-created" }
+    )
+
+    investice = list(map(lambda x: Investment(x), investice))
+    investice_json = list(map(lambda x: x.to_json(), investice))
+    return jsonify(investice_json = investice_json)
