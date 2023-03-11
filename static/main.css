@@ -96,3 +96,9 @@ h1.nadpis {
     --primary: #f4511e;
 }
 
+.vydaj-tabulka td {
+    font-size: 40px;
+    color: #f4511e;
+    text-align: center;
+    font-weight: bold;
+}

@@ -289,8 +289,20 @@
                         <template x-for="data in (await fetch_investice())">
                             <article class="expense-display">
                                 <header x-text="data.name"></header>
-                                <p>Rok počátku realizace projektu je: <span x-text="data.start_year"></span>.</p>
-                                <p>Odhadované náklady: <span x-text="data.cost / 1000000000"></span> miliard Kč.</p>
+                                <table>
+                                    <tr>
+                                        <th>Rok</th>
+                                        <th>Náklady (mld. Kč)</th>
+                                        <th>Váš procentuální podíl</th>
+                                        <th>Váš podíl (Kč)</th>
+                                    </tr>
+                                    <tr class="vydaj-tabulka">
+                                        <td><span x-text="data.start_year"></span></td>
+                                        <td><span x-text="data.cost / 1000000000"></span></td>
+                                        <td>2.08</td>
+                                        <td>1000</td>
+                                    </tr>
+                                </table>
                             </article>
                         </template>
                     </section>
