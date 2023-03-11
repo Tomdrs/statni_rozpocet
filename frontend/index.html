@@ -22,51 +22,64 @@
             <strong>Výdaje státního rozpočtu za rok <span x-text="rok"></span> činí <span x-text="(await fetch_rozpocet(rok)).total_expense / 1000000000"></span> mld. Kč.<br></strong>
             <br>
             <h4>V následujících polích uveďte průměrnou měsíční hodnotu. Některá pole jsou předvyplněná průměrnými hodnotami, pro přesnější výpočet je však vhodné vyplnit co nejvíce polí.</h6>
-            <div>    
-                <form x-data="get_form_data_placeholder" x-init="
-                    data = await get_form_data();
-                    deti = data.deti;
-                    gross_income = data.gross_income;
-                    social_insurance = data.social_insurance;
-                    health_insurance = data.health_insurance;
-                    vat_books_music_medicine_water_accomodations = data.vat_books_music_medicine_water_accomodations;
-                    vat_food_mhd_medical_devices = data.vat_food_mhd_medical_devices;
-                    vat_21 = data.vat_21;
-                    capital_gains = data.capital_gains;
-                    gambling_tax = data.gambling_tax;
-                    consumer_tax_car_fuel = data.consumer_tax_car_fuel;
-                    consumer_tax_beer = data.consumer_tax_beer;
-                    consumer_tax_tobacco = data.consumer_tax_tobacco;
-                    consumer_tax_alcohol = data.consumer_tax_alcohol;
-                ">
-                    <label for="gross_income">Hrubý příjem:</label>
-                    <input type="text" id="gross_income" :placeholder="gross_income">
-                    <label for="deti">Počet dětí:</label>
-                    <input type="text" id="deti" :placeholder="deti || '0'"/>
-                    <label for="social_insurance">Sociální zabezpečení (vyplní pouze OSVČ):</label>
-                    <input type="text" id="social_insurance" :placeholder="social_insurance || '0'"/>
-                    <label for="health_insurance">Zdravotní zabezpečení(vyplní pouze OSVČ):</label>
-                    <input type="text" id="health_insurance" :placeholder="health_insurance || '0'"/>
-                    <label for="vat_books_music_medicine_water_accomodations">Vodné a stočné, knihy, hudba, léky, služby ubytování:</label>
-                    <input type="text" id="vat_books_music_medicine_water_accomodations" :placeholder="vat_books_music_medicine_water_accomodations"> 
-                    <label for="vat_food_mhd_medical_devices">Potraviny a gastronomické služby, veřejná doprava, léčební pomůcky:</label>
-                    <input type="text" id="vat_food_mhd_medical_devices" :placeholder="vat_food_mhd_medical_devices"/> 
-                    <label for="vat_21">Všechny ostatní útraty:</label>
-                    <input type="text" id="vat_21" :placeholder="vat_21"/> 
-                    <label for="capital_gains">Kapitálové příjmy:</label>
-                    <input type="text" id="capital_gains" :placeholder="capital_gains || '0'"/>
-                    <label for="gambling_tax">Prohrané částky v neúspěšném hazardu:</label>
-                    <input type="text" id="gambling_tax" :placeholder="gambling_tax"/>
-                    <label for="consumer_tax_car_fuel">Palivo:</label>
-                    <input type="text" id="consumer_tax_car_fuel" :placeholder="consumer_tax_car_fuel"/>
-                    <label for="consumer_tax_beer">Počet vypitých litrů piva:</label>
-                    <input type="text" id="consumer_tax_beer" :placeholder="consumer_tax_beer"/>
-                    <label for="consumer_tax_tobacco">Počet krabiček cigaret:</label>
-                    <input type="text" id="consumer_tax_tobacco" :placeholder="consumer_tax_tobacco"/> 
-                    <label for="consumer_tax_alcohol">Objem vypitého ethanolu obsaženého v lihovinách:</label>
-                    <input type="text" id="consumer_tax_alcohol" :placeholder="consumer_tax_alcohol"/>
-                    <input type="submit" value="Vypočítat">
-                </form>
+            <div class="parent" x-data="get_form_data_placeholder" x-init="
+            data = await get_form_data();
+            deti = data.deti;
+            gross_income = data.gross_income;
+            social_insurance = data.social_insurance;
+            health_insurance = data.health_insurance;
+            vat_books_music_medicine_water_accomodations = data.vat_books_music_medicine_water_accomodations;
+            vat_food_mhd_medical_devices = data.vat_food_mhd_medical_devices;
+            vat_21 = data.vat_21;
+            capital_gains = data.capital_gains;
+            gambling_tax = data.gambling_tax;
+            consumer_tax_car_fuel = data.consumer_tax_car_fuel;
+            consumer_tax_beer = data.consumer_tax_beer;
+            consumer_tax_tobacco = data.consumer_tax_tobacco;
+            consumer_tax_alcohol = data.consumer_tax_alcohol;
+        ">  
+                <div class="div1">
+                    <form>
+                        <label for="gross_income">Hrubý příjem:</label>
+                        <input type="text" id="gross_income" :placeholder="gross_income">
+                        <label for="deti">Počet dětí:</label>
+                        <input type="text" id="deti" :placeholder="deti || '0'"/>
+                        <label for="social_insurance">Sociální zabezpečení (vyplní pouze OSVČ):</label>
+                        <input type="text" id="social_insurance" :placeholder="social_insurance || '0'"/>
+                        <label for="health_insurance">Zdravotní zabezpečení(vyplní pouze OSVČ):</label>
+                        <input type="text" id="health_insurance" :placeholder="health_insurance || '0'"/>
+                        <label for="vat_books_music_medicine_water_accomodations">Vodné a stočné, knihy, hudba, léky, služby ubytování:</label>
+                        <input type="text" id="vat_books_music_medicine_water_accomodations" :placeholder="vat_books_music_medicine_water_accomodations"> 
+                        <label for="vat_food_mhd_medical_devices">Potraviny a gastronomické služby, veřejná doprava, léčební pomůcky:</label>
+                        <input type="text" id="vat_food_mhd_medical_devices" :placeholder="vat_food_mhd_medical_devices"/> 
+                        <label for="vat_21">Všechny ostatní útraty:</label>
+                        <input type="text" id="vat_21" :placeholder="vat_21"/> 
+                        <label for="capital_gains">Kapitálové příjmy:</label>
+                        <input type="text" id="capital_gains" :placeholder="capital_gains || '0'"/>
+                        <label for="gambling_tax">Prohrané částky v neúspěšném hazardu:</label>
+                        <input type="text" id="gambling_tax" :placeholder="gambling_tax"/>
+                        <label for="consumer_tax_car_fuel">Palivo:</label>
+                        <input type="text" id="consumer_tax_car_fuel" :proklaceholder="consumer_tax_car_fuel"/>
+                        <label for="consumer_tax_beer">Počet vypitých litrů piva:</label>
+                        <input type="text" id="consumer_tax_beer" :placeholder="consumer_tax_beer"/>
+                        <label for="consumer_tax_tobacco">Počet krabiček cigaret:</label>
+                        <input type="text" id="consumer_tax_tobacco" :placeholder="consumer_tax_tobacco"/> 
+                        <label for="consumer_tax_alcohol">Objem vypitého ethanolu obsaženého v lihovinách:</label>
+                        <input type="text" id="consumer_tax_alcohol" :placeholder="consumer_tax_alcohol"/>
+                        <input type="submit" value="Vypočítat">
+                    </form>
+                </div>
+                <div class="div2">
+                    <section>
+                        <template x-for="data in (await fetch_investice())">
+                            <div>
+                                <h6 x-text="data.name"></h6>
+                                <p>Výstavba začala v roce <span x-text="data.start_year"></span>.</p>
+                                <p>Odhadované náklady: <span x-text="data.cost / 1000000000"></span> miliard Kč.</p>
+                            </div>
+                        </template>
+                    </section>
+                </div>
             </div>
         </main>
         <footer>
