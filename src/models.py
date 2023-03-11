@@ -108,7 +108,6 @@ class State_levies_average():
         self.supergross_multiplier = record.supergross_multiplier
         self.vat_21 = record.vat_21
         self.social_insurance = record.social_insurance
-        self.health_insurance = record.health_insurance
         self.capital_gains = record.capital_gains
         self.gambling_tax = record.gambling_tax
         self.consumer_tax_car_fuel = record.consumer_tax_car_fuel
@@ -126,7 +125,6 @@ class State_levies_average():
             supergross_multiplier = self.supergross_multiplier,
             vat_21 = self.vat_21,
             social_insurance = self.social_insurance,
-            health_insurance = self.health_insurance,
             capital_gains = self.capital_gains,
             gambling_tax = self.gambling_tax,
             consumer_tax_car_fuel = self.consumer_tax_car_fuel,

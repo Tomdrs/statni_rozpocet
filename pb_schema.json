@@ -651,18 +651,6 @@
         }
       },
       {
-        "id": "v0hipcro",
-        "name": "health_insurance",
-        "type": "number",
-        "system": false,
-        "required": false,
-        "unique": false,
-        "options": {
-          "min": null,
-          "max": null
-        }
-      },
-      {
         "id": "i4ea0o3z",
         "name": "capital_gains",
         "type": "number",

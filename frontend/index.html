@@ -43,10 +43,10 @@
                     </header>
                     <table>
                         <tr>
-                            <td></td>
-                            <td>v mld. Kč</td>
-                            <td>Váš procentuální podíl</td>
-                            <td>Váš podíl v Kč</td>
+                            <th></th>
+                            <th>v mld. Kč</th>
+                            <th>Váš procentuální podíl</th>
+                            <th>Váš podíl v&nbspKč</th>
                         </tr>
                         <tr>
                             <th>Celkem</th>
@@ -141,10 +141,10 @@
                     </header>
                     <table>
                         <tr>
-                            <td></td>
-                            <td>v mld. Kč</td>
-                            <td>Váš procentuální podíl</td>
-                            <td>Váš podíl v Kč</td>
+                            <th></th>
+                            <th>v mld. Kč</th>
+                            <th>Váš procentuální podíl</th>
+                            <th>Váš podíl v Kč</th>
                         </tr>
                         <tr>
                             <th>Celkem</th>
@@ -239,7 +239,6 @@
             deti = data.deti;
             gross_income = data.gross_income;
             social_insurance = data.social_insurance;
-            health_insurance = data.health_insurance;
             vat_books_music_medicine_water_accomodations = data.vat_books_music_medicine_water_accomodations;
             vat_food_mhd_medical_devices = data.vat_food_mhd_medical_devices;
             vat_21 = data.vat_21;
@@ -261,8 +260,6 @@
                         <input type="text" id="deti" :placeholder="deti || '0'"/>
                         <label for="social_insurance">Sociální zabezpečení (vyplní pouze OSVČ):</label>
                         <input type="text" id="social_insurance" :placeholder="social_insurance || '0'"/>
-                        <label for="health_insurance">Zdravotní zabezpečení(vyplní pouze OSVČ):</label>
-                        <input type="text" id="health_insurance" :placeholder="health_insurance || '0'"/>
                         <label for="vat_books_music_medicine_water_accomodations">Vodné a stočné, knihy, hudba, léky, služby ubytování:</label>
                         <input type="text" id="vat_books_music_medicine_water_accomodations" :placeholder="vat_books_music_medicine_water_accomodations">
                         <label for="vat_food_mhd_medical_devices">Potraviny a gastronomické služby, veřejná doprava, léčební pomůcky:</label>

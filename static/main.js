@@ -40,7 +40,6 @@ function get_form_data_placeholder() {
         deti: '',
         gross_income: '',
         social_insurance: '',
-        health_insurance: '',
         vat_books_music_medicine_water_accomodations: '',
         vat_food_mhd_medical_devices: '',
         vat_21: '',
@@ -114,4 +113,22 @@ function get_expense_data_placeholder() {
         investment_contribution: '',
         other_investment: '',
     };
+}
+
+async function fetch_vypocet(gross_income, deti, social_insurance, vat_books_music_medicine_water_accomodations, vat_food_mhd_medical_devices, vat_21, capital_gains, gambling_tax, consumer_tax_car_fuel, consumer_tax_beer, consumer_tax_tobacco, consumer_tax_alcohol) {
+    let query = "/vypocet?";
+    if (typeof gross_income !== 'undefined') query += 'gross_income=' + gross_income + '&';
+    if (typeof deti !== 'undefined') query += 'deti=' + deti + '&';
+    if (typeof social_insurance !== 'undefined') query += 'social_insurance=' + social_insurance + '&';
+    if (typeof vat_books_music_medicine_water_accomodations !== 'undefined') query += 'vat_books_music_medicine_water_accomodations=' + vat_books_music_medicine_water_accomodations + '&';
+    if (typeof vat_food_mhd_medical_devices !== 'undefined') query += 'vat_food_mhd_medical_devices=' + vat_food_mhd_medical_devices + '&';
+    if (typeof vat21 !== 'undefined') query += 'vat_21=' + vat_21 + '&';
+    if (typeof capital_gains !== 'undefined') query += 'capital_gains=' + capital_gains + '&';
+    if (typeof gambling_tax !== 'undefined') query += 'gambling_tax=' + gambling_tax + '&';
+    if (typeof consumer_tax_car_fuel !== 'undefined') query += 'consumer_tax_car_fuel=' + consumer_tax_car_fuel + '&';
+    if (typeof consumer_tax_beer !== 'undefined') query += 'consumer_tax_beer=' + consumer_tax_beer + '&';
+    if (typeof consumer_tax_tobacco !== 'undefined') query += 'consumer_tax_tobacco=' + consumer_tax_tobacco + '&';
+    if (typeof consumer_tax_alcohol !== 'undefined') query += 'consumer_tax_alcohol=' + consumer_tax_alcohol;
+
+    let result = await fetch(query);
 }

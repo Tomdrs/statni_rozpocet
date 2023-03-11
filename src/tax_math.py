@@ -28,10 +28,6 @@ def yearly_kids_discount(is_kids, kids):
 def yearly_social_insurance(gross):
     return gross * 0.065 * 12
 
-#výše platby na zdravotní zabezpečení:
-def yearly_health_insurance(gross):
-    return gross * 0.045 * 12
-
 #výše odvedené daně z přidané hodnoty základní sazby:
 def yearly_vat_21(vat_21):
     return vat_21 * 0.21 * 12 * budgetary_determination
@@ -76,7 +72,6 @@ def yearly_total_tax(gross, is_supergross, is_kids, kids, vat_21, vat_15, vat_10
     return yearly_income_tax(gross, is_supergross) \
         - yearly_kids_discount(is_kids, kids) \
         + yearly_social_insurance(gross) \
-        + yearly_health_insurance(gross) \
         + yearly_vat_21(vat_21) \
         + yearly_vat_15(vat_15) \
         + yearly_vat_10(vat_10) \
