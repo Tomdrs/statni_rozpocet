@@ -5,10 +5,11 @@ html {
 
     justify-content: center;
     align-items: stretch;
+    cursor: unset;
 }
 
 body {
-    max-width: 80%;
+    max-width: 1600px;
     min-height: 100%;
     display: grid;
 
@@ -35,22 +36,40 @@ main {
    grid-column-end: 2;
 }
 
+article h4 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+h1.nadpis {
+    width: 100%;
+    text-align: center;
+}
+
 .parent {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 50px;
     grid-row-gap: 20px;
-    }
-    
-    .div1 { 
-        grid-area: 1 / 1 / 2 / 2;
-        }
-    .div2 { 
-        grid-area: 1 / 2 / 2 / 3; 
-        max-height: 1500px;
-        overflow: scroll;
-        } 
+}
+
+.vlevo {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.vpravo {
+    grid-area: 1 / 2 / 2 / 3;
+    max-height: 1500px;
+    overflow: scroll;
+}
+
+.tabulka-finance {
+    border-radius: 1em;
+    border: 1px #000 solid;
+    padding: 1em;
+    background-color: #EBDBCA;
+}
 
 :root:not([data-theme="dark"]), [data-theme="light"] {
     --primary: #f4511e;

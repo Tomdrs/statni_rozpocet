@@ -9,7 +9,7 @@
     </head>
     <body x-init="console.log('start alpinejs')">
         <main x-data="{ rok: '2022' }">
-            <center><h1>Kalkulačka podílu na státním rozpočtu a výdajů</h1></center>
+            <h1 class="nadpis">Kalkulačka podílu na státním rozpočtu a výdajů</h1>
             <p>Tato webová kalkulačka slouží k výpočtu částky, jakou se podílíte na státním rozpočtu České republiky skrze daňe, které povinně odvádíte...</p>
             <h4>Zobrazit údaje o státního rozpočtu za rok:</h4>
             <div>
@@ -18,8 +18,24 @@
                 <input x-model="rok" type="radio" value="2022"><label>2022</label>
             </div>
             <br>
-            <strong>Příjem státního rozpočtu za rok <span x-text="rok"></span> činí <span x-text="(await fetch_rozpocet(rok)).total_income / 1000000000"></span> mld. Kč.<br></strong>
-            <strong>Výdaje státního rozpočtu za rok <span x-text="rok"></span> činí <span x-text="(await fetch_rozpocet(rok)).total_expense / 1000000000"></span> mld. Kč.<br></strong>
+            <section class="parent">
+                <article class="vlevo">
+                    <header>
+                        <h4>Příjmy <span x-text="rok"></span></h4>
+                    </header>
+                    <ul>
+                        <li>Celkem: <span x-text="(await fetch_rozpocet(rok)).total_income / 1000000000"></span> mld. Kč</li>
+                    </ul>
+                </article>
+                <article class="vpravo">
+                    <header>
+                        <h4>Výdaje <span x-text="rok"></span></h4>
+                    </header>
+                    <ul>
+                        <li>Celkem: <span x-text="(await fetch_vydaje(rok)).total_expenses / 1000000000"></span> mld. Kč</li>
+                    </ul>
+                </article>
+            </section>
             <br>
             <h4>V následujících polích uveďte průměrnou měsíční hodnotu. Některá pole jsou předvyplněná průměrnými hodnotami, pro přesnější výpočet je však vhodné vyplnit co nejvíce polí.</h6>
             <div class="parent" x-data="get_form_data_placeholder" x-init="
@@ -38,7 +54,7 @@
             consumer_tax_tobacco = data.consumer_tax_tobacco;
             consumer_tax_alcohol = data.consumer_tax_alcohol;
         ">
-                <div class="div1">
+                <div class="vlevo">
                     <form>
                         <label for="gross_income">Hrubý příjem:</label>
                         <input type="text" id="gross_income" :placeholder="gross_income">
@@ -69,7 +85,7 @@
                         <input type="submit" value="Vypočítat">
                     </form>
                 </div>
-                <div class="div2">
+                <div class="vpravo">
                     <section>
                         <template x-for="data in (await fetch_investice())">
                             <div>
