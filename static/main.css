@@ -35,6 +35,23 @@ main {
    grid-column-end: 2;
 }
 
+.parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 50px;
+    grid-row-gap: 20px;
+    }
+    
+    .div1 { 
+        grid-area: 1 / 1 / 2 / 2;
+        }
+    .div2 { 
+        grid-area: 1 / 2 / 2 / 3; 
+        max-height: 1500px;
+        overflow: scroll;
+        } 
+
 :root:not([data-theme="dark"]), [data-theme="light"] {
     --primary: #f4511e;
 }
