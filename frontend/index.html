@@ -41,26 +41,74 @@
                     <header>
                         <h4>Příjmy <span x-text="rok"></span></h4>
                     </header>
-                    <ul>
-                        <li>Celkem: <span x-text="total_income / 1000000000"></span> mld. Kč</li>
-                        <li>DPH: <span x-text="vat / 1000000000"></span> mld. Kč</li>
-                        <li>Spotřební daň: <span x-text="consumer_taxes / 1000000000"></span> mld. Kč
-                            <ul>
-                                <li>Palivo: <span x-text="consumer_tax_oils / 1000000000"></span> mld. Kč</li>
-                                <li>Tabák: <span x-text="consumer_tax_tobacco / 1000000000"></span> mld. Kč</li>
-                                <li>Sluneční záření: <span x-text="consumer_tax_solar_energy / 1000000000"></span> mld. Kč</li>
-                              </ul>
-                        </li>
-                        <li>Daň z příjmu fyzických osob: <span x-text="income_tax_individual / 1000000000"></span> mld. Kč</li>
-                        <li>Daň z příjmu právnických osob: <span x-text="income_tax_company / 1000000000"></span> mld. Kč</li>
-                        <li>Poplatky za uložení odpadů: <span x-text="trash_fees / 1000000000"></span> mld. Kč</li>
-                        <li>Pojistné na sociální zabezpečení: <span x-text="mandatory_social_insurance / 1000000000"></span> mld. Kč</li>
-                        <li>Daň z hazardních her: <span x-text="gambling_tax / 1000000000"></span> mld. Kč</li>
-                        <li>Ostatní daňové příjmy: <span x-text="other_tax / 1000000000"></span> mld. Kč</li>
-                        <li>Příjmy z EU: <span x-text="income_from_eu / 1000000000"></span> mld. Kč</li>
-                        <li>Příjmy sdílené s EU: <span x-text="income_connected_with_eu / 1000000000"></span> mld. Kč</li>
-                        <li>Ostatní nedaňové příjmy: <span x-text="other_nontax_income / 1000000000"></span> mld. Kč</li>
-                    </ul>
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td>v mld. Kč</td>
+                            <td>Váš procentuální podíl</td>
+                            <td>Váš podíl v Kč</td>
+                        </tr>
+                        <tr>
+                            <th>Celkem</th>
+                            <td><span x-text="total_income / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>DPH</th>
+                            <td><span x-text="vat / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Spotřební daň celkem</th>
+                            <td><span x-text="consumer_taxes / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Spotřební daň z paliv</th>
+                            <td><span x-text="consumer_tax_oils / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Spotřební daň z tabáku</th>
+                            <td><span x-text="consumer_tax_tobacco / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Odvod z elektřiny ze slunečního záření</th>
+                            <td><span x-text="consumer_tax_solar_energy / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Daň z příjmu fyzických osob</th>
+                            <td><span x-text="income_tax_individual / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Daň z příjmu právnických osob</th>
+                            <td><span x-text="income_tax_company / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Poplatky za uložení odpadů</th>
+                            <td><span x-text="trash_fees / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Pojistné na sociální zabezpečení</th>
+                            <td><span x-text="mandatory_social_insurance / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Daň z hazardních her </th>
+                            <td><span x-text="gambling_tax / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Ostatní daňové příjmy</th>
+                            <td><span x-text="other_tax / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Příjmy z EU</th>
+                            <td><span x-text="income_from_eu / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Příjmy sdílené s EU</th>
+                            <td><span x-text="income_connected_with_eu / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Ostatní nedaňové příjmy</th>
+                            <td><span x-text="other_nontax_income / 1000000000"></span></td>
+                        </tr>
+                    </table>
                 </article>
                 <article class="vpravo" x-data ="get_expense_data_placeholder" x-init="
                 data = await get_expense_data(rok);
@@ -91,32 +139,98 @@
                     <header>
                         <h4>Výdaje <span x-text="rok"></span></h4>
                     </header>
-                    <ul>
-                        <li>Celkem: <span x-text="total_expenses / 1000000000"></span> mld. Kč</li>
-                        <li>Platy: <span x-text="salaries / 1000000000"></span> mld. Kč</li>
-                        <li>Neinvestiční nákupy: <span x-text="noninvestment_purchases / 1000000000"></span> mld. Kč</li>
-                        <li>Neinvestiční transfery podnikatelům: <span x-text="noninvestment_bussines / 1000000000"></span> mld. Kč</li>
-                        <li>Neinvestiční transfery neziskovým organizacím: <span x-text="noninvestment_non_profit / 1000000000"></span> mld. Kč</li>
-                        <li>Neinvestiční transfery státním fondům: <span x-text="noninvestment_state_funds / 1000000000"></span> mld. Kč</li>
-                        <li>Neinvestiční transfery fondům sociálního a zdravotního pojištění: <span x-text="noninvestment_soc_and_health_funds / 1000000000"></span> mld. Kč</li>
-                        <li>Neinvestiční transfery rozpočtům územní úrovně: <span x-text="noninvestment_regions / 1000000000"></span> mld. Kč</li>
-                        <li>Neinvestiční transfery příspěvkovým organizacím: <span x-text="noninvestment_contribution / 1000000000"></span> mld. Kč</li>
-                        <li>Důchody: <span x-text="pensions / 1000000000"></span> mld. Kč</li>
-                        <li>Podpora v nezaměstnanosti: <span x-text="unemployment_help / 1000000000"></span> mld. Kč</li>
-                        <li>Ostatní sociální dávky: <span x-text="other_social_help / 1000000000"></span> mld. Kč</li>
-                        <li>Státní sociální podpora: <span x-text="state_social_help / 1000000000"></span> mld. Kč</li>
-                        <li>Stavební spoření: <span x-text="building_savings / 1000000000"></span> mld. Kč</li>
-                        <li>Státní příspěvěk na důchodové připojištění: <span x-text="pension_insurance_contribution / 1000000000"></span> mld. Kč</li>
-                        <li>Ostatní běžné výdaje: <span x-text="other_usual_expenses / 1000000000"></span> mld. Kč</li>
-                        <li>Investiční nákupy: <span x-text="investment_purchases / 1000000000"></span> mld. Kč</li>
-                        <li>Investiční transfery podnikatelům: <span x-text="investment_transfers_bussines / 1000000000"></span> mld. Kč</li>
-                        <li>Investiční transfery státním fondům: <span x-text="investment_state_funds / 1000000000"></span> mld. Kč</li>
-                        <li>Investiční transfery rozpočtům územní úrovně: <span x-text="investment_regions / 1000000000"></span> mld. Kč</li>
-                        <li>Investiční transfery příspěvkovým organizacím: <span x-text="investment_contribution / 1000000000"></span> mld. Kč</li>
-                        <li>Ostatní investice: <span x-text="other_investment / 1000000000"></span> mld. Kč</li>
-
-
-                    </ul>
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td>v mld. Kč</td>
+                            <td>Váš procentuální podíl</td>
+                            <td>Váš podíl v Kč</td>
+                        </tr>
+                        <tr>
+                            <th>Celkem</th>
+                            <td><span x-text="total_expenses / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Platy</th>
+                            <td><span x-text="salaries / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Neinvestiční nákupy</th>
+                            <td><span x-text="noninvestment_purchases / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Neinvestiční transfery podnikatelům</th>
+                            <td><span x-text="noninvestment_bussines / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Neinvestiční transfery státním fondům</th>
+                            <td><span x-text="noninvestment_state_funds / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Neinvestiční transfery fondům sociálního a zdravotního pojištění</th>
+                            <td><span x-text="noninvestment_soc_and_health_funds / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Neinvestiční transfery rozpočtům územní úrovně</th>
+                            <td><span x-text="noninvestment_regions / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Neinvestiční transfery příspěvkovým organizacím</th>
+                            <td><span x-text="noninvestment_contribution / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Důchody</th>
+                            <td><span x-text="pensions / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Podpora v nezaměstnanosti</th>
+                            <td><span x-text="unemployment_help / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Ostatní sociální dávky</th>
+                            <td><span x-text="other_social_help / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Státní sociální podpora</th>
+                            <td><span x-text="state_social_help / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Stavební spoření</th>
+                            <td><span x-text="building_savings / 1000000000"></span> </td>
+                        </tr>
+                        <tr>
+                            <th>Státní příspěvěk na důchodové připojištění</th>
+                            <td><span x-text="pension_insurance_contribution / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Ostatní běžné výdaje</th>
+                            <td><span x-text="other_usual_expenses / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Investiční nákupy</th>
+                            <td><span x-text="investment_purchases / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Investiční transfery podnikatelům</th>
+                            <td><span x-text="investment_transfers_bussines / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Investiční transfery státním fondům</th>
+                            <td><span x-text="investment_state_funds / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Investiční transfery rozpočtům územní úrovně</th>
+                            <td><span x-text="investment_regions / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Investiční transfery příspěvkovým organizacím</th>
+                            <td><span x-text="investment_contribution / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Ostatní investice</th>
+                            <td><span x-text="other_investment / 1000000000"></span></td>
+                        </tr>
+                    </table>
                 </article>
             </section>
             <br>
@@ -167,7 +281,6 @@
                         <input type="text" id="consumer_tax_tobacco" :placeholder="consumer_tax_tobacco"/>
                         <label for="consumer_tax_alcohol">Objem vypitého ethanolu obsaženého v lihovinách:</label>
                         <input type="text" id="consumer_tax_alcohol" :placeholder="consumer_tax_alcohol"/>
-                        <input type="submit" value="Vypočítat">
                     </form>
                     </article>
                 </div>

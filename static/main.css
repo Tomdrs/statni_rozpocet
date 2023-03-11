@@ -36,6 +36,10 @@ main {
    grid-column-end: 2;
 }
 
+th {
+    font-weight: bold;
+}
+
 article h4 {
     margin-bottom: 0;
     padding-bottom: 0;
