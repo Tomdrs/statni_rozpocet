@@ -74,7 +74,7 @@
                         <template x-for="data in (await fetch_investice())">
                             <div>
                                 <h6 x-text="data.name"></h6>
-                                <p>Výstavba začala v roce <span x-text="data.start_year"></span>.</p>
+                                <p>Rok počátku realizace projektu je: <span x-text="data.start_year"></span>.</p>
                                 <p>Odhadované náklady: <span x-text="data.cost / 1000000000"></span> miliard Kč.</p>
                             </div>
                         </template>
