@@ -120,8 +120,7 @@
                 </article>
             </section>
             <br>
-            <h4>V následujících polích uveďte průměrnou měsíční hodnotu. Některá pole jsou předvyplněná průměrnými hodnotami, pro přesnější výpočet je však vhodné vyplnit co nejvíce polí.</h6>
-            <div class="parent" x-data="get_form_data_placeholder" x-init="
+            <article x-data="get_form_data_placeholder" x-init="
             data = await get_form_data();
             deti = data.deti;
             gross_income = data.gross_income;
@@ -137,7 +136,10 @@
             consumer_tax_tobacco = data.consumer_tax_tobacco;
             consumer_tax_alcohol = data.consumer_tax_alcohol;
         ">
+                <header>V následujících polích uveďte průměrnou měsíční hodnotu. Některá pole jsou předvyplněná průměrnými hodnotami, pro přesnější výpočet je však vhodné vyplnit co nejvíce polí.</header>
+                <main class="parent">
                 <div class="vlevo">
+                    <article class="calc-form">
                     <form>
                         <label for="gross_income">Hrubý příjem:</label>
                         <input type="text" id="gross_income" :placeholder="gross_income">
@@ -167,19 +169,21 @@
                         <input type="text" id="consumer_tax_alcohol" :placeholder="consumer_tax_alcohol"/>
                         <input type="submit" value="Vypočítat">
                     </form>
+                    </article>
                 </div>
                 <div class="vpravo">
                     <section>
                         <template x-for="data in (await fetch_investice())">
-                            <div>
-                                <h6 x-text="data.name"></h6>
+                            <article class="expense-display">
+                                <header x-text="data.name"></header>
                                 <p>Rok počátku realizace projektu je: <span x-text="data.start_year"></span>.</p>
                                 <p>Odhadované náklady: <span x-text="data.cost / 1000000000"></span> miliard Kč.</p>
-                            </div>
+                            </article>
                         </template>
                     </section>
                 </div>
-            </div>
+                </main>
+            </article>
         </main>
         <footer>
             Tomáš Hozda © <span x-text="new Date().getFullYear()"></span>

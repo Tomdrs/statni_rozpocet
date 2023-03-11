@@ -52,6 +52,11 @@ h1.nadpis {
     grid-template-rows: 1fr;
     grid-column-gap: 50px;
     grid-row-gap: 20px;
+    margin-bottom: 0;
+}
+
+.vlevo, .vpravo {
+    margin: 0;
 }
 
 .vlevo {
@@ -71,6 +76,19 @@ h1.nadpis {
     background-color: #EBDBCA;
 }
 
+.calc-form {
+    margin: 0;
+}
+
+.expense-display {
+    margin: 1em;
+}
+
+.expense-display > header {
+    font-weight: 600;
+}
+
 :root:not([data-theme="dark"]), [data-theme="light"] {
     --primary: #f4511e;
 }
+
