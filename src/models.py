@@ -70,7 +70,7 @@ class Expenses():
         self.investment_state_funds = record.investment_state_funds
         self.investment_regions = record.investment_regions
         self.investment_contribution = record.investment_contribution
-        self.other_invetment = record.other_invetment
+        self.other_investment = record.other_investment
 
     def to_json(self):
         return jsonify(
@@ -97,7 +97,7 @@ class Expenses():
             investment_state_funds = self.investment_state_funds,
             investment_regions = self.investment_regions,
             investment_contribution = self.investment_contribution,
-            other_invetment = self.other_invetment,
+            other_investment = self.other_investment,
         )
 
 class State_levies_average():

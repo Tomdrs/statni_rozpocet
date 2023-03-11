@@ -52,3 +52,66 @@ function get_form_data_placeholder() {
         consumer_tax_alcohol: ''
     };
 }
+
+async function get_income_data(rok) {
+    let data = await fetch_rozpocet(rok);
+    console.log(data);
+    return data;
+}
+
+function get_income_data_placeholder() {
+    return {
+        year: '',
+        total_income: '',
+        total_expense: '',
+        vat: '',
+        consumer_taxes: '',
+        income_tax_individual: '',
+        income_tax_company: '',
+        mandatory_social_insurance: '',
+        other_tax: '',
+        other_nontax_income: '',
+        consumer_tax_oils: '',
+        consumer_tax_tobacco: '',
+        consumer_tax_solar_energy: '',
+        trash_fees: '',
+        gambling_tax: '',
+        income_from_eu: '',
+        income_connected_with_eu: '',
+    };
+}
+
+async function get_expense_data(rok) {
+    let data = await fetch_vydaje(rok);
+    console.log(data);
+    return data;
+}
+
+function get_expense_data_placeholder() {
+    return {
+        year: '',
+        total_expenses: '',
+        salaries: '',
+        noninvestment_purchases: '',
+        noninvestment_bussines: '',
+        noninvestment_non_profit: '',
+        noninvestment_state_funds: '',
+        noninvestment_soc_and_health_funds: '',
+        noninvestment_regions: '',
+        noninvestment_contribution: '',
+        pensions: '',
+        unemployment_help: '',
+        other_social_help: '',
+        state_social_help: '',
+        building_savings: '',
+        pension_insurance_contribution: '',
+        eu_payment: '',
+        other_usual_expenses: '',
+        investment_purchases: '',
+        investment_transfers_bussines: '',
+        investment_state_funds: '',
+        investment_regions: '',
+        investment_contribution: '',
+        other_investment: '',
+    };
+}

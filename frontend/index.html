@@ -19,20 +19,103 @@
             </div>
             <br>
             <section class="parent">
-                <article class="vlevo">
+                <article class="vlevo" x-data ="get_income_data_placeholder" x-init="
+                data = await get_income_data(rok);
+                year = data.year;
+                total_income = data.total_income;
+                total_expense = data.total_expense;
+                vat = data.vat;
+                consumer_taxes = data.consumer_taxes;
+                income_tax_individual = data.income_tax_individual;
+                income_tax_company = data.income_tax_company;
+                mandatory_social_insurance = data.mandatory_social_insurance;
+                other_tax = data.other_tax;
+                other_nontax_income = data.other_nontax_income;
+                consumer_tax_oils = data.consumer_tax_oils;
+                consumer_tax_tobacco = data.consumer_tax_tobacco;
+                consumer_tax_solar_energy = data.consumer_tax_solar_energy;
+                trash_fees = data.trash_fees;
+                gambling_tax = data.gambling_tax;
+                income_from_eu = data.income_from_eu;
+                income_connected_with_eu = data.income_connected_with_eu;">
                     <header>
                         <h4>Příjmy <span x-text="rok"></span></h4>
                     </header>
                     <ul>
-                        <li>Celkem: <span x-text="(await fetch_rozpocet(rok)).total_income / 1000000000"></span> mld. Kč</li>
+                        <li>Celkem: <span x-text="total_income / 1000000000"></span> mld. Kč</li>
+                        <li>DPH: <span x-text="vat / 1000000000"></span> mld. Kč</li>
+                        <li>Spotřební daň: <span x-text="consumer_taxes / 1000000000"></span> mld. Kč
+                            <ul>
+                                <li>Palivo: <span x-text="consumer_tax_oils / 1000000000"></span> mld. Kč</li>
+                                <li>Tabák: <span x-text="consumer_tax_tobacco / 1000000000"></span> mld. Kč</li>
+                                <li>Sluneční záření: <span x-text="consumer_tax_solar_energy / 1000000000"></span> mld. Kč</li>
+                              </ul>
+                        </li>
+                        <li>Daň z příjmu fyzických osob: <span x-text="income_tax_individual / 1000000000"></span> mld. Kč</li>
+                        <li>Daň z příjmu právnických osob: <span x-text="income_tax_company / 1000000000"></span> mld. Kč</li>
+                        <li>Poplatky za uložení odpadů: <span x-text="trash_fees / 1000000000"></span> mld. Kč</li>
+                        <li>Pojistné na sociální zabezpečení: <span x-text="mandatory_social_insurance / 1000000000"></span> mld. Kč</li>
+                        <li>Daň z hazardních her: <span x-text="gambling_tax / 1000000000"></span> mld. Kč</li>
+                        <li>Ostatní daňové příjmy: <span x-text="other_tax / 1000000000"></span> mld. Kč</li>
+                        <li>Příjmy z EU: <span x-text="income_from_eu / 1000000000"></span> mld. Kč</li>
+                        <li>Příjmy sdílené s EU: <span x-text="income_connected_with_eu / 1000000000"></span> mld. Kč</li>
+                        <li>Ostatní nedaňové příjmy: <span x-text="other_nontax_income / 1000000000"></span> mld. Kč</li>
                     </ul>
                 </article>
-                <article class="vpravo">
+                <article class="vpravo" x-data ="get_expense_data_placeholder" x-init="
+                data = await get_expense_data(rok);
+                year = data.year;
+                total_expenses = data.total_expenses;
+                salaries = data.salaries;
+                noninvestment_purchases = data.noninvestment_purchases;
+                noninvestment_bussines = data.noninvestment_bussines;
+                noninvestment_non_profit = data.noninvestment_non_profit;
+                noninvestment_state_funds = data.noninvestment_state_funds;
+                noninvestment_soc_and_health_funds = data.noninvestment_soc_and_health_funds;
+                noninvestment_regions = data.noninvestment_regions;
+                noninvestment_contribution = data.noninvestment_contribution;
+                pensions = data.pensions;
+                unemployment_help = data.unemployment_help;
+                other_social_help = data.other_social_help;
+                state_social_help = data.state_social_help;
+                building_savings = data.building_savings;
+                pension_insurance_contribution = data.pension_insurance_contribution;
+                other_usual_expenses = data.other_usual_expenses;
+                investment_purchases = data.investment_purchases;
+                investment_transfers_bussines = data.investment_transfers_bussines;
+                investment_state_funds = data.investment_state_funds;
+                investment_regions = data.investment_regions;
+                investment_contribution = data.investment_contribution;
+                other_investment = data.other_investment;
+                ">
                     <header>
                         <h4>Výdaje <span x-text="rok"></span></h4>
                     </header>
                     <ul>
-                        <li>Celkem: <span x-text="(await fetch_vydaje(rok)).total_expenses / 1000000000"></span> mld. Kč</li>
+                        <li>Celkem: <span x-text="total_expenses / 1000000000"></span> mld. Kč</li>
+                        <li>Platy: <span x-text="salaries / 1000000000"></span> mld. Kč</li>
+                        <li>Neinvestiční nákupy: <span x-text="noninvestment_purchases / 1000000000"></span> mld. Kč</li>
+                        <li>Neinvestiční transfery podnikatelům: <span x-text="noninvestment_bussines / 1000000000"></span> mld. Kč</li>
+                        <li>Neinvestiční transfery neziskovým organizacím: <span x-text="noninvestment_non_profit / 1000000000"></span> mld. Kč</li>
+                        <li>Neinvestiční transfery státním fondům: <span x-text="noninvestment_state_funds / 1000000000"></span> mld. Kč</li>
+                        <li>Neinvestiční transfery fondům sociálního a zdravotního pojištění: <span x-text="noninvestment_soc_and_health_funds / 1000000000"></span> mld. Kč</li>
+                        <li>Neinvestiční transfery rozpočtům územní úrovně: <span x-text="noninvestment_regions / 1000000000"></span> mld. Kč</li>
+                        <li>Neinvestiční transfery příspěvkovým organizacím: <span x-text="noninvestment_contribution / 1000000000"></span> mld. Kč</li>
+                        <li>Důchody: <span x-text="pensions / 1000000000"></span> mld. Kč</li>
+                        <li>Podpora v nezaměstnanosti: <span x-text="unemployment_help / 1000000000"></span> mld. Kč</li>
+                        <li>Ostatní sociální dávky: <span x-text="other_social_help / 1000000000"></span> mld. Kč</li>
+                        <li>Státní sociální podpora: <span x-text="state_social_help / 1000000000"></span> mld. Kč</li>
+                        <li>Stavební spoření: <span x-text="building_savings / 1000000000"></span> mld. Kč</li>
+                        <li>Státní příspěvěk na důchodové připojištění: <span x-text="pension_insurance_contribution / 1000000000"></span> mld. Kč</li>
+                        <li>Ostatní běžné výdaje: <span x-text="other_usual_expenses / 1000000000"></span> mld. Kč</li>
+                        <li>Investiční nákupy: <span x-text="investment_purchases / 1000000000"></span> mld. Kč</li>
+                        <li>Investiční transfery podnikatelům: <span x-text="investment_transfers_bussines / 1000000000"></span> mld. Kč</li>
+                        <li>Investiční transfery státním fondům: <span x-text="investment_state_funds / 1000000000"></span> mld. Kč</li>
+                        <li>Investiční transfery rozpočtům územní úrovně: <span x-text="investment_regions / 1000000000"></span> mld. Kč</li>
+                        <li>Investiční transfery příspěvkovým organizacím: <span x-text="investment_contribution / 1000000000"></span> mld. Kč</li>
+                        <li>Ostatní investice: <span x-text="other_investment / 1000000000"></span> mld. Kč</li>
+
+
                     </ul>
                 </article>
             </section>
