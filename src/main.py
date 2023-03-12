@@ -95,7 +95,7 @@ def vypocet(rok):
     consumer_tax_tobacco = request.args.get('consumer_tax_tobacco') or prumerny_obcan_hodnoty.consumer_tax_tobacco
     consumer_tax_alcohol = request.args.get('consumer_tax_alcohol') or prumerny_obcan_hodnoty.consumer_tax_alcohol
 
-    celkove_odvody = yearly_total_tax(gross_income, rok == 2020, deti, social_insurance, vat_21, vat_food_mhd_medical_devices, vat_books_music_medicine_water_accomodations, capital_gains, gambling_tax, consumer_tax_car_fuel, consumer_tax_beer, consumer_tax_tobacco, consumer_tax_alcohol)
+    celkove_odvody = yearly_total_tax(rok, gross_income, rok == 2020, deti, social_insurance, vat_21, vat_food_mhd_medical_devices, vat_books_music_medicine_water_accomodations, capital_gains, gambling_tax, consumer_tax_car_fuel, consumer_tax_beer, consumer_tax_tobacco, consumer_tax_alcohol)
     print(celkove_odvody)
     procentualni_podil_prijmy = budget_ratio(fetch_rozpocet_na_rok(rok).total_income, celkove_odvody)
     procentualni_podil_vydaje = expenses_ratio(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody)

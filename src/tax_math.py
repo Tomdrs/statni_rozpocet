@@ -11,15 +11,36 @@ def yearly_income_tax(gross, is_supergross):
         return (income_tax_multiplier * gross - 2570) * 12 * budgetary_determination
 
 #sleva na poplatníka podle počtu dětí:
-def yearly_kids_discount(kids):
-    if kids == 1:
-        return 15204
-    elif kids == 2:
-        return 15204 + 22320
-    elif kids > 2:
-        return 15204 + 22320 + (kids - 2) * 27840
-    else:
-        return 0
+def yearly_kids_discount(rok, gross, kids):
+        if rok == 2020 and gross >= 7300:
+            if kids == 1:
+                return 15204
+            elif kids == 2:
+                return 15204 + 22320
+            elif kids > 2:
+                return 60300
+            else:
+                return 0
+        elif rok == 2021 and gross >= 7600:
+            if kids == 1:
+                return 15204
+            elif kids == 2:
+                return 15204 + 22320
+            elif kids > 2:
+                return 60300
+            else:
+                return 0
+        elif rok == 2022 and gross >= 8100:
+            if kids == 1:
+                return 15204
+            elif kids == 2:
+                return 15204 + 22320
+            elif kids > 2:
+                return 15204 + 22320 + (kids - 2) * 27840
+            else:
+                return 0
+        else:
+            return 0
 
 
 #výše platby na sociální zabezpečení:
@@ -43,7 +64,7 @@ def yearly_vat_10(vat_10):
 
 #výše odvedené daně z kapitálových příjmů:
 def yearly_capital(capital_gains):
-    if capital_gains >= 100000:
+    if capital_gains >= 8333:
         return capital_gains * 0.15 * 12
     else:
         return 0
@@ -69,9 +90,9 @@ def consumer_tax_alcohol(consumer_alcohol):
     return consumer_alcohol * 285 * 12
 
 #celková částka korun odvedených skrze daně do státního rozpočtu
-def yearly_total_tax(gross, is_supergross, kids, social_insurance, vat_21, vat_15, vat_10, capital_gains, gamble, consumer_fuel, consumer_beer,consumer_tobacco, consumer_alcohol):
+def yearly_total_tax(rok, gross, is_supergross, kids, social_insurance, vat_21, vat_15, vat_10, capital_gains, gamble, consumer_fuel, consumer_beer,consumer_tobacco, consumer_alcohol):
     return yearly_income_tax(gross, is_supergross) \
-        - yearly_kids_discount(kids) \
+        - yearly_kids_discount(rok, gross, kids) \
         + yearly_social_insurance(gross, social_insurance) \
         + yearly_vat_21(vat_21) \
         + yearly_vat_15(vat_15) \
