@@ -185,7 +185,6 @@
                         <tr>
                             <th></th>
                             <th>v mld. Kč</th>
-                            <th>Váš procentuální podíl</th>
                             <th>Váš podíl v&nbspKč</th>
                         </tr>
                         <tr>
@@ -194,6 +193,9 @@
                                 <span
                                     x-text="budget.total_income / 1000000000"
                                 ></span>
+                            </td>
+                            <td>
+                                <span x-text="vysledky.celkove_odvody.toFixed(2)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -316,7 +318,6 @@
                         <tr>
                             <th></th>
                             <th>v mld. Kč</th>
-                            <th>Váš procentuální podíl</th>
                             <th>Váš podíl v Kč</th>
                         </tr>
                         <tr>
