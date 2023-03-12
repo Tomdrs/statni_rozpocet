@@ -57,7 +57,6 @@ def fetch_prumerny_obcan():
 
     prumer = prumerni_lide[0]
     return State_levies_average(prumer)
-    
 
 @app.route('/prumerny_obcan')
 def prumerny_obcan():
@@ -82,18 +81,18 @@ def investice():
 def vypocet(rok):
     prumerny_obcan_hodnoty = fetch_prumerny_obcan()
 
-    gross_income = request.args.get('gross_income') or prumerny_obcan_hodnoty.gross_income
-    deti = request.args.get('deti') or 0
-    social_insurance = request.args.get('social_insurance') or prumerny_obcan_hodnoty.social_insurance
-    vat_books_music_medicine_water_accomodations = request.args.get('vat_books_music_medicine_water_accomodations') or prumerny_obcan_hodnoty.vat_books_music_medicine_water_accomodations
-    vat_food_mhd_medical_devices = request.args.get('vat_food_mhd_medical_devices') or prumerny_obcan_hodnoty.vat_food_mhd_medical_devices
-    vat_21 = request.args.get('vat_21') or prumerny_obcan_hodnoty.vat_21
-    capital_gains = request.args.get('capital_gains') or prumerny_obcan_hodnoty.capital_gains
-    gambling_tax = request.args.get('gambling_tax') or prumerny_obcan_hodnoty.gambling_tax
-    consumer_tax_car_fuel = request.args.get('consumer_tax_car_fuel') or prumerny_obcan_hodnoty.consumer_tax_car_fuel
-    consumer_tax_beer = request.args.get('consumer_tax_beer') or prumerny_obcan_hodnoty.consumer_tax_beer
-    consumer_tax_tobacco = request.args.get('consumer_tax_tobacco') or prumerny_obcan_hodnoty.consumer_tax_tobacco
-    consumer_tax_alcohol = request.args.get('consumer_tax_alcohol') or prumerny_obcan_hodnoty.consumer_tax_alcohol
+    gross_income = int(request.args.get('gross_income') or prumerny_obcan_hodnoty.gross_income)
+    deti = int(request.args.get('deti') or 0)
+    social_insurance = int(request.args.get('social_insurance') or prumerny_obcan_hodnoty.social_insurance)
+    vat_books_music_medicine_water_accomodations = int(request.args.get('vat_books_music_medicine_water_accomodations') or prumerny_obcan_hodnoty.vat_books_music_medicine_water_accomodations)
+    vat_food_mhd_medical_devices = int(request.args.get('vat_food_mhd_medical_devices') or prumerny_obcan_hodnoty.vat_food_mhd_medical_devices)
+    vat_21 = int(request.args.get('vat_21') or prumerny_obcan_hodnoty.vat_21)
+    capital_gains = int(request.args.get('capital_gains') or prumerny_obcan_hodnoty.capital_gains)
+    gambling_tax = int(request.args.get('gambling_tax') or prumerny_obcan_hodnoty.gambling_tax)
+    consumer_tax_car_fuel = int(request.args.get('consumer_tax_car_fuel') or prumerny_obcan_hodnoty.consumer_tax_car_fuel)
+    consumer_tax_beer = int(request.args.get('consumer_tax_beer') or prumerny_obcan_hodnoty.consumer_tax_beer)
+    consumer_tax_tobacco = int(request.args.get('consumer_tax_tobacco') or prumerny_obcan_hodnoty.consumer_tax_tobacco)
+    consumer_tax_alcohol = int(request.args.get('consumer_tax_alcohol') or prumerny_obcan_hodnoty.consumer_tax_alcohol)
 
     celkove_odvody = yearly_total_tax(rok, gross_income, rok == 2020, deti, social_insurance, vat_21, vat_food_mhd_medical_devices, vat_books_music_medicine_water_accomodations, capital_gains, gambling_tax, consumer_tax_car_fuel, consumer_tax_beer, consumer_tax_tobacco, consumer_tax_alcohol)
     print(celkove_odvody)
