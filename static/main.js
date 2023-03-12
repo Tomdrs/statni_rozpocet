@@ -115,8 +115,8 @@ function get_expense_data_placeholder() {
     };
 }
 
-async function fetch_vypocet(gross_income, deti, social_insurance, vat_books_music_medicine_water_accomodations, vat_food_mhd_medical_devices, vat_21, capital_gains, gambling_tax, consumer_tax_car_fuel, consumer_tax_beer, consumer_tax_tobacco, consumer_tax_alcohol) {
-    let query = "/vypocet?";
+async function fetch_vypocet(rok, gross_income, deti, social_insurance, vat_books_music_medicine_water_accomodations, vat_food_mhd_medical_devices, vat_21, capital_gains, gambling_tax, consumer_tax_car_fuel, consumer_tax_beer, consumer_tax_tobacco, consumer_tax_alcohol) {
+    let query = "/vypocet/"+ rok +"?";
     if (typeof gross_income !== 'undefined') query += 'gross_income=' + gross_income + '&';
     if (typeof deti !== 'undefined') query += 'deti=' + deti + '&';
     if (typeof social_insurance !== 'undefined') query += 'social_insurance=' + social_insurance + '&';
