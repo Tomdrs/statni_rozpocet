@@ -25,10 +25,12 @@
         		vysledky: vypocet_placeholders(),
         	}"
             x-effect="
+                console.log('placeholder', vysledky);
         		budget = (await get_income_data(rok));
         		expenses = (await get_expense_data(rok));
         		form_data_placeholder = (await get_form_data());
-        		vysledky = (await calculate_dane(rok, form_data));
+                var get_vysledky = (await calculate_dane(rok, form_data));
+        		vysledky = get_vysledky;
         	"
         >
             <h1 class="nadpis">
@@ -203,6 +205,9 @@
                             <td>
                                 <span x-text="budget.vat / 1000000000"></span>
                             </td>
+                            <td>
+                                <span x-text="vysledky.podil_na_dph.toFixed(2)"></span>
+                            </td>
                         </tr>
                         <tr>
                             <th>Spotřební daň celkem</th>
@@ -210,6 +215,9 @@
                                 <span
                                     x-text="budget.consumer_taxes / 1000000000"
                                 ></span>
+                            </td>
+                            <td>
+                                <span x-text="vysledky.spotrebni_dan_celkem.toFixed(2)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -219,6 +227,9 @@
                                     x-text="budget.consumer_tax_oils / 1000000000"
                                 ></span>
                             </td>
+                            <td>
+                                <span x-text="vysledky.spotrebni_dan_paliva.toFixed(2)"></span>
+                            </td>
                         </tr>
                         <tr>
                             <th>Spotřební daň z tabáku</th>
@@ -227,21 +238,18 @@
                                     x-text="budget.consumer_tax_tobacco / 1000000000"
                                 ></span>
                             </td>
-                        </tr>
-                        <tr>
-                            <th>Odvod z elektřiny ze slunečního záření</th>
                             <td>
-                                <span
-                                    x-text="budget.consumer_tax_solar_energy / 1000000000"
-                                ></span>
+                                <span x-text="vysledky.spotrebni_dan_tabak.toFixed(2)"></span>
                             </td>
-                        </tr>
                         <tr>
                             <th>Daň z příjmu fyzických osob</th>
                             <td>
                                 <span
                                     x-text="budget.income_tax_individual / 1000000000"
                                 ></span>
+                            </td>
+                            <td>
+                                <span x-text="vysledky.dan_z_prijmu.toFixed(2)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -253,19 +261,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>Poplatky za uložení odpadů</th>
-                            <td>
-                                <span
-                                    x-text="budget.trash_fees / 1000000000"
-                                ></span>
-                            </td>
-                        </tr>
-                        <tr>
                             <th>Pojistné na sociální zabezpečení</th>
                             <td>
                                 <span
                                     x-text="budget.mandatory_social_insurance / 1000000000"
                                 ></span>
+                            </td>
+                            <td>
+                                <span x-text="vysledky.soc_pojistne.toFixed(2)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -273,6 +276,17 @@
                             <td>
                                 <span
                                     x-text="budget.gambling_tax / 1000000000"
+                                ></span>
+                            </td>
+                            <td>
+                                <span x-text="vysledky.dan_hazard.toFixed(2)"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Poplatky za uložení odpadů</th>
+                            <td>
+                                <span
+                                    x-text="budget.trash_fees / 1000000000"
                                 ></span>
                             </td>
                         </tr>
@@ -327,6 +341,9 @@
                                     x-text="expenses.total_expenses / 1000000000"
                                 ></span>
                             </td>
+                            <td>
+                                <span x-text="vysledky.podil_na_vydajich.toFixed(2)"></span>
+                            </td>
                         </tr>
                         <tr>
                             <th>Platy</th>
@@ -334,6 +351,9 @@
                                 <span
                                     x-text="expenses.salaries / 1000000000"
                                 ></span>
+                            </td>
+                            <td>
+                                <span x-text="vysledky.podil_na_platech.toFixed(2)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -343,6 +363,9 @@
                                     x-text="expenses.noninvestment_purchases / 1000000000"
                                 ></span>
                             </td>
+                            <td>
+                                <span x-text="vysledky.neinvesticni_nakupy.toFixed(2)"></span>
+                            </td>
                         </tr>
                         <tr>
                             <th>Neinvestiční transfery podnikatelům</th>
@@ -351,6 +374,20 @@
                                     x-text="expenses.noninvestment_bussines / 1000000000"
                                 ></span>
                             </td>
+                            <td>
+                                <span x-text="vysledky.neinvesticni_transfery_pod.toFixed(2)"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Neinvestiční transfery neziskovým organizacím</th>
+                            <td>
+                                <span
+                                    x-text="expenses.noninvestment_non_profit / 1000000000"
+                                ></span>
+                            </td>
+                            <td>
+                                <span x-text="vysledky.neinvesticni_transery_nezisk.toFixed(2)"></span>
+                            </td>
                         </tr>
                         <tr>
                             <th>Neinvestiční transfery státním fondům</th>
@@ -358,6 +395,9 @@
                                 <span
                                     x-text="expenses.noninvestment_state_funds / 1000000000"
                                 ></span>
+                            </td>
+                            <td>
+                                <span x-text="vysledky.neinvesticni_transfery_fondum.toFixed(2)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -370,6 +410,9 @@
                                     x-text="expenses.noninvestment_soc_and_health_funds / 1000000000"
                                 ></span>
                             </td>
+                            <td>
+                                <span x-text="vysledky.neinvesticni_transfery_soc_a_zdrav.toFixed(2)"></span>
+                            </td>
                         </tr>
                         <tr>
                             <th>
@@ -379,6 +422,9 @@
                                 <span
                                     x-text="expenses.noninvestment_regions / 1000000000"
                                 ></span>
+                            </td>
+                            <td>
+                                <span x-text="vysledky.neinvesticni_transery_rozpoctum.toFixed(2)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -390,6 +436,9 @@
                                     x-text="expenses.noninvestment_contribution / 1000000000"
                                 ></span>
                             </td>
+                            <td>
+                                <span x-text="vysledky.neinvesticni_transery_pris.toFixed(2)"></span>
+                            </td>
                         </tr>
                         <tr>
                             <th>Důchody</th>
@@ -397,6 +446,9 @@
                                 <span
                                     x-text="expenses.pensions / 1000000000"
                                 ></span>
+                            </td>
+                            <td>
+                                <span x-text="vysledky.podil_na_duchodech.toFixed(2)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -406,6 +458,9 @@
                                     x-text="expenses.unemployment_help / 1000000000"
                                 ></span>
                             </td>
+                            <td>
+                                <span x-text="vysledky.podpora_v_nezamestnanosti.toFixed(2)"></span>
+                            </td>
                         </tr>
                         <tr>
                             <th>Ostatní sociální dávky</th>
@@ -413,6 +468,9 @@
                                 <span
                                     x-text="expenses.other_social_help / 1000000000"
                                 ></span>
+                            </td>
+                            <td>
+                                <span x-text="vysledky.ostatni_socialni_davky.toFixed(2)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -422,6 +480,9 @@
                                     x-text="expenses.state_social_help / 1000000000"
                                 ></span>
                             </td>
+                            <td>
+                                <span x-text="vysledky.statni_socialni_podpora.toFixed(2)"></span>
+                            </td>
                         </tr>
                         <tr>
                             <th>Stavební spoření</th>
@@ -429,6 +490,9 @@
                                 <span
                                     x-text="expenses.building_savings / 1000000000"
                                 ></span>
+                            </td>
+                            <td>
+                                <span x-text="vysledky.stavebni_sporeni.toFixed(2)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -438,6 +502,20 @@
                                     x-text="expenses.pension_insurance_contribution / 1000000000"
                                 ></span>
                             </td>
+                            <td>
+                                <span x-text="vysledky.duchodove_pripojisteni.toFixed(2)"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Odvody do rozpočtu EU</th>
+                            <td>
+                                <span
+                                    x-text="expenses.eu_payment / 1000000000"
+                                ></span>
+                            </td>
+                            <td>
+                                <span x-text="vysledky.platby_eu.toFixed(2)"></span>
+                            </td>
                         </tr>
                         <tr>
                             <th>Ostatní běžné výdaje</th>
@@ -445,6 +523,9 @@
                                 <span
                                     x-text="expenses.other_usual_expenses / 1000000000"
                                 ></span>
+                            </td>
+                            <td>
+                                <span x-text="vysledky.ostatni_bezne_vydaje.toFixed(2)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -454,6 +535,9 @@
                                     x-text="expenses.investment_purchases / 1000000000"
                                 ></span>
                             </td>
+                            <td>
+                                <span x-text="vysledky.investicni_nakupy.toFixed(2)"></span>
+                            </td>
                         </tr>
                         <tr>
                             <th>Investiční transfery podnikatelům</th>
@@ -462,6 +546,9 @@
                                     x-text="expenses.investment_transfers_bussines / 1000000000"
                                 ></span>
                             </td>
+                            <td>
+                                <span x-text="vysledky.investicni_transfery_pod.toFixed(2)"></span>
+                            </td>
                         </tr>
                         <tr>
                             <th>Investiční transfery státním fondům</th>
@@ -469,6 +556,9 @@
                                 <span
                                     x-text="expenses.investment_state_funds / 1000000000"
                                 ></span>
+                            </td>
+                            <td>
+                                <span x-text="vysledky.investicni_transfery_fondum.toFixed(2)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -480,6 +570,9 @@
                                     x-text="expenses.investment_regions / 1000000000"
                                 ></span>
                             </td>
+                            <td>
+                                <span x-text="vysledky.investicni_transery_rozpoctum.toFixed(2)"></span>
+                            </td>
                         </tr>
                         <tr>
                             <th>
@@ -490,6 +583,9 @@
                                     x-text="expenses.investment_contribution / 1000000000"
                                 ></span>
                             </td>
+                            <td>
+                                <span x-text="vysledky.investicni_transery_pris.toFixed(2)"></span>
+                            </td>
                         </tr>
                         <tr>
                             <th>Ostatní investice</th>
@@ -497,6 +593,9 @@
                                 <span
                                     x-text="expenses.other_investment / 1000000000"
                                 ></span>
+                            </td>
+                            <td>
+                                <span x-text="vysledky.ostatni_investice.toFixed(2)"></span>
                             </td>
                         </tr>
                     </table>

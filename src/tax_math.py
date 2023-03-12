@@ -74,19 +74,19 @@ def yearly_gambling_tax(gamble):
     return gamble * 0.23 * 12 * 0.7
 
 #výše odvedené spotřební daně z pohonných hmot (průměrná cena 38 kč/l):
-def consumer_tax_fuel(consumer_fuel):
+def consumer_tax_fuel_function(consumer_fuel):
     return (consumer_fuel / 38) * 11.5 * 12
 
 #výše odvedené spotřební daně z piva (objem litrů násobený daní):
-def consumer_tax_beer(consumer_beer):
+def consumer_tax_beer_function(consumer_beer):
     return consumer_beer * 0.32 * 12
 
 #výše odvedené spotřební daně z tabáku (krabička cigaret - 20 kusů - násobené daní):
-def consumer_tax_tobacco(consumer_tobacco):
+def consumer_tax_tobacco_function(consumer_tobacco):
     return consumer_tobacco * 29.2 * 12
 
 #výše odvedené spotřební daně z pohonných hmot (objel litrů ethanulu násobený daní):
-def consumer_tax_alcohol(consumer_alcohol):
+def consumer_tax_alcohol_function(consumer_alcohol):
     return consumer_alcohol * 285 * 12
 
 #celková částka korun odvedených skrze daně do státního rozpočtu
@@ -99,10 +99,10 @@ def yearly_total_tax(rok, gross, is_supergross, kids, social_insurance, vat_21, 
         + yearly_vat_10(vat_10) \
         + yearly_capital(capital_gains) \
         + yearly_gambling_tax(gamble) \
-        + consumer_tax_fuel(consumer_fuel) \
-        + consumer_tax_beer(consumer_beer) \
-        + consumer_tax_tobacco(consumer_tobacco) \
-        + consumer_tax_alcohol(consumer_alcohol)
+        + consumer_tax_fuel_function(consumer_fuel) \
+        + consumer_tax_beer_function(consumer_beer) \
+        + consumer_tax_tobacco_function(consumer_tobacco) \
+        + consumer_tax_alcohol_function(consumer_alcohol)
 
 #procento podílu odvedených daní na státním rozpočtu
 def expenses_ratio(total_expenses, yearly_total_tax):
