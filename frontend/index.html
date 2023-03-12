@@ -342,7 +342,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.podil_na_vydajich.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.podil_na_vydajich.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -353,7 +353,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.podil_na_platech.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.podil_na_platech.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -364,7 +364,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.neinvesticni_nakupy.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.neinvesticni_nakupy.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -375,7 +375,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.neinvesticni_transfery_pod.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.neinvesticni_transfery_pod.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -386,7 +386,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.neinvesticni_transery_nezisk.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.neinvesticni_transery_nezisk.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -397,7 +397,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.neinvesticni_transfery_fondum.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.neinvesticni_transfery_fondum.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -411,7 +411,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.neinvesticni_transfery_soc_a_zdrav.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.neinvesticni_transfery_soc_a_zdrav.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -424,7 +424,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.neinvesticni_transery_rozpoctum.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.neinvesticni_transery_rozpoctum.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -437,7 +437,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.neinvesticni_transery_pris.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.neinvesticni_transery_pris.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -448,7 +448,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.podil_na_duchodech.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.podil_na_duchodech.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -459,7 +459,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.podpora_v_nezamestnanosti.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.podpora_v_nezamestnanosti.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -470,7 +470,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.ostatni_socialni_davky.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.ostatni_socialni_davky.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -481,7 +481,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.statni_socialni_podpora.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.statni_socialni_podpora.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -492,7 +492,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.stavebni_sporeni.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.stavebni_sporeni.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -503,7 +503,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.duchodove_pripojisteni.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.duchodove_pripojisteni.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -514,7 +514,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.platby_eu.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.platby_eu.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -525,7 +525,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.ostatni_bezne_vydaje.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.ostatni_bezne_vydaje.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -536,7 +536,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.investicni_nakupy.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.investicni_nakupy.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -547,7 +547,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.investicni_transfery_pod.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.investicni_transfery_pod.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -558,7 +558,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.investicni_transfery_fondum.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.investicni_transfery_fondum.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -571,7 +571,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.investicni_transery_rozpoctum.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.investicni_transery_rozpoctum.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -584,7 +584,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.investicni_transery_pris.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.investicni_transery_pris.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                         <tr>
@@ -595,7 +595,7 @@
                                 ></span>
                             </td>
                             <td>
-                                <span x-text="vysledky.ostatni_investice.toFixed(2)"></span>
+                                <span x-text="Math.max(vysledky.ostatni_investice.toFixed(2), 0)"></span>
                             </td>
                         </tr>
                     </table>
@@ -650,7 +650,7 @@
                             </article>
                             <article class="expense-stat podil_kc">
                                 <header>Váš podíl (Kč)</header>
-                                <span x-text="((data.cost * vysledky.procentualni_podil_investice) / 100).toFixed(2)" x-effect="console.log(data.cost * vysledky.procentualni_podil_investice, data.cost, vysledky.procentualni_podil_investice);"></span>
+                                <span x-text="Math.max(((data.cost * vysledky.procentualni_podil_investice) / 100).toFixed(2), 0)" x-effect="console.log(data.cost * vysledky.procentualni_podil_investice, data.cost, vysledky.procentualni_podil_investice);"></span>
                             </article>
                         </div>
                     </article>
