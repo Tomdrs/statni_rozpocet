@@ -120,20 +120,53 @@ function get_expense_data_placeholder() {
     };
 }
 
+function vypocet_placeholders() {
+    return {
+        celkove_odvody: 0,
+        procentualni_podil_prijmy: 0,
+        procentualni_podil_vydaje: 0,
+        procentualni_podil_investice_z_celkovych_odvodu: 0,
+        korunovy_podil_investice: 0,
+        procentualni_podil_investice: 0
+    };
+}
+
+async function calculate_dane(rok, form_data) {
+    let data = await fetch_vypocet(
+        rok,
+        form_data.gross_income,
+        form_data.deti,
+        form_data.social_insurance,
+        form_data.vat_books_music_medicine_water_accomodations,
+        form_data.vat_food_mhd_medical_devices,
+        form_data.vat_21,
+        form_data.capital_gains,
+        form_data.gambling_tax,
+        form_data.consumer_tax_car_fuel,
+        form_data.consumer_tax_beer,
+        form_data.consumer_tax_tobacco,
+        form_data.consumer_tax_alcohol
+    );
+    console.log(data);
+    return data;
+}
+
 async function fetch_vypocet(rok, gross_income, deti, social_insurance, vat_books_music_medicine_water_accomodations, vat_food_mhd_medical_devices, vat_21, capital_gains, gambling_tax, consumer_tax_car_fuel, consumer_tax_beer, consumer_tax_tobacco, consumer_tax_alcohol) {
     let query = "/vypocet/"+ rok +"?";
-    if (typeof gross_income !== 'undefined') query += 'gross_income=' + gross_income + '&';
-    if (typeof deti !== 'undefined') query += 'deti=' + deti + '&';
-    if (typeof social_insurance !== 'undefined') query += 'social_insurance=' + social_insurance + '&';
-    if (typeof vat_books_music_medicine_water_accomodations !== 'undefined') query += 'vat_books_music_medicine_water_accomodations=' + vat_books_music_medicine_water_accomodations + '&';
-    if (typeof vat_food_mhd_medical_devices !== 'undefined') query += 'vat_food_mhd_medical_devices=' + vat_food_mhd_medical_devices + '&';
-    if (typeof vat21 !== 'undefined') query += 'vat_21=' + vat_21 + '&';
-    if (typeof capital_gains !== 'undefined') query += 'capital_gains=' + capital_gains + '&';
-    if (typeof gambling_tax !== 'undefined') query += 'gambling_tax=' + gambling_tax + '&';
-    if (typeof consumer_tax_car_fuel !== 'undefined') query += 'consumer_tax_car_fuel=' + consumer_tax_car_fuel + '&';
-    if (typeof consumer_tax_beer !== 'undefined') query += 'consumer_tax_beer=' + consumer_tax_beer + '&';
-    if (typeof consumer_tax_tobacco !== 'undefined') query += 'consumer_tax_tobacco=' + consumer_tax_tobacco + '&';
-    if (typeof consumer_tax_alcohol !== 'undefined') query += 'consumer_tax_alcohol=' + consumer_tax_alcohol;
+
+    if (typeof gross_income !== 'undefined' || gross_income !== '') query += 'gross_income=' + gross_income + '&';
+    if (typeof deti !== 'undefined' || deti !== '') query += 'deti=' + deti + '&';
+    if (typeof social_insurance !== 'undefined' || social_insurance !== '') query += 'social_insurance=' + social_insurance + '&';
+    if (typeof vat_books_music_medicine_water_accomodations !== 'undefined' || vat_books_music_medicine_water_accomodations !== '') query += 'vat_books_music_medicine_water_accomodations=' + vat_books_music_medicine_water_accomodations + '&';
+    if (typeof vat_food_mhd_medical_devices !== 'undefined' || vat_food_mhd_medical_devices !== '') query += 'vat_food_mhd_medical_devices=' + vat_food_mhd_medical_devices + '&';
+    if (typeof vat_21 !== 'undefined' || vat_21 !== '') query += 'vat_21=' + vat_21 + '&';
+    if (typeof capital_gains !== 'undefined' || capital_gains !== '') query += 'capital_gains=' + capital_gains + '&';
+    if (typeof gambling_tax !== 'undefined' || gambling_tax !== '') query += 'gambling_tax=' + gambling_tax + '&';
+    if (typeof consumer_tax_car_fuel !== 'undefined' || consumer_tax_car_fuel !== '') query += 'consumer_tax_car_fuel=' + consumer_tax_car_fuel + '&';
+    if (typeof consumer_tax_beer !== 'undefined' || consumer_tax_beer !== '') query += 'consumer_tax_beer=' + consumer_tax_beer + '&';
+    if (typeof consumer_tax_tobacco !== 'undefined' || consumer_tax_tobacco !== '') query += 'consumer_tax_tobacco=' + consumer_tax_tobacco + '&';
+    if (typeof consumer_tax_alcohol !== 'undefined' || consumer_tax_alcohol !== '') query += 'consumer_tax_alcohol=' + consumer_tax_alcohol;
 
     let result = await fetch(query);
+    return (await result.json());
 }

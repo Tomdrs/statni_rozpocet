@@ -23,7 +23,7 @@ class Budget():
         self.income_connected_with_eu = record.income_connected_with_eu
         print(dir(self))
         print(self.total_income)
-    
+
     def to_json(self):
         return jsonify(
             year = self.year,
@@ -44,7 +44,7 @@ class Budget():
             income_from_eu = self.income_from_eu,
             income_connected_with_eu = self.income_connected_with_eu,
         )
-    
+
 class Expenses():
     def __init__(self, record):
         self.year = record.year

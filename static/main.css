@@ -104,6 +104,7 @@ h1.nadpis {
 
 :root:not([data-theme="dark"]), [data-theme="light"] {
     --primary: #f4511e;
+    --font-size: 1em !important;
 }
 
 .vydaj-tabulka td {
@@ -222,12 +223,12 @@ h1.nadpis {
  *
  */
 .main {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1.5fr;
-  grid-template-rows: 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.5fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
     "prijmy form vydaje";
 }
 
