@@ -20,10 +20,15 @@ async function fetch_prumerny_obcan() {
     return prumerny_obcan;
 }
 
-async function fetch_investice() {
+async function fetch_investice(filtr) {
     let req = await fetch("/investice");
     let investice = await req.json();
     investice = investice.investice_json.map((x) => JSON.parse(x));
+    investice = investice.sort((a, b) => a.start_year - b.start_year);
+
+    if (filtr !== '')
+        investice = investice.filter(entry => entry.start_year.toString().indexOf(filtr) >= 0 || entry.name.indexOf(filtr) >= 0);
+
     console.log(investice);
     return investice;
 }
@@ -58,9 +63,9 @@ async function get_income_data(rok) {
     return data;
 }
 
-function get_income_data_placeholder() {
+function get_income_data_placeholder(rok) {
     return {
-        year: '',
+        year: rok,
         total_income: '',
         total_expense: '',
         vat: '',

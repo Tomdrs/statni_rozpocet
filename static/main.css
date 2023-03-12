@@ -67,13 +67,19 @@ h1.nadpis {
     margin: 0;
 }
 
+.vlevo header, .vpravo header {
+    margin-bottom: 0;
+}
+.vlevo article, .vpravo article {
+    padding-bottom: 1em;
+}
+
 .vlevo {
     grid-area: 1 / 1 / 2 / 2;
 }
 
 .vpravo {
     grid-area: 1 / 2 / 2 / 3;
-    max-height: 1500px;
     overflow: scroll;
 }
 
@@ -106,3 +112,128 @@ h1.nadpis {
     text-align: center;
     font-weight: bold;
 }
+
+.vyber-rok {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.vyber-rok input {
+    visibility: hidden;
+}
+
+.vyber-rok label {
+    font-size: 5em;
+    font-weight: normal;
+}
+
+.vyber-rok input:checked + label {
+    border-bottom: 2px var(--primary) solid;
+}
+
+.instrukce-kontejner {
+    wdith: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+.instrukce {
+    width: 50%;
+    padding-bottom: 1em;
+}
+
+.instrukce h4 {
+    display: inline;
+}
+
+.instrukce details {
+    border-bottom: none;
+}
+
+/*
+ *
+ * Jednotlivé výdaje
+ *
+ *
+ */
+
+.flexperiment {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100vw;
+    margin-left: calc((100vw - 100%) / -2);
+    margin-right: calc((100vw - 100%) / -2);
+}
+
+.flexperiment article {
+    flex-grow: 0;
+}
+
+.expense-stat {
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+}
+
+.expense-stat span {
+    font-size: 2em;
+    color: #f4511e;
+    text-align: center;
+    font-weight: bold;
+}
+
+.expense-stat header {
+    padding: 1em;
+    margin-bottom: 0;
+    text-align: center;
+    font-weight: bold;
+    filter: invert(1);
+}
+
+.expense-display {
+    max-width: 34em;
+}
+
+.expense-display div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "rok cena"
+      "podil_procento podil_kc";
+}
+
+.expense-display .rok { grid-area: rok; }
+.expense-display .cena { grid-area: cena; }
+.expense-display .podil_procento { grid-area: podil_procento; }
+.expense-display .podil_kc { grid-area: podil_kc; }
+
+/*
+ *
+ * Layout
+ *
+ *
+ */
+.main {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.5fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "prijmy form vydaje";
+}
+
+.form { grid-area: form; }
+
+.prijmy { grid-area: prijmy; }
+
+.vydaje { grid-area: vydaje; }
+

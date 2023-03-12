@@ -8,233 +8,25 @@
         <link rel=stylesheet href="/static/main.css">
     </head>
     <body x-init="console.log('start alpinejs')">
-        <main x-data="{ rok: '2022' }">
+        <main x-data="{ rok: '2022', budget: {}, expenses: {}, filtr: '' }" x-effect="budget = (await get_income_data(rok)); expenses = (await get_expense_data(rok));">
             <h1 class="nadpis">Kalkulačka podílu na státním rozpočtu a výdajů</h1>
-            <p>Tato webová kalkulačka slouží k výpočtu částky, jakou se podílíte na státním rozpočtu České republiky skrze daňe, které povinně odvádíte...</p>
-            <h4>Zobrazit údaje o státního rozpočtu za rok:</h4>
-            <div>
-                <input x-model="rok" type="radio" value="2020"><label>2020</label>
-                <input x-model="rok" type="radio" value="2021"><label>2021</label>
-                <input x-model="rok" type="radio" value="2022"><label>2022</label>
-            </div>
-            <br>
-            <section class="parent">
-                <article class="vlevo" x-data ="get_income_data_placeholder" x-init="
-                data = await get_income_data(rok);
-                year = data.year;
-                total_income = data.total_income;
-                total_expense = data.total_expense;
-                vat = data.vat;
-                consumer_taxes = data.consumer_taxes;
-                income_tax_individual = data.income_tax_individual;
-                income_tax_company = data.income_tax_company;
-                mandatory_social_insurance = data.mandatory_social_insurance;
-                other_tax = data.other_tax;
-                other_nontax_income = data.other_nontax_income;
-                consumer_tax_oils = data.consumer_tax_oils;
-                consumer_tax_tobacco = data.consumer_tax_tobacco;
-                consumer_tax_solar_energy = data.consumer_tax_solar_energy;
-                trash_fees = data.trash_fees;
-                gambling_tax = data.gambling_tax;
-                income_from_eu = data.income_from_eu;
-                income_connected_with_eu = data.income_connected_with_eu;">
-                    <header>
-                        <h4>Příjmy <span x-text="rok"></span></h4>
-                    </header>
-                    <table>
-                        <tr>
-                            <th></th>
-                            <th>v mld. Kč</th>
-                            <th>Váš procentuální podíl</th>
-                            <th>Váš podíl v&nbspKč</th>
-                        </tr>
-                        <tr>
-                            <th>Celkem</th>
-                            <td><span x-text="total_income / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>DPH</th>
-                            <td><span x-text="vat / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Spotřební daň celkem</th>
-                            <td><span x-text="consumer_taxes / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Spotřební daň z paliv</th>
-                            <td><span x-text="consumer_tax_oils / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Spotřební daň z tabáku</th>
-                            <td><span x-text="consumer_tax_tobacco / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Odvod z elektřiny ze slunečního záření</th>
-                            <td><span x-text="consumer_tax_solar_energy / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Daň z příjmu fyzických osob</th>
-                            <td><span x-text="income_tax_individual / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Daň z příjmu právnických osob</th>
-                            <td><span x-text="income_tax_company / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Poplatky za uložení odpadů</th>
-                            <td><span x-text="trash_fees / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Pojistné na sociální zabezpečení</th>
-                            <td><span x-text="mandatory_social_insurance / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Daň z hazardních her </th>
-                            <td><span x-text="gambling_tax / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Ostatní daňové příjmy</th>
-                            <td><span x-text="other_tax / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Příjmy z EU</th>
-                            <td><span x-text="income_from_eu / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Příjmy sdílené s EU</th>
-                            <td><span x-text="income_connected_with_eu / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Ostatní nedaňové příjmy</th>
-                            <td><span x-text="other_nontax_income / 1000000000"></span></td>
-                        </tr>
-                    </table>
-                </article>
-                <article class="vpravo" x-data ="get_expense_data_placeholder" x-init="
-                data = await get_expense_data(rok);
-                year = data.year;
-                total_expenses = data.total_expenses;
-                salaries = data.salaries;
-                noninvestment_purchases = data.noninvestment_purchases;
-                noninvestment_bussines = data.noninvestment_bussines;
-                noninvestment_non_profit = data.noninvestment_non_profit;
-                noninvestment_state_funds = data.noninvestment_state_funds;
-                noninvestment_soc_and_health_funds = data.noninvestment_soc_and_health_funds;
-                noninvestment_regions = data.noninvestment_regions;
-                noninvestment_contribution = data.noninvestment_contribution;
-                pensions = data.pensions;
-                unemployment_help = data.unemployment_help;
-                other_social_help = data.other_social_help;
-                state_social_help = data.state_social_help;
-                building_savings = data.building_savings;
-                pension_insurance_contribution = data.pension_insurance_contribution;
-                other_usual_expenses = data.other_usual_expenses;
-                investment_purchases = data.investment_purchases;
-                investment_transfers_bussines = data.investment_transfers_bussines;
-                investment_state_funds = data.investment_state_funds;
-                investment_regions = data.investment_regions;
-                investment_contribution = data.investment_contribution;
-                other_investment = data.other_investment;
-                ">
-                    <header>
-                        <h4>Výdaje <span x-text="rok"></span></h4>
-                    </header>
-                    <table>
-                        <tr>
-                            <th></th>
-                            <th>v mld. Kč</th>
-                            <th>Váš procentuální podíl</th>
-                            <th>Váš podíl v Kč</th>
-                        </tr>
-                        <tr>
-                            <th>Celkem</th>
-                            <td><span x-text="total_expenses / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Platy</th>
-                            <td><span x-text="salaries / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Neinvestiční nákupy</th>
-                            <td><span x-text="noninvestment_purchases / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Neinvestiční transfery podnikatelům</th>
-                            <td><span x-text="noninvestment_bussines / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Neinvestiční transfery státním fondům</th>
-                            <td><span x-text="noninvestment_state_funds / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Neinvestiční transfery fondům sociálního a zdravotního pojištění</th>
-                            <td><span x-text="noninvestment_soc_and_health_funds / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Neinvestiční transfery rozpočtům územní úrovně</th>
-                            <td><span x-text="noninvestment_regions / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Neinvestiční transfery příspěvkovým organizacím</th>
-                            <td><span x-text="noninvestment_contribution / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Důchody</th>
-                            <td><span x-text="pensions / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Podpora v nezaměstnanosti</th>
-                            <td><span x-text="unemployment_help / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Ostatní sociální dávky</th>
-                            <td><span x-text="other_social_help / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Státní sociální podpora</th>
-                            <td><span x-text="state_social_help / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Stavební spoření</th>
-                            <td><span x-text="building_savings / 1000000000"></span> </td>
-                        </tr>
-                        <tr>
-                            <th>Státní příspěvěk na důchodové připojištění</th>
-                            <td><span x-text="pension_insurance_contribution / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Ostatní běžné výdaje</th>
-                            <td><span x-text="other_usual_expenses / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Investiční nákupy</th>
-                            <td><span x-text="investment_purchases / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Investiční transfery podnikatelům</th>
-                            <td><span x-text="investment_transfers_bussines / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Investiční transfery státním fondům</th>
-                            <td><span x-text="investment_state_funds / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Investiční transfery rozpočtům územní úrovně</th>
-                            <td><span x-text="investment_regions / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Investiční transfery příspěvkovým organizacím</th>
-                            <td><span x-text="investment_contribution / 1000000000"></span></td>
-                        </tr>
-                        <tr>
-                            <th>Ostatní investice</th>
-                            <td><span x-text="other_investment / 1000000000"></span></td>
-                        </tr>
-                    </table>
+            <section class="vyber-rok">
+                <input x-model="rok" type="radio" value="2020" id="rok-2020"><label for="rok-2020">2020</label>
+                <input x-model="rok" type="radio" value="2021" id="rok-2021"><label for="rok-2021">2021</label>
+                <input x-model="rok" type="radio" value="2022" id="rok-2022"><label for="rok-2022">2022</label>
+            </section>
+
+            <section class="instrukce-kontejner">
+                <article class="instrukce">
+                    <details>
+                        <summary><h4>Instrukce</h4></summary>
+                        <p>Tato webová kalkulačka slouží k výpočtu částky, jakou se podílíte na státním rozpočtu České republiky skrze daňe, které povinně odvádíte.</p>
+                    </details>
                 </article>
             </section>
-            <br>
-            <article x-data="get_form_data_placeholder" x-init="
+            <section class="main" x-data>
+                    <article class="calc-form form">
+                        <form x-data="get_form_data_placeholder" x-init="
             data = await get_form_data();
             deti = data.deti;
             gross_income = data.gross_income;
@@ -249,63 +41,231 @@
             consumer_tax_tobacco = data.consumer_tax_tobacco;
             consumer_tax_alcohol = data.consumer_tax_alcohol;
         ">
-                <header>V následujících polích uveďte průměrnou měsíční hodnotu. Některá pole jsou předvyplněná průměrnými hodnotami, pro přesnější výpočet je však vhodné vyplnit co nejvíce polí.</header>
-                <main class="parent">
-                <div class="vlevo">
-                    <article class="calc-form">
-                    <form>
-                        <label for="gross_income">Hrubý příjem:</label>
-                        <input type="text" id="gross_income" :placeholder="gross_income">
-                        <label for="deti">Počet dětí:</label>
-                        <input type="text" id="deti" :placeholder="deti || '0'"/>
-                        <label for="social_insurance">Sociální zabezpečení (vyplní pouze OSVČ):</label>
-                        <input type="text" id="social_insurance" :placeholder="social_insurance || '0'"/>
-                        <label for="vat_books_music_medicine_water_accomodations">Vodné a stočné, knihy, hudba, léky, služby ubytování:</label>
-                        <input type="text" id="vat_books_music_medicine_water_accomodations" :placeholder="vat_books_music_medicine_water_accomodations">
-                        <label for="vat_food_mhd_medical_devices">Potraviny a gastronomické služby, veřejná doprava, léčební pomůcky:</label>
-                        <input type="text" id="vat_food_mhd_medical_devices" :placeholder="vat_food_mhd_medical_devices"/>
-                        <label for="vat_21">Všechny ostatní útraty:</label>
-                        <input type="text" id="vat_21" :placeholder="vat_21"/>
-                        <label for="capital_gains">Kapitálové příjmy:</label>
-                        <input type="text" id="capital_gains" :placeholder="capital_gains || '0'"/>
-                        <label for="gambling_tax">Prohrané částky v neúspěšném hazardu:</label>
-                        <input type="text" id="gambling_tax" :placeholder="gambling_tax"/>
-                        <label for="consumer_tax_car_fuel">Palivo:</label>
-                        <input type="text" id="consumer_tax_car_fuel" :placeholder="consumer_tax_car_fuel"/>
-                        <label for="consumer_tax_beer">Počet vypitých litrů piva:</label>
-                        <input type="text" id="consumer_tax_beer" :placeholder="consumer_tax_beer"/>
-                        <label for="consumer_tax_tobacco">Počet krabiček cigaret:</label>
-                        <input type="text" id="consumer_tax_tobacco" :placeholder="consumer_tax_tobacco"/>
-                        <label for="consumer_tax_alcohol">Objem vypitého ethanolu obsaženého v lihovinách:</label>
-                        <input type="text" id="consumer_tax_alcohol" :placeholder="consumer_tax_alcohol"/>
-                    </form>
+                            <label for="gross_income">Hrubý příjem:</label>
+                            <input type="text" id="gross_income" :placeholder="gross_income">
+                            <label for="deti">Počet dětí:</label>
+                            <input type="text" id="deti" :placeholder="deti || '0'"/>
+                            <label for="social_insurance">Sociální zabezpečení (vyplní pouze OSVČ):</label>
+                            <input type="text" id="social_insurance" :placeholder="social_insurance || '0'"/>
+                            <label for="vat_books_music_medicine_water_accomodations">Vodné a stočné, knihy, hudba, léky, služby ubytování:</label>
+                            <input type="text" id="vat_books_music_medicine_water_accomodations" :placeholder="vat_books_music_medicine_water_accomodations">
+                            <label for="vat_food_mhd_medical_devices">Potraviny a gastronomické služby, veřejná doprava, léčební pomůcky:</label>
+                            <input type="text" id="vat_food_mhd_medical_devices" :placeholder="vat_food_mhd_medical_devices"/>
+                            <label for="vat_21">Všechny ostatní útraty:</label>
+                            <input type="text" id="vat_21" :placeholder="vat_21"/>
+                            <label for="capital_gains">Kapitálové příjmy:</label>
+                            <input type="text" id="capital_gains" :placeholder="capital_gains || '0'"/>
+                            <label for="gambling_tax">Prohrané částky v neúspěšném hazardu:</label>
+                            <input type="text" id="gambling_tax" :placeholder="gambling_tax"/>
+                            <label for="consumer_tax_car_fuel">Palivo:</label>
+                            <input type="text" id="consumer_tax_car_fuel" :placeholder="consumer_tax_car_fuel"/>
+                            <label for="consumer_tax_beer">Počet vypitých litrů piva:</label>
+                            <input type="text" id="consumer_tax_beer" :placeholder="consumer_tax_beer"/>
+                            <label for="consumer_tax_tobacco">Počet krabiček cigaret:</label>
+                            <input type="text" id="consumer_tax_tobacco" :placeholder="consumer_tax_tobacco"/>
+                            <label for="consumer_tax_alcohol">Objem vypitého ethanolu obsaženého v lihovinách:</label>
+                            <input type="text" id="consumer_tax_alcohol" :placeholder="consumer_tax_alcohol"/>
+                        </form>
                     </article>
-                </div>
-                <div class="vpravo">
-                    <section>
-                        <template x-for="data in (await fetch_investice())">
-                            <article class="expense-display">
-                                <header x-text="data.name"></header>
-                                <table>
-                                    <tr>
-                                        <th>Rok</th>
-                                        <th>Náklady (mld. Kč)</th>
-                                        <th>Váš procentuální podíl</th>
-                                        <th>Váš podíl (Kč)</th>
-                                    </tr>
-                                    <tr class="vydaj-tabulka">
-                                        <td><span x-text="data.start_year"></span></td>
-                                        <td><span x-text="data.cost / 1000000000"></span></td>
-                                        <td>2.08</td>
-                                        <td>1000</td>
-                                    </tr>
-                                </table>
+                    <article class="prijmy" x-data>
+                    <header>
+                        <h4>Příjmy <span x-text="rok"></span></h4>
+                    </header>
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>v mld. Kč</th>
+                            <th>Váš procentuální podíl</th>
+                            <th>Váš podíl v&nbspKč</th>
+                        </tr>
+                        <tr>
+                            <th>Celkem</th>
+                            <td><span x-text="budget.total_income / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>DPH</th>
+                            <td><span x-text="budget.vat / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Spotřební daň celkem</th>
+                            <td><span x-text="budget.consumer_taxes / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Spotřební daň z paliv</th>
+                            <td><span x-text="budget.consumer_tax_oils / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Spotřební daň z tabáku</th>
+                            <td><span x-text="budget.consumer_tax_tobacco / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Odvod z elektřiny ze slunečního záření</th>
+                            <td><span x-text="budget.consumer_tax_solar_energy / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Daň z příjmu fyzických osob</th>
+                            <td><span x-text="budget.income_tax_individual / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Daň z příjmu právnických osob</th>
+                            <td><span x-text="budget.income_tax_company / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Poplatky za uložení odpadů</th>
+                            <td><span x-text="budget.trash_fees / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Pojistné na sociální zabezpečení</th>
+                            <td><span x-text="budget.mandatory_social_insurance / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Daň z hazardních her </th>
+                            <td><span x-text="budget.gambling_tax / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Ostatní daňové příjmy</th>
+                            <td><span x-text="budget.other_tax / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Příjmy z EU</th>
+                            <td><span x-text="budget.income_from_eu / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Příjmy sdílené s EU</th>
+                            <td><span x-text="budget.income_connected_with_eu / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Ostatní nedaňové příjmy</th>
+                            <td><span x-text="budget.other_nontax_income / 1000000000"></span></td>
+                        </tr>
+                    </table>
+                </article>
+                <article class="vydaje" x-data>
+                    <header>
+                        <h4>Výdaje <span x-text="rok"></span></h4>
+                    </header>
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>v mld. Kč</th>
+                            <th>Váš procentuální podíl</th>
+                            <th>Váš podíl v Kč</th>
+                        </tr>
+                        <tr>
+                            <th>Celkem</th>
+                            <td><span x-text="expenses.total_expenses / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Platy</th>
+                            <td><span x-text="expenses.salaries / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Neinvestiční nákupy</th>
+                            <td><span x-text="expenses.noninvestment_purchases / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Neinvestiční transfery podnikatelům</th>
+                            <td><span x-text="expenses.noninvestment_bussines / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Neinvestiční transfery státním fondům</th>
+                            <td><span x-text="expenses.noninvestment_state_funds / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Neinvestiční transfery fondům sociálního a zdravotního pojištění</th>
+                            <td><span x-text="expenses.noninvestment_soc_and_health_funds / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Neinvestiční transfery rozpočtům územní úrovně</th>
+                            <td><span x-text="expenses.noninvestment_regions / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Neinvestiční transfery příspěvkovým organizacím</th>
+                            <td><span x-text="expenses.noninvestment_contribution / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Důchody</th>
+                            <td><span x-text="expenses.pensions / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Podpora v nezaměstnanosti</th>
+                            <td><span x-text="expenses.unemployment_help / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Ostatní sociální dávky</th>
+                            <td><span x-text="expenses.other_social_help / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Státní sociální podpora</th>
+                            <td><span x-text="expenses.state_social_help / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Stavební spoření</th>
+                            <td><span x-text="expenses.building_savings / 1000000000"></span> </td>
+                        </tr>
+                        <tr>
+                            <th>Státní příspěvěk na důchodové připojištění</th>
+                            <td><span x-text="expenses.pension_insurance_contribution / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Ostatní běžné výdaje</th>
+                            <td><span x-text="expenses.other_usual_expenses / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Investiční nákupy</th>
+                            <td><span x-text="expenses.investment_purchases / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Investiční transfery podnikatelům</th>
+                            <td><span x-text="expenses.investment_transfers_bussines / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Investiční transfery státním fondům</th>
+                            <td><span x-text="expenses.investment_state_funds / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Investiční transfery rozpočtům územní úrovně</th>
+                            <td><span x-text="expenses.investment_regions / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Investiční transfery příspěvkovým organizacím</th>
+                            <td><span x-text="expenses.investment_contribution / 1000000000"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Ostatní investice</th>
+                            <td><span x-text="expenses.other_investment / 1000000000"></span></td>
+                        </tr>
+                    </table>
+                </article>
+            </section>
+            <section x-data>
+                <input type="search" id="search" name="search" placeholder="Filtrovat investice" x-model='filtr'>
+            </section>
+            <section class="flexperiment">
+                <template x-data="{ zaznamy: [] }" x-for="data in zaznamy" x-effect="zaznamy = (await fetch_investice(filtr))">
+                    <article class="expense-display">
+                        <header x-text="data.name"></header>
+                        <div>
+                            <article class="expense-stat rok">
+                                <header>Rok</header>
+                                <span x-text="data.start_year"></span>
                             </article>
-                        </template>
-                    </section>
-                </div>
-                </main>
-            </article>
+                            <article class="expense-stat cena">
+                                <header>Náklady mld. Kč</header>
+                                <span x-text="data.cost / 1000000000"></span>
+                            </article>
+                            <article class="expense-stat podil_procento">
+                                <header>Váš procentuální podíl</header>
+                                <span>2.08</span>
+                            </article>
+                            <article class="expense-stat podil_kc">
+                                <header>Váš podíl (Kč)</header>
+                                <span>1000</span>
+                            </article>
+                        </div>
+                    </article>
+                </template>
+            </section>
         </main>
         <footer>
             Tomáš Hozda © <span x-text="new Date().getFullYear()"></span>
