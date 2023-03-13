@@ -17,14 +17,18 @@ async function fetch_prumerny_obcan() {
     return prumerny_obcan;
 }
 
-async function fetch_investice(filtr) {
+function filter_investment_array(arr, filtr) {
+    if (filtr !== '')
+        return arr.filter(entry => entry.start_year.toString().indexOf(filtr) >= 0 || entry.name.toLowerCase().indexOf(filtr.toLowerCase()) >= 0);
+    else return arr;
+}
+
+async function fetch_investice(filtr, extra_investice) {
     let req = await fetch("/investice");
     let investice = await req.json();
     investice = investice.investice_json.map((x) => JSON.parse(x));
     investice = investice.sort((a, b) => a.start_year - b.start_year);
-
-    if (filtr !== '')
-        investice = investice.filter(entry => entry.start_year.toString().indexOf(filtr) >= 0 || entry.name.indexOf(filtr) >= 0);
+    investice = filter_investment_array(investice, filtr);
 
     return investice;
 }

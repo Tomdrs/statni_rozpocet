@@ -23,6 +23,7 @@
                 form_data_placeholder: get_form_data_placeholder(),
                 form_data: get_form_data_placeholder(),
                 vysledky: vypocet_placeholders(),
+                extra_investice: [],
             }"
             x-init="
                 $watch('form_data', async (f) => { console.log('watch form_data'); vysledky = await calculate_dane(rok, f); console.log(vysledky);});
@@ -64,10 +65,14 @@
                         <p>
                             Tato webová kalkulačka slouží k výpočtu částky,
                             jakou se podílíte na státním rozpočtu České
-                            republiky skrze daně, které povinně odvádíte.<br>
+                            republiky skrze daně, které povinně odvádíte.
+                        </p>
+                        <p>
                             Kalkulačka přijme Vámi zadané údaje a podle nich vypočítá částku, kterou za vybraný rok odvedete do státního rozpočtu. Rok, pro který chcete údaje počítat, zaklikněte v sekci nad instrukcemi. Do políček formuláře vždy uveďte průměrnou měsíční hodnotu. Některá pole jsou předvyplněná hodnotami, které odpovídají průměrnému občanovi. Pro přesnější výpočet však pole vyplňte. Kalkulačka je interaktivní, takže mění své výpočty při každé změně údajů nebo vybraného roku.<br>
-                            Po levé straně se Vám vedle obecných údajů o státních příjmech za vybraný rok zobrazí, skrze jaké daně jste peníze do rozpočtu odvedli, a po pravé straně se Vám vedle obecných údajů o státních výdajích za vybraný rok zobrazí, na jaké výdaje stát peníze distribuoval. V sekci pod formulářem pak naleznete plánované státní investice vycházející z národního investičního plánu. U těchto investic se Vám zobrazí, kolik procent z celkové částky určené k investicím ve vybraném roce by tato konkrétní investice tvořila, pokud by všechny její náklady měly být uhrazené ve vybraném roce. V políčku vedle se Vám zobrazí částka, která by na investici putovala z Vámi odvedených daní, kdyby se investice realizovala a uhradila pouze v roce, pro který počítáte svůj podíl na rozpočtu. Je možné, že výše investice bude vyšší než vyčleněná celková částka na investice za daný rok, a tak se Vám zobrazí údaje, které budou převyšovat částku, která z Vámi odvedených peněz měla zamířit na investice. Ve formuláři si také můžete přidat vlastní investici, kalkulačka Vám pak vypočítá hodnoty pro tuto investici.<br>
-                            Hodnoty vypočítané kalkulačkou jsou pouze orientační!
+                        </p><p>
+                           Po levé straně se Vám vedle obecných údajů o státních příjmech za vybraný rok zobrazí, skrze jaké daně jste peníze do rozpočtu odvedli, a po pravé straně se Vám vedle obecných údajů o státních výdajích za vybraný rok zobrazí, na jaké výdaje stát peníze distribuoval. V sekci pod formulářem pak naleznete plánované státní investice vycházející z národního investičního plánu. U těchto investic se Vám zobrazí, kolik procent z celkové částky určené k investicím ve vybraném roce by tato konkrétní investice tvořila, pokud by všechny její náklady měly být uhrazené ve vybraném roce. V políčku vedle se Vám zobrazí částka, která by na investici putovala z Vámi odvedených daní, kdyby se investice realizovala a uhradila pouze v roce, pro který počítáte svůj podíl na rozpočtu. Je možné, že výše investice bude vyšší než vyčleněná celková částka na investice za daný rok, a tak se Vám zobrazí údaje, které budou převyšovat částku, která z Vámi odvedených peněz měla zamířit na investice. Ve formuláři si také můžete přidat vlastní investici, kalkulačka Vám pak vypočítá hodnoty pro tuto investici.<br>
+                        </p><p>
+                        <strong>Hodnoty vypočítané kalkulačkou jsou pouze orientační!</strong>
                         </p>
                     </details>
                 </article>
@@ -657,14 +662,20 @@
                 </article>
             </section>
             <section>
-                <form>
-                    <label for="nazev">Název investice</label>
-                    <input type="text" id="nazev">
-                    <label for="cena">Celkové náklady investice</label>
-                    <input type="text" id="cena">
-                    <label for="rok_pocatku">Rok počátku realizace</label>
-                    <input type="text" id="rok_pocatku">
-                </form>
+                <article>
+                    <header>
+                        <h4>Přidání vlastní investice</h4>
+                    </header>
+                    <form x-data="{ start_year: (new Date().getFullYear()), cost: 0,  name: '' }" x-init="console.log(extra_investice)">
+                        <label for="nazev">Název investice</label>
+                        <input type="text" id="nazev" x-model="name">
+                        <label for="cena">Celkové náklady investice (v mld. Kč)</label>
+                        <input type="text" id="cena" x-model="cost">
+                        <label for="rok_pocatku">Rok počátku realizace</label>
+                        <input type="text" id="rok_pocatku" x-model="start_year">
+                        <button x-on:click.prevent="extra_investice.push({ start_year: start_year, cost: cost * 1000000000, name: name, custom: true }); start_year = (new Date().getFullYear()); cost = 0; name = ''; console.log(extra_investice);">Přidat</button>
+                    </form>
+                </article>
             </section>
             <section x-data>
                 <input
@@ -697,8 +708,8 @@
             >
                 <template
                     x-data="{ zaznamy: [] }"
-                    x-for="data in zaznamy"
-                    x-effect="zaznamy = (await fetch_investice(filtr))"
+                    x-for="data in filter_investment_array(extra_investice, filtr).concat(zaznamy)"
+                    x-effect="zaznamy = (await fetch_investice(filtr, []))"
                 >
                     <article class="expense-display">
                         <header x-text="data.name"></header>
@@ -709,7 +720,7 @@
                             </article>
                             <article class="expense-stat cena">
                                 <header>Náklady mld. Kč</header>
-                                <span x-text="data.cost / 1000000000"></span>
+                                <span x-text="(data.cost / 1000000000).toFixed(2)"></span>
                             </article>
                             <article class="expense-stat podil_procento">
                                 <header>Podíl rozpočtu</header>

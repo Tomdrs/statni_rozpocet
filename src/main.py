@@ -103,12 +103,12 @@ def vypocet(rok):
 
     #výpočet celkové částky odvedené uživatelem do státního rozpočtu za daný rok
     celkove_odvody = yearly_total_tax(rok, gross_income, rok == 2020, deti, social_insurance, vat_21, vat_food_mhd_medical_devices, vat_books_music_medicine_water_accomodations, capital_gains, gambling_tax, consumer_tax_car_fuel, consumer_tax_beer, consumer_tax_tobacco, consumer_tax_alcohol)
-    
+
     #výpočet procentuálního podílu investic na státním rozpočtu a jednotlivce na investicích a korunového podílu jednotlivce na investicích a 
     procentualni_podil_investice_z_celkovych_odvodu = investitions_ratio(vydaje.total_expenses, vydaje.investment_purchases, vydaje.investment_transfers_bussines, vydaje.investment_state_funds, vydaje.investment_regions, vydaje.investment_contribution, vydaje.other_investment)
     korunovy_podil_investice = (procentualni_podil_investice_z_celkovych_odvodu / 100) * celkove_odvody
     procentualni_podil_investice = korunovy_podil_investice / (vydaje.investment_purchases + vydaje.investment_transfers_bussines + vydaje.investment_state_funds + vydaje.investment_regions + vydaje.investment_contribution + vydaje.other_investment) * 100
-    
+
     #výpočet korunového podílu jednotlivce na jednotlivých položkách příjmů státního rozpočtu
     spotrebni_dan_celkem = consumer_tax_fuel_function(consumer_tax_car_fuel) + consumer_tax_beer_function(consumer_tax_beer) + consumer_tax_tobacco_function(consumer_tax_tobacco) + consumer_tax_alcohol_function(consumer_tax_alcohol)
     podil_na_dph = yearly_vat_21(vat_21) + yearly_vat_15(vat_food_mhd_medical_devices) + yearly_vat_10(vat_books_music_medicine_water_accomodations)

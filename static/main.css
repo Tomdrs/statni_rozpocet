@@ -238,3 +238,7 @@ h1.nadpis {
 
 .vydaje { grid-area: vydaje; }
 
+
+details p {
+    text-align: justify;
+}
