@@ -84,18 +84,21 @@ def vypocet(rok):
     prumerny_obcan_hodnoty = fetch_prumerny_obcan()
 
     #přiřazení hodnot vyplněných ve formuláři do proměnných, pokud políčko formuláře není vyplněno, přiřadí se hodnota z průměrného občana
-    gross_income = float(request.args.get('gross_income') or prumerny_obcan_hodnoty.gross_income)
-    deti = float(request.args.get('deti') or 0)
-    social_insurance = float(request.args.get('social_insurance') or prumerny_obcan_hodnoty.social_insurance)
-    vat_books_music_medicine_water_accomodations = float(request.args.get('vat_books_music_medicine_water_accomodations') or prumerny_obcan_hodnoty.vat_books_music_medicine_water_accomodations)
-    vat_food_mhd_medical_devices = float(request.args.get('vat_food_mhd_medical_devices') or prumerny_obcan_hodnoty.vat_food_mhd_medical_devices)
-    vat_21 = float(request.args.get('vat_21') or prumerny_obcan_hodnoty.vat_21)
-    capital_gains = float(request.args.get('capital_gains') or prumerny_obcan_hodnoty.capital_gains)
-    gambling_tax = float(request.args.get('gambling_tax') or prumerny_obcan_hodnoty.gambling_tax)
-    consumer_tax_car_fuel = float(request.args.get('consumer_tax_car_fuel') or prumerny_obcan_hodnoty.consumer_tax_car_fuel)
-    consumer_tax_beer = float(request.args.get('consumer_tax_beer') or prumerny_obcan_hodnoty.consumer_tax_beer)
-    consumer_tax_tobacco = float(request.args.get('consumer_tax_tobacco') or prumerny_obcan_hodnoty.consumer_tax_tobacco)
-    consumer_tax_alcohol = float(request.args.get('consumer_tax_alcohol') or prumerny_obcan_hodnoty.consumer_tax_alcohol)
+    try:
+        gross_income = float(request.args.get('gross_income') or prumerny_obcan_hodnoty.gross_income)
+        deti = float(request.args.get('deti') or 0)
+        social_insurance = float(request.args.get('social_insurance') or prumerny_obcan_hodnoty.social_insurance)
+        vat_books_music_medicine_water_accomodations = float(request.args.get('vat_books_music_medicine_water_accomodations') or prumerny_obcan_hodnoty.vat_books_music_medicine_water_accomodations)
+        vat_food_mhd_medical_devices = float(request.args.get('vat_food_mhd_medical_devices') or prumerny_obcan_hodnoty.vat_food_mhd_medical_devices)
+        vat_21 = float(request.args.get('vat_21') or prumerny_obcan_hodnoty.vat_21)
+        capital_gains = float(request.args.get('capital_gains') or prumerny_obcan_hodnoty.capital_gains)
+        gambling_tax = float(request.args.get('gambling_tax') or prumerny_obcan_hodnoty.gambling_tax)
+        consumer_tax_car_fuel = float(request.args.get('consumer_tax_car_fuel') or prumerny_obcan_hodnoty.consumer_tax_car_fuel)
+        consumer_tax_beer = float(request.args.get('consumer_tax_beer') or prumerny_obcan_hodnoty.consumer_tax_beer)
+        consumer_tax_tobacco = float(request.args.get('consumer_tax_tobacco') or prumerny_obcan_hodnoty.consumer_tax_tobacco)
+        consumer_tax_alcohol = float(request.args.get('consumer_tax_alcohol') or prumerny_obcan_hodnoty.consumer_tax_alcohol)
+    except ValueError:
+        return Response(status=400)
 
     #přiřazení hodnot příjmů a výdajů státního rozpúočtu do proměnných
     rozpocet = fetch_rozpocet_na_rok(rok)

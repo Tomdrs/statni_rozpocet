@@ -24,9 +24,20 @@
                 form_data: get_form_data_placeholder(),
                 vysledky: vypocet_placeholders(),
                 extra_investice: [],
+                status: 'ok',
             }"
             x-init="
-                $watch('form_data', async (f) => { console.log('watch form_data'); vysledky = await calculate_dane(rok, f); console.log(vysledky);});
+                $watch('form_data', async (f) => {
+                    status = 'loading';
+                    var res = await calculate_dane(rok, f);
+                    if (res == 'error')
+                      status = 'error';
+                    else {
+                       vysledky = res;
+                       status = 'ok';
+                    }
+                    console.log(vysledky);
+                });
                 vysledky = await calculate_dane(rok, form_data);
             "
             x-effect="
@@ -76,6 +87,17 @@
                         </p>
                     </details>
                 </article>
+            </section>
+            <section class="status-kontejner">
+                <template x-if="status == 'ok'">
+                    <p class="ok-status">✓ Vypočteno</p>
+                </template>
+                <template x-if="status == 'loading'">
+                    <p class="loading-status" aria-busy="true">Probíhá výpočet</p>
+                </template>
+                <template x-if="status == 'error'">
+                    <p class="error-status">❌  Chybný vstup: zadávejte pouze čísla</p>
+                </template>
             </section>
             <section class="main" x-data>
                 <article class="calc-form form">

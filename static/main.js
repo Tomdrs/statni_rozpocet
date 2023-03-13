@@ -193,7 +193,10 @@ async function fetch_vypocet(rok, gross_income, deti, social_insurance, vat_book
     if (typeof consumer_tax_alcohol !== 'undefined' && consumer_tax_alcohol !== '') query += 'consumer_tax_alcohol=' + consumer_tax_alcohol;
 
     let result = await fetch(query);
-    return (await result.json());
+    if (result.status != 200)
+        return "error";
+    else
+        return (await result.json());
 }
 
 

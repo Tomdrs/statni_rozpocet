@@ -242,3 +242,25 @@ h1.nadpis {
 details p {
     text-align: justify;
 }
+
+/* Status
+ */
+
+.status-kontejner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.ok-status {
+    color: #0c0;
+}
+
+.loading-status {
+    color: #55f;
+}
+
+.error-status {
+    color: #c00;
+}
