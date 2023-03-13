@@ -38,6 +38,17 @@
                     }
                     console.log(vysledky);
                 });
+                $watch('rok', async (f) => {
+                    status = 'loading';
+                    var res = await calculate_dane(rok, f);
+                    if (res == 'error')
+                      status = 'error';
+                    else {
+                       vysledky = res;
+                       status = 'ok';
+                    }
+                    console.log(vysledky);
+                });
                 vysledky = await calculate_dane(rok, form_data);
             "
             x-effect="
@@ -738,24 +749,32 @@
                         <div>
                             <article class="expense-stat rok">
                                 <header>Rok</header>
-                                <span x-text="data.start_year"></span>
+                                <div style="display: flex; align-items: center; justify-content: center;">
+                                    <span x-text="data.start_year"></span>
+                                </div>
                             </article>
                             <article class="expense-stat cena">
                                 <header>Náklady mld. Kč</header>
+                                <div style="display: flex; align-items: center; justify-content: center;">
                                 <span x-text="(data.cost / 1000000000).toFixed(2)"></span>
+                                </div>
                             </article>
                             <article class="expense-stat podil_procento">
                                 <header>Podíl rozpočtu</header>
+                                <div style="display: flex; align-items: center; justify-content: center;">
                                 <span
                                     x-text="((data.cost / investice_total) * 100).toFixed(2)"
                                 ></span
                                 ><span>%</span>
+                                </div>
                             </article>
                             <article class="expense-stat podil_kc">
                                 <header>Váš podíl (Kč)</header>
+                                <div style="display: flex; align-items: center; justify-content: center;">
                                 <span
                                     x-text="Math.max(((data.cost * vysledky.procentualni_podil_investice) / 100).toFixed(2), 0)"
                                 ></span>
+                                </div>
                             </article>
                         </div>
                     </article>
