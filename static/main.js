@@ -2,21 +2,18 @@
 async function fetch_rozpocet(rok) {
     let req = await fetch("/rozpocet/" + rok);
     let rozpocet = await req.json();
-    console.log(rozpocet);
     return rozpocet;
 }
 
 async function fetch_vydaje(rok) {
     let req = await fetch("/vydaje/" + rok);
     let vydaje = await req.json();
-    console.log(vydaje);
     return vydaje;
 }
 
 async function fetch_prumerny_obcan() {
     let req = await fetch("/prumerny_obcan");
     let prumerny_obcan = await req.json();
-    console.log(prumerny_obcan);
     return prumerny_obcan;
 }
 
@@ -29,14 +26,12 @@ async function fetch_investice(filtr) {
     if (filtr !== '')
         investice = investice.filter(entry => entry.start_year.toString().indexOf(filtr) >= 0 || entry.name.indexOf(filtr) >= 0);
 
-    console.log(investice);
     return investice;
 }
 
 async function get_form_data() {
     let prumerny_obcan = await fetch_prumerny_obcan();
     let data = { deti: 0, ...prumerny_obcan};
-    console.log(data);
     return data;
 }
 
@@ -59,7 +54,6 @@ function get_form_data_placeholder() {
 
 async function get_income_data(rok) {
     let data = await fetch_rozpocet(rok);
-    console.log(data);
     return data;
 }
 
@@ -87,7 +81,6 @@ function get_income_data_placeholder(rok) {
 
 async function get_expense_data(rok) {
     let data = await fetch_vydaje(rok);
-    console.log(data);
     return data;
 }
 
@@ -199,4 +192,13 @@ async function fetch_vypocet(rok, gross_income, deti, social_insurance, vat_book
 
     let result = await fetch(query);
     return (await result.json());
+}
+
+
+function display_number(number, zero_if_undef = true, allow_negative = false) {
+    console.log("trying", number);
+    if (number)
+        return (allow_negative ? number : Math.max(number, 0)).toFixed(2);
+    else
+        return (zero_if_undef ? 0 : "");
 }

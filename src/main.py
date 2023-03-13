@@ -2,11 +2,10 @@ from flask import Flask, render_template, jsonify, request
 from pocketbase import PocketBase
 
 from models import Budget, Expenses, State_levies_average, Investment
-from tax_math import yearly_total_tax, expenses_ratio, investitions_ratio, budget_ratio, consumer_tax_fuel_function, consumer_tax_beer_function, consumer_tax_tobacco_function, consumer_tax_alcohol_function, yearly_vat_21, yearly_vat_15, yearly_vat_10, yearly_income_tax, yearly_kids_discount, yearly_social_insurance, yearly_gambling_tax, yearly_capital, salaries, noninvestment_purchases, noninvestment_transfers_to_bussines, noninvestment_state_funds, noninvestment_social_and_health, noninvestment_regions, noninvestment_contributions, noninvestment_non_profit
-from tax_math import pensions, unemployment_help, other_social_help, state_social_help, building_savings, pension_insurance, other_usual_expenses, payments_to_eu, investment_purchases, investment_transfers_to_bussines, investment_state_funds, investment_regions
-from tax_math import investment_contribution, other_capital_expenses
+from tax_math import *
 
 import os
+from datetime import datetime
 
 app = Flask(__name__, static_url_path = '/static', static_folder = '../static', template_folder = "../frontend")
 
@@ -96,13 +95,17 @@ def vypocet(rok):
     consumer_tax_tobacco = float(request.args.get('consumer_tax_tobacco') or prumerny_obcan_hodnoty.consumer_tax_tobacco)
     consumer_tax_alcohol = float(request.args.get('consumer_tax_alcohol') or prumerny_obcan_hodnoty.consumer_tax_alcohol)
 
+    rozpocet = fetch_rozpocet_na_rok(rok)
+    vydaje = fetch_vydaje_na_rok(rok)
+
+    print("pre", datetime.now())
     celkove_odvody = yearly_total_tax(rok, gross_income, rok == 2020, deti, social_insurance, vat_21, vat_food_mhd_medical_devices, vat_books_music_medicine_water_accomodations, capital_gains, gambling_tax, consumer_tax_car_fuel, consumer_tax_beer, consumer_tax_tobacco, consumer_tax_alcohol)
     print(celkove_odvody)
-    procentualni_podil_prijmy = budget_ratio(fetch_rozpocet_na_rok(rok).total_income, celkove_odvody)
-    procentualni_podil_vydaje = expenses_ratio(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody)
-    procentualni_podil_investice_z_celkovych_odvodu = investitions_ratio(fetch_vydaje_na_rok(rok).total_expenses, fetch_vydaje_na_rok(rok).investment_purchases, fetch_vydaje_na_rok(rok).investment_transfers_bussines, fetch_vydaje_na_rok(rok).investment_state_funds, fetch_vydaje_na_rok(rok).investment_regions, fetch_vydaje_na_rok(rok).investment_contribution, fetch_vydaje_na_rok(rok).other_investment)
+    procentualni_podil_prijmy = budget_ratio(rozpocet.total_income, celkove_odvody)
+    procentualni_podil_vydaje = expenses_ratio(vydaje.total_expenses, celkove_odvody)
+    procentualni_podil_investice_z_celkovych_odvodu = investitions_ratio(vydaje.total_expenses, vydaje.investment_purchases, vydaje.investment_transfers_bussines, vydaje.investment_state_funds, vydaje.investment_regions, vydaje.investment_contribution, vydaje.other_investment)
     korunovy_podil_investice = (procentualni_podil_investice_z_celkovych_odvodu / 100) * celkove_odvody
-    procentualni_podil_investice = korunovy_podil_investice / (fetch_vydaje_na_rok(rok).investment_purchases + fetch_vydaje_na_rok(rok).investment_transfers_bussines + fetch_vydaje_na_rok(rok).investment_state_funds + fetch_vydaje_na_rok(rok).investment_regions + fetch_vydaje_na_rok(rok).investment_contribution + fetch_vydaje_na_rok(rok).other_investment) * 100
+    procentualni_podil_investice = korunovy_podil_investice / (vydaje.investment_purchases + vydaje.investment_transfers_bussines + vydaje.investment_state_funds + vydaje.investment_regions + vydaje.investment_contribution + vydaje.other_investment) * 100
     spotrebni_dan_celkem = consumer_tax_fuel_function(consumer_tax_car_fuel) + consumer_tax_beer_function(consumer_tax_beer) + consumer_tax_tobacco_function(consumer_tax_tobacco) + consumer_tax_alcohol_function(consumer_tax_alcohol)
     podil_na_dph = yearly_vat_21(vat_21) + yearly_vat_15(vat_food_mhd_medical_devices) + yearly_vat_10(vat_books_music_medicine_water_accomodations)
     spotrebni_dan_paliva = consumer_tax_fuel_function(consumer_tax_car_fuel)
@@ -111,28 +114,29 @@ def vypocet(rok):
     soc_pojistne = yearly_social_insurance(gross_income, social_insurance)
     dan_hazard = yearly_gambling_tax(gambling_tax)
     podil_na_vydajich = celkove_odvody
-    podil_na_platech = salaries(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).salaries)
-    neinvesticni_nakupy = noninvestment_purchases(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).noninvestment_purchases)
-    neinvesticni_transfery_pod = noninvestment_transfers_to_bussines(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).noninvestment_bussines)
-    neinvesticni_transfery_fondum = noninvestment_state_funds(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).noninvestment_state_funds)
-    neinvesticni_transfery_soc_a_zdrav = noninvestment_social_and_health(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).noninvestment_soc_and_health_funds)
-    neinvesticni_transery_rozpoctum = noninvestment_regions(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).noninvestment_regions)
-    neinvesticni_transery_pris = noninvestment_contributions(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).noninvestment_contribution)
-    neinvesticni_transery_nezisk = noninvestment_non_profit(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).noninvestment_non_profit)
-    podil_na_duchodech = pensions(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).pensions)
-    podpora_v_nezamestnanosti = unemployment_help(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).unemployment_help)
-    ostatni_socialni_davky = other_social_help(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).other_social_help)
-    statni_socialni_podpora = state_social_help(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).state_social_help)
-    stavebni_sporeni = building_savings(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).building_savings)
-    duchodove_pripojisteni = pension_insurance(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).pension_insurance_contribution)
-    ostatni_bezne_vydaje = other_usual_expenses(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).other_usual_expenses)
-    platby_eu = payments_to_eu(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).eu_payment)
-    investicni_nakupy = investment_purchases(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).investment_purchases)
-    investicni_transfery_pod = investment_transfers_to_bussines(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).investment_transfers_bussines)
-    investicni_transfery_fondum = investment_state_funds(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).investment_state_funds)
-    investicni_transery_rozpoctum = investment_regions(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).investment_regions)
-    investicni_transery_pris = investment_contribution(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).investment_contribution)
-    ostatni_investice = other_capital_expenses(fetch_vydaje_na_rok(rok).total_expenses, celkove_odvody, fetch_vydaje_na_rok(rok).other_investment)
+    podil_na_platech = salaries(vydaje.total_expenses, celkove_odvody, vydaje.salaries)
+    neinvesticni_nakupy = noninvestment_purchases(vydaje.total_expenses, celkove_odvody, vydaje.noninvestment_purchases)
+    neinvesticni_transfery_pod = noninvestment_transfers_to_bussines(vydaje.total_expenses, celkove_odvody, vydaje.noninvestment_bussines)
+    neinvesticni_transfery_fondum = noninvestment_state_funds(vydaje.total_expenses, celkove_odvody, vydaje.noninvestment_state_funds)
+    neinvesticni_transfery_soc_a_zdrav = noninvestment_social_and_health(vydaje.total_expenses, celkove_odvody, vydaje.noninvestment_soc_and_health_funds)
+    neinvesticni_transery_rozpoctum = noninvestment_regions(vydaje.total_expenses, celkove_odvody, vydaje.noninvestment_regions)
+    neinvesticni_transery_pris = noninvestment_contributions(vydaje.total_expenses, celkove_odvody, vydaje.noninvestment_contribution)
+    neinvesticni_transery_nezisk = noninvestment_non_profit(vydaje.total_expenses, celkove_odvody, vydaje.noninvestment_non_profit)
+    podil_na_duchodech = pensions(vydaje.total_expenses, celkove_odvody, vydaje.pensions)
+    podpora_v_nezamestnanosti = unemployment_help(vydaje.total_expenses, celkove_odvody, vydaje.unemployment_help)
+    ostatni_socialni_davky = other_social_help(vydaje.total_expenses, celkove_odvody, vydaje.other_social_help)
+    statni_socialni_podpora = state_social_help(vydaje.total_expenses, celkove_odvody, vydaje.state_social_help)
+    stavebni_sporeni = building_savings(vydaje.total_expenses, celkove_odvody, vydaje.building_savings)
+    duchodove_pripojisteni = pension_insurance(vydaje.total_expenses, celkove_odvody, vydaje.pension_insurance_contribution)
+    ostatni_bezne_vydaje = other_usual_expenses(vydaje.total_expenses, celkove_odvody, vydaje.other_usual_expenses)
+    platby_eu = payments_to_eu(vydaje.total_expenses, celkove_odvody, vydaje.eu_payment)
+    investicni_nakupy = investment_purchases(vydaje.total_expenses, celkove_odvody, vydaje.investment_purchases)
+    investicni_transfery_pod = investment_transfers_to_bussines(vydaje.total_expenses, celkove_odvody, vydaje.investment_transfers_bussines)
+    investicni_transfery_fondum = investment_state_funds(vydaje.total_expenses, celkove_odvody, vydaje.investment_state_funds)
+    investicni_transery_rozpoctum = investment_regions(vydaje.total_expenses, celkove_odvody, vydaje.investment_regions)
+    investicni_transery_pris = investment_contribution(vydaje.total_expenses, celkove_odvody, vydaje.investment_contribution)
+    ostatni_investice = other_capital_expenses(vydaje.total_expenses, celkove_odvody, vydaje.other_investment)
+    print("post", datetime.now())
 
     return jsonify(
         celkove_odvody = celkove_odvody,
@@ -171,5 +175,4 @@ def vypocet(rok):
         investicni_transery_rozpoctum = investicni_transery_rozpoctum,
         investicni_transery_pris = investicni_transery_pris,
         ostatni_investice = ostatni_investice
-        
-        )
+    )
