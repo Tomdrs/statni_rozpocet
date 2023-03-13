@@ -116,8 +116,6 @@ function get_expense_data_placeholder() {
 function vypocet_placeholders() {
     return {
         celkove_odvody: 0,
-        procentualni_podil_prijmy: 0,
-        procentualni_podil_vydaje: 0,
         procentualni_podil_investice_z_celkovych_odvodu: 0,
         korunovy_podil_investice: 0,
         procentualni_podil_investice: 0,
@@ -134,9 +132,9 @@ function vypocet_placeholders() {
         neinvesticni_transfery_pod: 0,
         neinvesticni_transfery_fondum: 0,
         neinvesticni_transfery_soc_a_zdrav: 0,
-        neinvesticni_transery_rozpoctum: 0,
-        neinvesticni_transery_pris: 0,
-        neinvesticni_transery_nezisk: 0,
+        neinvesticni_transfery_rozpoctum: 0,
+        neinvesticni_transfery_pris: 0,
+        neinvesticni_transfery_nezisk: 0,
         podil_na_duchodech: 0,
         podpora_v_nezamestnanosti: 0,
         ostatni_socialni_davky: 0,
@@ -148,8 +146,8 @@ function vypocet_placeholders() {
         investicni_nakupy: 0,
         investicni_transfery_pod: 0,
         investicni_transfery_fondum: 0,
-        investicni_transery_rozpoctum: 0,
-        investicni_transery_pris: 0,
+        investicni_transfery_rozpoctum: 0,
+        investicni_transfery_pris: 0,
         ostatni_investice: 0
     };
 }

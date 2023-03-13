@@ -64,7 +64,10 @@
                         <p>
                             Tato webová kalkulačka slouží k výpočtu částky,
                             jakou se podílíte na státním rozpočtu České
-                            republiky skrze daně, které povinně odvádíte.
+                            republiky skrze daně, které povinně odvádíte.<br>
+                            Kalkulačka přijme Vámi zadané údaje a podle nich vypočítá částku, kterou za vybraný rok odvedete do státního rozpočtu. Rok, pro který chcete údaje počítat, zaklikněte v sekci nad instrukcemi. Do políček formuláře vždy uveďte průměrnou měsíční hodnotu. Některá pole jsou předvyplněná hodnotami, které odpovídají průměrnému občanovi. Pro přesnější výpočet však pole vyplňte. Kalkulačka je interaktivní, takže mění své výpočty při každé změně údajů nebo vybraného roku.<br>
+                            Po levé straně se Vám vedle obecných údajů o státních příjmech za vybraný rok zobrazí, skrze jaké daně jste peníze do rozpočtu odvedli, a po pravé straně se Vám vedle obecných údajů o státních výdajích za vybraný rok zobrazí, na jaké výdaje stát peníze distribuoval. V sekci pod formulářem pak naleznete plánované státní investice vycházející z národního investičního plánu. U těchto investic se Vám zobrazí, kolik procent z celkové částky určené k investicím ve vybraném roce by tato konkrétní investice tvořila, pokud by všechny její náklady měly být uhrazené ve vybraném roce. V políčku vedle se Vám zobrazí částka, která by na investici putovala z Vámi odvedených daní, kdyby se investice realizovala a uhradila pouze v roce, pro který počítáte svůj podíl na rozpočtu. Je možné, že výše investice bude vyšší než vyčleněná celková částka na investice za daný rok, a tak se Vám zobrazí údaje, které budou převyšovat částku, která z Vámi odvedených peněz měla zamířit na investice. Ve formuláři si také můžete přidat vlastní investici, kalkulačka Vám pak vypočítá hodnoty pro tuto investici.<br>
+                            Hodnoty vypočítané kalkulačkou jsou pouze orientační!
                         </p>
                     </details>
                 </article>
@@ -89,7 +92,7 @@
                             x-model.debounce.500ms="form_data.deti"
                         />
                         <label for="social_insurance"
-                            >Sociální zabezpečení (vyplní pouze OSVČ):</label
+                            >Sociální zabezpečení (musí vyplnit pouze OSVČ nebo osoby nepobírající alespoň minimální mzdu):</label
                         >
                         <input
                             type="text"
@@ -414,7 +417,7 @@
                             </td>
                             <td>
                                 <span
-                                    x-text="display_number(vysledky.neinvesticni_transery_nezisk)"
+                                    x-text="display_number(vysledky.neinvesticni_transfery_nezisk)"
                                 ></span>
                             </td>
                         </tr>
@@ -458,7 +461,7 @@
                             </td>
                             <td>
                                 <span
-                                    x-text="display_number(vysledky.neinvesticni_transery_rozpoctum)"
+                                    x-text="display_number(vysledky.neinvesticni_transfery_rozpoctum)"
                                 ></span>
                             </td>
                         </tr>
@@ -473,7 +476,7 @@
                             </td>
                             <td>
                                 <span
-                                    x-text="display_number(vysledky.neinvesticni_transery_pris)"
+                                    x-text="display_number(vysledky.neinvesticni_transfery_pris)"
                                 ></span>
                             </td>
                         </tr>
@@ -526,19 +529,6 @@
                             <td>
                                 <span
                                     x-text="display_number(vysledky.statni_socialni_podpora)"
-                                ></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Stavební spoření</th>
-                            <td>
-                                <span
-                                    x-text="expenses.building_savings / 1000000000"
-                                ></span>
-                            </td>
-                            <td>
-                                <span
-                                    x-text="display_number(vysledky.stavebni_sporeni)"
                                 ></span>
                             </td>
                         </tr>
@@ -631,7 +621,7 @@
                             </td>
                             <td>
                                 <span
-                                    x-text="display_number(vysledky.investicni_transery_rozpoctum)"
+                                    x-text="display_number(vysledky.investicni_transfery_rozpoctum)"
                                 ></span>
                             </td>
                         </tr>
@@ -646,7 +636,7 @@
                             </td>
                             <td>
                                 <span
-                                    x-text="display_number(vysledky.investicni_transery_pris)"
+                                    x-text="display_number(vysledky.investicni_transfery_pris)"
                                 ></span>
                             </td>
                         </tr>
@@ -665,6 +655,16 @@
                         </tr>
                     </table>
                 </article>
+            </section>
+            <section>
+                <form>
+                    <label for="nazev">Název investice</label>
+                    <input type="text" id="nazev">
+                    <label for="cena">Celkové náklady investice</label>
+                    <input type="text" id="cena">
+                    <label for="rok_pocatku">Rok počátku realizace</label>
+                    <input type="text" id="rok_pocatku">
+                </form>
             </section>
             <section x-data>
                 <input

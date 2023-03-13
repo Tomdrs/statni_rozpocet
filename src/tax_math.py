@@ -4,11 +4,13 @@ budgetary_determination = 0.6438
 
 #daň z příjmu:
 def yearly_income_tax(gross, is_supergross):
-    if is_supergross == True:
+    if is_supergross == True and gross > 17133:
         super_gross = gross * SUPERGROSS_MULTIPLIER
         return (income_tax_multiplier * super_gross - 2570) * 12 * budgetary_determination
-    else:
+    elif gross > 17133:
         return (income_tax_multiplier * gross - 2570) * 12 * budgetary_determination
+    else:
+        return 0
 
 #sleva na poplatníka podle počtu dětí:
 def yearly_kids_discount(rok, gross, kids):
@@ -48,7 +50,7 @@ def yearly_social_insurance(gross, social_insurance):
     if social_insurance == 0:
         return gross * 0.065 * 12 + gross * 0.248
     else:
-        return social_insurance
+        return social_insurance * 12
 
 #výše odvedené daně z přidané hodnoty základní sazby:
 def yearly_vat_21(vat_21):
