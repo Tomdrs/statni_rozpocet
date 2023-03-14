@@ -20,20 +20,20 @@ body {
 }
 
 footer {
-   grid-row-start: 2;
-   grid-column-start: 1;
+    grid-row-start: 2;
+    grid-column-start: 1;
 
-   grid-row-end: 3;
-   grid-column-end: 2;
-   text-align: center;
+    grid-row-end: 3;
+    grid-column-end: 2;
+    text-align: center;
 }
 
 main {
-   grid-row-start: 1;
-   grid-column-start: 1;
+    grid-row-start: 1;
+    grid-column-start: 1;
 
-   grid-row-end: 2;
-   grid-column-end: 2;
+    grid-row-end: 2;
+    grid-column-end: 2;
 }
 
 th {
@@ -63,14 +63,17 @@ h1.nadpis {
     margin-bottom: 0;
 }
 
-.vlevo, .vpravo {
+.vlevo,
+.vpravo {
     margin: 0;
 }
 
-.vlevo header, .vpravo header {
+.vlevo header,
+.vpravo header {
     margin-bottom: 0;
 }
-.vlevo article, .vpravo article {
+.vlevo article,
+.vpravo article {
     padding-bottom: 1em;
 }
 
@@ -87,7 +90,7 @@ h1.nadpis {
     border-radius: 1em;
     border: 1px #000 solid;
     padding: 1em;
-    background-color: #EBDBCA;
+    background-color: #ebdbca;
 }
 
 .calc-form {
@@ -102,7 +105,8 @@ h1.nadpis {
     font-weight: 600;
 }
 
-:root:not([data-theme="dark"]), [data-theme="light"] {
+:root:not([data-theme="dark"]),
+[data-theme="light"] {
     --primary: #f4511e;
     --font-size: 1em !important;
 }
@@ -207,14 +211,22 @@ h1.nadpis {
     grid-row-gap: 1em;
     grid-template-rows: 1fr 1fr;
     grid-template-areas:
-      "rok cena"
-      "podil_procento podil_kc";
+        "rok cena"
+        "podil_procento podil_kc";
 }
 
-.expense-display .rok { grid-area: rok; }
-.expense-display .cena { grid-area: cena; }
-.expense-display .podil_procento { grid-area: podil_procento; }
-.expense-display .podil_kc { grid-area: podil_kc; }
+.expense-display .rok {
+    grid-area: rok;
+}
+.expense-display .cena {
+    grid-area: cena;
+}
+.expense-display .podil_procento {
+    grid-area: podil_procento;
+}
+.expense-display .podil_kc {
+    grid-area: podil_kc;
+}
 
 /*
  *
@@ -228,16 +240,20 @@ h1.nadpis {
     grid-template-rows: 1fr;
     gap: 0px 0px;
     grid-auto-flow: row;
-    grid-template-areas:
-    "prijmy form vydaje";
+    grid-template-areas: "prijmy form vydaje";
 }
 
-.form { grid-area: form; }
+.form {
+    grid-area: form;
+}
 
-.prijmy { grid-area: prijmy; }
+.prijmy {
+    grid-area: prijmy;
+}
 
-.vydaje { grid-area: vydaje; }
-
+.vydaje {
+    grid-area: vydaje;
+}
 
 details p {
     text-align: justify;
