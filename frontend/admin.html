@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html data-theme="light">
+    <head>
+        <script
+            defer
+            src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
+        <script
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/pocketbase/0.12.0/pocketbase.es.mjs"
+        ></script>
+        <script src="/static/main.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css"
+        />
+        <link rel="stylesheet" href="/static/main.css" />
+    </head>
+    <body x-init="console.log('start alpinejs')">
+        <main>
+        </main>
+        <footer>
+            Tomáš Hozda © <span x-text="new Date().getFullYear()"></span>
+        </footer>
+    </body>
+</html>

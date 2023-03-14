@@ -5,6 +5,10 @@
             defer
             src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
         ></script>
+        <script
+            defer
+            src="https://cdnjs.cloudflare.com/ajax/libs/pocketbase/0.12.0/pocketbase.es.mjs"
+        ></script>
         <script src="/static/main.js"></script>
 
         <link
@@ -856,7 +860,7 @@
                             </article>
                         </div>
                         <template x-if="data.custom">
-                            <a href="#" role="button" x-on:click.prevent="extra_investice = extra_investice.filter(item => item.id !== data.id);" style="margin-top: 1em;">Smazat</a>
+                            <a href="#" role="button" x-on:click.prevent="extra_investice = extra_investice.filter(item => item.id !== data.id);" style="margin-top: 1em;">Odebrat</a>
                         </template>
                     </article>
                 </template>
