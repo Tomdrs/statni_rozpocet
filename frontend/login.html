@@ -18,6 +18,15 @@
     </head>
     <body x-init="console.log('start alpinejs')">
         <main>
+            <section>
+                <form>
+                    <label for="username">Přihlašovací jméno</label>
+                    <input type="text" id="username">
+                    <label for="password">Heslo</label>
+                    <input type="text" id="password">
+                    <input type="submit" value="Přihlásit">
+                </form>
+            </section>
         </main>
         <footer>
             Tomáš Hozda © <span x-text="new Date().getFullYear()"></span>
