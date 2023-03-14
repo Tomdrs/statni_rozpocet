@@ -741,7 +741,6 @@
                     </header>
                     <form
                         x-data="{ start_year: (new Date().getFullYear()), cost: 0,  name: '' }"
-                        x-init="console.log(extra_investice)"
                     >
                         <label for="nazev">Název investice</label>
                         <input type="text" id="nazev" x-model="name" />
@@ -756,7 +755,7 @@
                             x-model="start_year"
                         />
                         <button
-                            x-on:click.prevent="extra_investice.push({ start_year: start_year, cost: cost * 1000000000, name: name, custom: true }); start_year = (new Date().getFullYear()); cost = 0; name = ''; console.log(extra_investice);"
+                            x-on:click.prevent="extra_investice.push({ start_year: start_year, cost: cost * 1000000000, name: name, custom: true, id: random_string() }); start_year = (new Date().getFullYear()); cost = 0; name = '';"
                         >
                             Přidat
                         </button>
@@ -856,6 +855,9 @@
                                 </div>
                             </article>
                         </div>
+                        <template x-if="data.custom">
+                            <a href="#" role="button" x-on:click.prevent="extra_investice = extra_investice.filter(item => item.id !== data.id);" style="margin-top: 1em;">Smazat</a>
+                        </template>
                     </article>
                 </template>
             </section>
