@@ -10,8 +10,16 @@ from datetime import datetime
 app = Flask(__name__, static_url_path = '/static', static_folder = '../static', template_folder = "../frontend")
 
 @app.route('/')
-def hello():
+def index():
     return render_template("index.html")
+
+@app.route('/login')
+def login():
+    return render_template("login.html")
+
+@app.route('/admin')
+def admin():
+    return render_template("admin.html")
 
 def fetch_rozpocet_na_rok(rok):
     client = PocketBase(os.environ["POCKETBASE_URL"])
