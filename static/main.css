@@ -280,3 +280,9 @@ details p {
 .error-status {
     color: #c00;
 }
+
+.user_buttons {
+    display: flex;
+    align-items: flex-start;
+    justify-content: left;
+}
