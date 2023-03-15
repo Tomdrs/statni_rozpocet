@@ -222,6 +222,10 @@ async function pb_login(client, email, pass) {
     let user_result;
 
     try {
+        client.authStore.clear();
+        client = new PocketBase(POCKETBASE_URL);
+        window.localStorage.removeItem('pocketbase_auth');
+        window.localStorage.removeItem('pb_admin');
         let user = await client.collection('users').authWithPassword(email, pass);
         setTimeout(() => window.location = "/", 3000);
         user_result = 'success';
