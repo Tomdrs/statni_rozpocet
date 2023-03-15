@@ -63,7 +63,20 @@
                 expenses = (await get_expense_data(rok));
                 form_data_placeholder = (await get_form_data());
                 is_logged = window.localStorage.getItem('pocketbase_auth') !== null;
+
+                if (is_logged && window.localStorage.getItem('pocketbase_auth').token === '') {
+                    pb_logout(client);
+                };
+
                 is_admin = window.localStorage.getItem('pb_admin') !== null;
+                if (is_logged) {
+                    console.log(client.authStore.model.id);
+                    extra_investice = await client.collection('user_investments').getFullList(200, {
+                        sort: '-created',
+                        filter: get_user_query(client),
+                    });
+                }
+                console.log(extra_investice);
          "
         >   <section class="user_buttons">
                 <a role="button" href="/login" x-show="!is_logged">Login</a>

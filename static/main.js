@@ -296,3 +296,7 @@ function pb_client() {
     }
     return client;
 }
+
+function get_user_query(client) {
+    return `user_id = \"${client.authStore.model.id}\"`;
+}
