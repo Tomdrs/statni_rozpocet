@@ -295,12 +295,13 @@ function pb_client() {
     client.afterSend = (r, d) => {
         if (r.status === 401) {
             window.localStorage.removeItem('pocketbase_auth');
-            return d;
+            window.localStorage.removeItem('pb_admin');
         }
+        return d;
     }
     return client;
 }
 
 function get_user_query(client) {
-    return `user_id = \"${client.authStore.model.id}\"`;
+    return `user_id.id = \"${client.authStore.model.id}\"`;
 }
