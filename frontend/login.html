@@ -8,6 +8,7 @@
         <script
             defer
             src="https://cdnjs.cloudflare.com/ajax/libs/pocketbase/0.12.0/pocketbase.es.mjs"
+            type="module"
         ></script>
         <script src="/static/main.js"></script>
         <link
@@ -19,7 +20,7 @@
     <body x-init="console.log('start alpinejs')">
         <main x-data="{ tab: 'login' }">
             <section style="display: flex; align-items: center; justify-content: center">
-                <article style="max-width: 600px">
+                <article style="width: 600px">
                     <header>
                         <div class="vyber-rok">
                             <input
@@ -38,23 +39,24 @@
                         </div>
                     </header>
                     <template x-if="tab == 'login'">
-                        <form>
-                            <label for="username">Email</label>
+                        <form x-data="{ email: '', pass: '', login_status: {} }">
+                            <label for="email-login">Email</label>
                             <input type="text" id="username">
-                            <label for="password">Heslo</label>
-                            <input type="password" id="password">
-                            <input type="submit" value="Přihlásit">
+                            <label for="password-login">Heslo</label>
+                            <input type="password-login" id="password-login">
+                            <input type="submit" value="Přihlásit" x-on:click.prevent="login_status = (await pb_login(email, pass));">
                         </form>
                     </template>
                     <template x-if="tab == 'signup'">
-                        <form>
-                            <label for="username">Email</label>
-                            <input type="text" id="username">
-                            <label for="password">Heslo</label>
-                            <input type="password" id="password">
-                            <label for="password">Heslo znovu</label>
-                            <input type="password" id="password">
-                            <input type="submit" value="Přihlásit">
+                        <form x-data="{ email: '', pass: '', pass_again: '', signup_status: {} }">
+                            <label for="email-signup">Email</label>
+                            <input x-model="email" type="text" id="email-signup">
+                            <label for="password-signup">Heslo</label>
+                            <input x-model="pass" type="password-signup" id="password-signup">
+                            <label for="password-signup-again">Heslo znovu</label>
+                            <input x-model="pass_again" type="password-signup-again" id="password-signup-again">
+                            <p x-show="pass != pass_again" class="error-status">Hesla se nerovnají</p>
+                            <input type="submit" value="Registrovat" x-on:click.prevent="signup_status = (await pb_signup(email, pass, pass_again));">
                         </form>
                     </template>
                 </article>

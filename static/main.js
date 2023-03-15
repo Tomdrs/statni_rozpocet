@@ -210,3 +210,12 @@ function display_number(number, zero_if_undef = true, allow_negative = false) {
 function random_string() {
     return (Math.random() + 1).toString(36).substring(7);
 }
+
+async function pb_login(email, pass) {
+    console.log("login");
+    return {};
+}
+async function pb_signup(email, pass, pass_again) {
+    console.log("signup");
+    return {};
+}
