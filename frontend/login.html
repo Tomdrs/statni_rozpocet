@@ -43,7 +43,7 @@
                             <label for="email-login">Email</label>
                             <input type="text" id="username">
                             <label for="password-login">Heslo</label>
-                            <input type="password-login" id="password-login">
+                            <input type="password" id="password-login">
                             <input type="submit" value="Přihlásit" x-on:click.prevent="login_status = (await pb_login(email, pass));">
                         </form>
                     </template>
@@ -52,9 +52,9 @@
                             <label for="email-signup">Email</label>
                             <input x-model="email" type="text" id="email-signup">
                             <label for="password-signup">Heslo</label>
-                            <input x-model="pass" type="password-signup" id="password-signup">
+                            <input x-model="pass" type="password" id="password-signup">
                             <label for="password-signup-again">Heslo znovu</label>
-                            <input x-model="pass_again" type="password-signup-again" id="password-signup-again">
+                            <input x-model="pass_again" type="password" id="password-signup-again">
                             <p x-show="pass != pass_again" class="error-status">Hesla se nerovnají</p>
                             <input type="submit" value="Registrovat" x-on:click.prevent="signup_status = (await pb_signup(email, pass, pass_again));">
                         </form>
