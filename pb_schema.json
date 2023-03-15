@@ -804,5 +804,69 @@
     "updateRule": null,
     "deleteRule": null,
     "options": {}
+  },
+  {
+    "id": "aqzk3yp0royy9jl",
+    "name": "user_investments",
+    "type": "base",
+    "system": false,
+    "schema": [
+      {
+        "id": "befk9m9w",
+        "name": "start_year",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "6zb1mpud",
+        "name": "name",
+        "type": "text",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null,
+          "pattern": ""
+        }
+      },
+      {
+        "id": "ldwbvaoo",
+        "name": "cost",
+        "type": "number",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "min": null,
+          "max": null
+        }
+      },
+      {
+        "id": "xpknvhed",
+        "name": "user_id",
+        "type": "relation",
+        "system": false,
+        "required": true,
+        "unique": false,
+        "options": {
+          "maxSelect": 1,
+          "collectionId": "_pb_users_auth_",
+          "cascadeDelete": false
+        }
+      }
+    ],
+    "listRule": "",
+    "viewRule": "",
+    "createRule": "user_id = @request.auth.id",
+    "updateRule": "user_id = @request.auth.id",
+    "deleteRule": "user_id = @request.auth.id",
+    "options": {}
   }
 ]
