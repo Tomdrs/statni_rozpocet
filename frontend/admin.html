@@ -16,18 +16,18 @@
         <link rel="stylesheet" href="/static/main.css" />
     </head>
     <body x-init="console.log('start alpinejs')">
-        <main>
+        <main x-data="{ client: {}, is_admin: false }" x-init="client = pb_client(); is_admin = window.localStorage.getItem('pb_admin') !== null;" x-show="is_admin">
             <section>
                 <article>
                     <header>budgets</header>
-                    <table>
+                    <table x-data="{ budgets: [] }" x-effect="budgets = await fetch_budgets(client);">
                         <tr>
                             <th>year</th>
                             <th>total_income</th>
                             <th>total_expense</th>
                             <th>vat</th>
-                            <th>consumer taxes</th>
-                            <th>inccome_tax_individual</th>
+                            <th>consumer_taxes</th>
+                            <th>income_tax_individual</th>
                             <th>income_tax_company</th>
                             <th>mandatory_social_insurance</th>
                             <th>other_tax</th>
@@ -37,22 +37,26 @@
                             <th>consumer_tax_solar_energy</th>
                             <th></th>
                         </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        <template
+                           x-for="data in budgets"
+                        >
+                            <tr>
+                                <td x-text="data.year"></td>
+                                <td x-text="data.total_income"></td>
+                                <td x-text="data.total_expense"></td>
+                                <td x-text="data.vat"></td>
+                                <td x-text="data.consumer_taxes"></td>
+                                <td x-text="data.income_tax_individual"></td>
+                                <td x-text="data.income_tax_company"></td>
+                                <td x-text="data.mandatory_social_insurance"></td>
+                                <td x-text="data.other_tax"></td>
+                                <td x-text="data.other_nontax_income"></td>
+                                <td x-text="data.consumer_tax_oils"></td>
+                                <td x-text="data.consumer_tax_tobacco"></td>
+                                <td x-text="data.consumer_tax_solar_energy"></td>
+                                <td></td>
+                            </tr>
+                        </template>
                         <tr>
                             <td><input type="text"></td>
                             <td><input type="text"></td>
