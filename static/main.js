@@ -224,7 +224,6 @@ async function pb_login(client, email, pass) {
     try {
         let user = await client.collection('users').authWithPassword(email, pass);
         setTimeout(() => window.location = "/", 3000);
-        console.log('succ1');
         user_result = 'success';
     } catch (err) {
         console.log(err.message);
@@ -236,16 +235,16 @@ async function pb_login(client, email, pass) {
             client.authStore.clear();
             client = new PocketBase(POCKETBASE_URL);
             window.localStorage.removeItem('pocketbase_auth');
+            window.localStorage.removeItem('pb_admin');
             let user = await client.admins.authWithPassword(email, pass);
-            console.log(user);
             setTimeout(() => window.location = "/", 3000);
-            console.log('succ2');
-            return 'success';
+            window.localStorage.setItem('pb_admin', "true");
         } catch (err) {
             console.log(err.message);
             return 'error';
         }
     }
+    return 'success';
 }
 
 async function pb_signup(client, email, pass, pass_again) {
@@ -274,6 +273,7 @@ async function pb_signup(client, email, pass, pass_again) {
 function pb_logout(client) {
     client.authStore.clear();
     window.localStorage.removeItem('pocketbase_auth');
+    window.localStorage.removeItem('pb_admin');
     window.location = "/";
 }
 

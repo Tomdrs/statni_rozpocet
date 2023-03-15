@@ -63,6 +63,7 @@
                 expenses = (await get_expense_data(rok));
                 form_data_placeholder = (await get_form_data());
                 is_logged = window.localStorage.getItem('pocketbase_auth') !== null;
+                is_admin = window.localStorage.getItem('pb_admin') !== null;
          "
         >   <section class="user_buttons">
                 <a role="button" href="/login" x-show="!is_logged">Login</a>
