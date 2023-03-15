@@ -1,3 +1,5 @@
+let POCKETBASE_URL = "https://pocketbase.gjk.cat";
+
 // fetch rozpocet
 async function fetch_rozpocet(rok) {
     let req = await fetch("/rozpocet/" + rok);
@@ -199,7 +201,6 @@ async function fetch_vypocet(rok, gross_income, deti, social_insurance, vat_book
         return (await result.json());
 }
 
-
 function display_number(number, zero_if_undef = true, allow_negative = false) {
     if (number)
         return (allow_negative ? number : Math.max(number, 0)).toFixed(2);
@@ -211,11 +212,34 @@ function random_string() {
     return (Math.random() + 1).toString(36).substring(7);
 }
 
-async function pb_login(email, pass) {
+/*
+ * Pocketbase
+ */
+
+async function pb_login(client, email, pass) {
     console.log("login");
     return {};
 }
-async function pb_signup(email, pass, pass_again) {
+async function pb_signup(client, email, pass, pass_again) {
     console.log("signup");
     return {};
+}
+
+async function restore_login(client) {
+    let get_auth = window.localStorage.getItem('pocketbase_auth');
+
+    if (get_auth) {
+        let auth = JSON.parse(window.localStorage.getItem('pocketbase_auth'));
+        client.authStore.save(auth.token, auth.model);
+    }
+}
+
+function pb_client() {
+    let client = new PocketBase(POCKETBASE_URL);
+    client.afterSend = (r, d) => {
+        if (r.status === 401) {
+            window.localStorage.removeItem('pocketbase_auth');
+            return d;
+        }
+    }
 }
