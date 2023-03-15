@@ -138,12 +138,14 @@ class State_levies_average():
 class Investment():
     def __init__(self, record):
         self.start_year = record.start_year
+        self.id = record.id
         self.name = record.name
         self.cost = record.cost
         
     def to_json(self):
         return json.dumps({
             'start_year': self.start_year,
+            'id': self.id,
             'name': self.name,
             'cost': self.cost,
         })
