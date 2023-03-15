@@ -322,3 +322,22 @@ async function add_user_investment(client, data) {
         filter: get_user_query(client),
     });
 }
+async function remove_investment(client, id) {
+    await client.collection('investments').delete(id);
+    return await client.collection('investments').getFullList(200, {
+        sort: '-created',
+    });
+}
+
+async function add_investment(client, data) {
+    await client.collection('investments').create(data);
+    return await client.collection('investments').getFullList(200, {
+        sort: '-created',
+    });
+}
+
+async function fetch_budgets(client) {
+    return await client.collection('budgets').getFullList(200, {
+        sort: '-created',
+    });
+}

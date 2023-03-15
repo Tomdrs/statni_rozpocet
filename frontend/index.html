@@ -31,6 +31,7 @@
                 is_admin: false,
                 is_logged: false,
                 client: {},
+                zaznamy: [],
             }"
             x-init="
                 $watch('form_data', async (f) => {
@@ -760,7 +761,7 @@
                     </table>
                 </article>
             </section>
-            <section>
+            <section x-show="is_logged">
                 <article>
                     <header>
                         <h4>Přidání vlastní investice</h4>
@@ -781,7 +782,17 @@
                             x-model="start_year"
                         />
                         <button
-                            x-on:click.prevent="extra_investice = await add_user_investment(client, { start_year: start_year, cost: cost * 1000000000, name: name, custom: true }); start_year = (new Date().getFullYear()); cost = 0; name = '';"
+                            x-on:click.prevent="
+                              if (is_logged && !is_admin) {
+                                  extra_investice = await add_user_investment(client, { start_year: start_year, cost: cost * 1000000000, name: name });
+                              } else {
+                                  zaznamy = await add_investment(client, { start_year: start_year, cost: cost * 1000000000, name: name });
+                              }
+
+                              start_year = (new Date().getFullYear());
+                              cost = 0;
+                              name = '';
+                            "
                         >
                             Přidat
                         </button>
@@ -818,7 +829,6 @@
             "
             >
                 <template
-                    x-data="{ zaznamy: [] }"
                     x-for="data in filter_investment_array(extra_investice, filtr).concat(zaznamy)"
                     x-effect="zaznamy = (await fetch_investice(filtr, []))"
                 >
@@ -881,8 +891,20 @@
                                 </div>
                             </article>
                         </div>
-                        <template x-if="data.user_id">
-                            <a href="#" role="button" x-on:click.prevent="extra_investice = (await remove_user_investment(client, data.id))" style="margin-top: 1em;">Odebrat</a>
+                        <template x-if="data.user_id || is_admin">
+                            <a
+                                href="#"
+                                role="button"
+                                x-on:click.prevent="
+                                    if (!is_admin)
+                                        extra_investice = (await remove_user_investment(client, data.id))
+                                    else {
+                                        console.log(data);
+                                        zaznamy = (await remove_investment(client, data.id));
+                                    }
+                                "
+                                style="margin-top: 1em;"
+                            >Odebrat</a>
                         </template>
                     </article>
                 </template>
