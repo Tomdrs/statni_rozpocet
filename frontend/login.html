@@ -54,7 +54,7 @@
                             <label for="password-signup-again">Heslo znovu</label>
                             <input x-model="pass_again" type="password" id="password-signup-again">
                             <p x-show="pass != pass_again" class="error-status">Hesla se nerovnají</p>
-                            <input type="submit" value="Registrovat" x-on:click.prevent="signup_status = (await pb_signup(client, email, pass, pass_again));">
+                            <input type="submit" value="Registrovat" :disabled="pass != pass_again" x-on:click.prevent="signup_status = (await pb_signup(client, email, pass, pass_again));">
                         </form>
                     </template>
                 </article>
