@@ -19,22 +19,26 @@
         <main x-data="{ client: {}, is_admin: false }" x-init="client = pb_client(); is_admin = window.localStorage.getItem('pb_admin') !== null;" x-show="is_admin">
             <section>
                 <article>
-                    <header>budgets</header>
+                    <header>Příjmy</header>
                     <table x-data="{ budgets: [] }" x-effect="budgets = await fetch_budgets(client);">
                         <tr>
-                            <th>year</th>
-                            <th>total_income</th>
-                            <th>total_expense</th>
-                            <th>vat</th>
-                            <th>consumer_taxes</th>
-                            <th>income_tax_individual</th>
-                            <th>income_tax_company</th>
-                            <th>mandatory_social_insurance</th>
-                            <th>other_tax</th>
-                            <th>other_nontax_income</th>
-                            <th>consumer_tax_oils</th>
-                            <th>consumer_tax_tobacco</th>
-                            <th>consumer_tax_solar_energy</th>
+                            <th>Rok</th>
+                            <th>Celkové příjmy</th>
+                            <th>Celkové výdaje</th>
+                            <th>DPH</th>
+                            <th>Spotřební daně</th>
+                            <th>Daň z příjmu fyzických osob</th>
+                            <th>Daň z příjmu právnických osob</th>
+                            <th>Sociální zabezpečení</th>
+                            <th>Ostatní daně</th>
+                            <th>Ostatní nedaňové príjmy</th>
+                            <th>Spotřební daň z paliv</th>
+                            <th>Spotřební daň z tabáku</th>
+                            <th>Spotřební daň ze solární energie</th>
+                            <th>Poplatky za odpad</th>
+                            <th>Daň z hazardu</th>
+                            <th>Příjmy z EU</th>
+                            <th>Příjmy spojené s EU</th>
                             <th></th>
                         </tr>
                         <template
@@ -54,10 +58,18 @@
                                 <td x-text="data.consumer_tax_oils"></td>
                                 <td x-text="data.consumer_tax_tobacco"></td>
                                 <td x-text="data.consumer_tax_solar_energy"></td>
+                                <td x-text="data.trash_fees"></td>
+                                <td x-text="data.gambling_tax"></td>
+                                <td x-text="data.income_from_eu"></td>
+                                <td x-text="data.income_connected_with_eu"></td>
                                 <td></td>
                             </tr>
                         </template>
                         <tr>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
+                            <td><input type="text"></td>
                             <td><input type="text"></td>
                             <td><input type="text"></td>
                             <td><input type="text"></td>
