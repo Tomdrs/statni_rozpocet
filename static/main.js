@@ -305,3 +305,20 @@ function pb_client() {
 function get_user_query(client) {
     return `user_id.id = \"${client.authStore.model.id}\"`;
 }
+
+async function remove_user_investment(client, id) {
+    await client.collection('user_investments').delete(id);
+    return await client.collection('user_investments').getFullList(200, {
+        sort: '-created',
+        filter: get_user_query(client),
+    });
+}
+
+async function add_user_investment(client, data) {
+    data.user_id = client.authStore.model.id;
+    await client.collection('user_investments').create(data);
+    return await client.collection('user_investments').getFullList(200, {
+        sort: '-created',
+        filter: get_user_query(client),
+    });
+}
