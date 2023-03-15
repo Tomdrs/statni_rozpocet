@@ -218,13 +218,33 @@ function random_string() {
 
 async function pb_login(client, email, pass) {
     console.log("login");
+
+    let user_result;
+
     try {
         let user = await client.collection('users').authWithPassword(email, pass);
         setTimeout(() => window.location = "/", 3000);
-        return 'success';
+        console.log('succ1');
+        user_result = 'success';
     } catch (err) {
-        console.log(err);
-        return err.data.message;
+        console.log(err.message);
+        user_result = 'error';
+    }
+
+    if (user_result == 'error') {
+        try {
+            client.authStore.clear();
+            client = new PocketBase(POCKETBASE_URL);
+            window.localStorage.removeItem('pocketbase_auth');
+            let user = await client.admins.authWithPassword(email, pass);
+            console.log(user);
+            setTimeout(() => window.location = "/", 3000);
+            console.log('succ2');
+            return 'success';
+        } catch (err) {
+            console.log(err.message);
+            return 'error';
+        }
     }
 }
 
@@ -238,12 +258,12 @@ async function pb_signup(client, email, pass, pass_again) {
         });
         return 'success';
     } catch (err) {
-        console.log(err);
-        if (err.data) {
-            let error = err.data.message;
-            if (err.data.data.email) error += ` Email: ${err.data.data.email.message}`;
-            if (err.data.data.password) error += ` Password: ${err.data.data.password.message}`;
-            if (err.data.data.passwordConfirm) error += ` Password Confirm: ${err.data.data.passwordConfirm.message}`;
+        //console.log(err);
+        if (err.message) {
+            let error = err.message;
+            //if (err.response.data.email) error += ` Email: ${err.response.data.email.message}`;
+            //if (err.response.data.password) error += ` Password: ${err.response.data.password.message}`;
+            //if (err.response.data.passwordConfirm) error += ` Password Confirm: ${err.response.data.passwordConfirm.message}`;
             return error;
         } else {
             return 'other error';
@@ -253,6 +273,7 @@ async function pb_signup(client, email, pass, pass_again) {
 
 function pb_logout(client) {
     client.authStore.clear();
+    window.localStorage.removeItem('pocketbase_auth');
     window.location = "/";
 }
 

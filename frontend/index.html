@@ -28,6 +28,9 @@
                 vysledky: vypocet_placeholders(),
                 extra_investice: [],
                 status: 'ok',
+                is_admin: false,
+                is_logged: false,
+                client: {},
             }"
             x-init="
                 $watch('form_data', async (f) => {
@@ -53,14 +56,18 @@
                     console.log(vysledky);
                 });
                 vysledky = await calculate_dane(rok, form_data);
+                client = pb_client();
             "
             x-effect="
                 budget = (await get_income_data(rok));
                 expenses = (await get_expense_data(rok));
                 form_data_placeholder = (await get_form_data());
+                is_logged = window.localStorage.getItem('pocketbase_auth') !== null;
          "
         >   <section class="user_buttons">
-                <button type="button">Login</button><button type="button">Admin</button> <button type="button">Logout</button> 
+                <a role="button" href="/login" x-show="!is_logged">Login</a>
+                <a role="button" href="/admin" x-show="is_logged && is_admin">Admin</a>
+                <a role="button" href="#" x-show="is_logged" x-on:click.prevent="pb_logout(client); is_logged = false;">Logout</a>
             </section>
             <h1 class="nadpis">
                 Kalkulačka podílu na státním rozpočtu a výdajů

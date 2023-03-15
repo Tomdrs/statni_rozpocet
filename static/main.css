@@ -281,8 +281,25 @@ details p {
     color: #c00;
 }
 
+
+/*
+ * Account buttons
+ */
 .user_buttons {
     display: flex;
     align-items: flex-start;
-    justify-content: left;
+    justify-content: right;
+}
+
+.user_buttons a {
+    padding: calc(1em + 1px);
+    color: var(--h1-color);
+    background-color: unset;
+    border: none;
+    box-sizing: border-box;
+}
+
+.user_buttons a:hover {
+    padding: 1em;
+    border: solid 1px #ccc;
 }

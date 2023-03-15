@@ -42,20 +42,23 @@
                             <input x-model="email" type="text" id="username">
                             <label for="password-login">Heslo</label>
                             <input x-model="pass" type="password" id="password-login">
-                            <input type="submit" value="Přihlásit" x-on:click.prevent="login_status = (await pb_login(client, email, pass));">
-                            <p x-show="login_status == 'success'" class="ok-status">Přihlášení proběhlo úspěšně</p>
+                            <input type="submit" value="Přihlásit" :disabled="login_status == 'success'" x-on:click.prevent="login_status = (await pb_login(client, email, pass)); console.log('bruh', login_status)">
+                            <p x-show="login_status == 'success'" class="ok-status">Přihlášení proběhlo úspěšně, přesměrování na hlavní stránku...</p>
+                            <p x-show="login_status == 'error'" class="error-status">Přihlášení bylo neúspěšné, zkontrolujte údaje.</p>
                         </form>
                     </template>
                     <template x-if="tab == 'signup'">
-                        <form x-data="{ email: '', pass: '', pass_again: '', signup_status: {} }">
+                        <form x-data="{ email: '', pass: '', pass_again: '', signup_status: '' }">
                             <label for="email-signup">Email</label>
                             <input x-model="email" type="text" id="email-signup">
                             <label for="password-signup">Heslo</label>
                             <input x-model="pass" type="password" id="password-signup">
+                            <p x-show="pass.length < 8" class="error-status">Hesla musí mít 8-72 znaků.</p>
                             <label for="password-signup-again">Heslo znovu</label>
                             <input x-model="pass_again" type="password" id="password-signup-again">
                             <p x-show="pass != pass_again" class="error-status">Hesla se nerovnají</p>
-                            <input type="submit" value="Registrovat" :disabled="pass != pass_again" x-on:click.prevent="signup_status = (await pb_signup(client, email, pass, pass_again));">
+                            <input type="submit" value="Registrovat" :disabled="pass != pass_again || pass.length < 8" x-on:click.prevent="signup_status = (await pb_signup(client, email, pass, pass_again)); console.log('status', signup_status)">
+                            <p class="error-status" x-show="signup_status !== 'success' && signup_status !== ''">Registrace se nepodařila, zkontrolujte údaje</p>
                         </form>
                     </template>
                 </article>
