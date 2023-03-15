@@ -90,6 +90,7 @@
                 <article>
                     <header>expenses</header>
                     <table>
+                    <table x-data="{ expenses: [] }" x-effect="expenses = await fetch_expenses(client);">
                         <tr>
                             <th>year</th>
                             <th>total_expenses</th>
@@ -117,33 +118,37 @@
                             <th>other_investment</th>
                             <th></th>
                         </tr>
+                        <template
+                           x-for="data in expenses"
+                        >
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td x-text="data.year"></td>
+                            <td x-text="data.total_expenses"></td>
+                            <td x-text="data.salaries"></td>
+                            <td x-text="data.noninvestment_purchases"></td>
+                            <td x-text="data.noninvestment_bussines"></td>
+                            <td x-text="data.noninvestment_non_profit"></td>
+                            <td x-text="data.noninvestment_state_funds"></td>
+                            <td x-text="data.noninvestment_soc_and_health_funds"></td>
+                            <td x-text="data.noninvestment_regions"></td>
+                            <td x-text="data.noninvestment_contribution"></td>
+                            <td x-text="data.pensions"></td>
+                            <td x-text="data.unemployment_help"></td>
+                            <td x-text="data.other_social_help"></td>
+                            <td x-text="data.state_social_help"></td>
+                            <td x-text="data.building_savings"></td>
+                            <td x-text="data.pension_insurance_contribution"></td>
+                            <td x-text="data.eu_payment"></td>
+                            <td x-text="data.other_usual_expenses"></td>
+                            <td x-text="data.investment_purchases"></td>
+                            <td x-text="data.investment_transfers_bussines"></td>
+                            <td x-text="data.investment_state_funds"></td>
+                            <td x-text="data.investment_regions"></td>
+                            <td x-text="data.investment_contribution"></td>
+                            <td x-text="data.other_investment"></td>
                             <td></td>
                         </tr>
+                        </template>
                         <tr>
                             <td><input type="text"></td>
                             <td><input type="text"></td>

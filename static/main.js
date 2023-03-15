@@ -341,3 +341,8 @@ async function fetch_budgets(client) {
         sort: '-created',
     });
 }
+async function fetch_expenses(client) {
+    return await client.collection('expenses').getFullList(200, {
+        sort: '-created',
+    });
+}
