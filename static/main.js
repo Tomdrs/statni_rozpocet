@@ -218,11 +218,42 @@ function random_string() {
 
 async function pb_login(client, email, pass) {
     console.log("login");
-    return {};
+    try {
+        let user = await client.collection('users').authWithPassword(email, pass);
+        setTimeout(() => window.location = "/", 3000);
+        return 'success';
+    } catch (err) {
+        console.log(err);
+        return err.data.message;
+    }
 }
+
 async function pb_signup(client, email, pass, pass_again) {
     console.log("signup");
-    return {};
+    try {
+        let user = await client.collection('users').create({
+            email: email,
+            password: pass,
+            passwordConfirm: pass_again
+        });
+        return 'success';
+    } catch (err) {
+        console.log(err);
+        if (err.data) {
+            let error = err.data.message;
+            if (err.data.data.email) error += ` Email: ${err.data.data.email.message}`;
+            if (err.data.data.password) error += ` Password: ${err.data.data.password.message}`;
+            if (err.data.data.passwordConfirm) error += ` Password Confirm: ${err.data.data.passwordConfirm.message}`;
+            return error;
+        } else {
+            return 'other error';
+        }
+    }
+}
+
+function pb_logout(client) {
+    client.authStore.clear();
+    window.location = "/";
 }
 
 async function restore_login(client) {
@@ -242,4 +273,5 @@ function pb_client() {
             return d;
         }
     }
+    return client;
 }

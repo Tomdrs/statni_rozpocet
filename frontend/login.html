@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="/static/main.css" />
     </head>
     <body x-init="console.log('start alpinejs')">
-        <main x-data="{ tab: 'login', client: {} }" x-init="client = pb_client();">
+        <main x-data="{ tab: 'login', client: {} }" x-init="client = pb_client(); console.log(client)">
             <section style="display: flex; align-items: center; justify-content: center">
                 <article style="width: 600px">
                     <header>
@@ -39,10 +39,11 @@
                     <template x-if="tab == 'login'">
                         <form x-data="{ email: '', pass: '', login_status: {} }">
                             <label for="email-login">Email</label>
-                            <input type="text" id="username">
+                            <input x-model="email" type="text" id="username">
                             <label for="password-login">Heslo</label>
-                            <input type="password" id="password-login">
+                            <input x-model="pass" type="password" id="password-login">
                             <input type="submit" value="Přihlásit" x-on:click.prevent="login_status = (await pb_login(client, email, pass));">
+                            <p x-show="login_status == 'success'" class="ok-status">Přihlášení proběhlo úspěšně</p>
                         </form>
                     </template>
                     <template x-if="tab == 'signup'">
