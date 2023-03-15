@@ -303,3 +303,17 @@ details p {
     padding: 1em;
     border: solid 1px #ccc;
 }
+
+/*
+ * Admin page
+ */
+
+.admin-view table {
+    max-width: 1500px;
+    overflow: scroll;
+}
+
+.table-container {
+    max-width: 1500px;
+    overflow: scroll;
+}
