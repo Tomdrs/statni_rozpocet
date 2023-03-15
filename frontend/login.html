@@ -17,15 +17,47 @@
         <link rel="stylesheet" href="/static/main.css" />
     </head>
     <body x-init="console.log('start alpinejs')">
-        <main>
-            <section>
-                <form>
-                    <label for="username">Přihlašovací jméno</label>
-                    <input type="text" id="username">
-                    <label for="password">Heslo</label>
-                    <input type="text" id="password">
-                    <input type="submit" value="Přihlásit">
-                </form>
+        <main x-data="{ tab: 'login' }">
+            <section style="display: flex; align-items: center; justify-content: center">
+                <article style="max-width: 600px">
+                    <header>
+                        <div class="vyber-rok">
+                            <input
+                                x-model="tab"
+                                type="radio"
+                                value="login"
+                                id="login-select"
+                                checked="true"
+                            /><label for="login-select" style="font-size: 1em; font-weight: bold">Přihlášení</label>
+                            <input
+                                x-model="tab"
+                                type="radio"
+                                value="signup"
+                                id="signup-select"
+                            /><label for="signup-select" style="font-size: 1em; font-weight: bold">Registrace</label>
+                        </div>
+                    </header>
+                    <template x-if="tab == 'login'">
+                        <form>
+                            <label for="username">Email</label>
+                            <input type="text" id="username">
+                            <label for="password">Heslo</label>
+                            <input type="password" id="password">
+                            <input type="submit" value="Přihlásit">
+                        </form>
+                    </template>
+                    <template x-if="tab == 'signup'">
+                        <form>
+                            <label for="username">Email</label>
+                            <input type="text" id="username">
+                            <label for="password">Heslo</label>
+                            <input type="password" id="password">
+                            <label for="password">Heslo znovu</label>
+                            <input type="password" id="password">
+                            <input type="submit" value="Přihlásit">
+                        </form>
+                    </template>
+                </article>
             </section>
         </main>
         <footer>

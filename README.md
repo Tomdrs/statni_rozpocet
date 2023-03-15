@@ -59,14 +59,15 @@ flask run
 - <https://www.youtube.com/watch?v=M3fY0E60cM0>
 - <https://www.markdownguide.org/cheat-sheet>
 - <https://alpinejs.dev/>
-- https://picocss.com/
-- https://www.czso.cz/csu/czso/spotrebni-vydaje-domacnosti-2021
-- https://www.financnisprava.cz/assets/cs/prilohy/d-kraje-a-obce/Schema_rozpoctoveho_urceni_dani_2022.pdf
-- https://money.cz/novinky-a-tipy/mzdy-a-personalistika/konec-superhrube-mzdy-co-to-udela-s-vyplatou-zamestnancu/
-- https://www.czso.cz/csu/czso/cri/prumerne-mzdy-3-ctvrtleti-2022
-- https://www.podnikatel.cz/zakony/zakon-c-235-2004-sb-o-dani-z-pridane-hodnoty/uplne/#prilohy
-- https://cs.wikipedia.org/wiki/Spot%C5%99ebn%C3%AD_da%C5%88
-- https://www.businessinfo.cz/navody/provozovani-hazardnich-her-ppbi/3/
-- https://www.vlada.cz/assets/media-centrum/aktualne/Narodni-investicni-plan-CR-2020_2050.pdf
+- <https://picocss.com/>
+- <https://www.czso.cz/csu/czso/spotrebni-vydaje-domacnosti-2021>
+- <https://www.financnisprava.cz/assets/cs/prilohy/d-kraje-a-obce/Schema_rozpoctoveho_urceni_dani_2022.pdf>
+- <https://money.cz/novinky-a-tipy/mzdy-a-personalistika/konec-superhrube-mzdy-co-to-udela-s-vyplatou-zamestnancu/>
+- <https://www.czso.cz/csu/czso/cri/prumerne-mzdy-3-ctvrtleti-2022>
+- <https://www.podnikatel.cz/zakony/zakon-c-235-2004-sb-o-dani-z-pridane-hodnoty/uplne/#prilohy>
+- <https://cs.wikipedia.org/wiki/Spot%C5%99ebn%C3%AD_da%C5%88>
+- <https://www.businessinfo.cz/navody/provozovani-hazardnich-her-ppbi/3/>
+- <https://www.vlada.cz/assets/media-centrum/aktualne/Narodni-investicni-plan-CR-2020_2050.pdf>
+- <https://medium.com/@Mikepicker/build-a-multi-user-todo-list-app-with-pocketbase-in-a-single-html-file-8734bfb882fd>
 - Budget spreadsheets in resources/
 
