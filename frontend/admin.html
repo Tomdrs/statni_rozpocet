@@ -149,35 +149,85 @@
                             <td x-text="data.investment_regions"></td>
                             <td x-text="data.investment_contribution"></td>
                             <td x-text="data.other_investment"></td>
-                            <td></td>
+                            <td><button class="delete_button" x-on:click.prevent="expenses = remove_expenses(client, data.id)">❌</button></td>
                         </tr>
                         </template>
-                        <tr>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td></td>
+                        <tr x-data="{ 
+                            year: '',
+                            total_expenses: '',
+                            salaries: '',
+                            noninvestment_purchases: '',
+                            noninvestment_bussines: '',
+                            noninvestment_non_profit: '',
+                            noninvestment_state_funds: '',
+                            noninvestment_soc_and_health_funds: '',
+                            noninvestment_regions: '',
+                            noninvestment_contribution: '',
+                            pensions: '',
+                            unemployment_help: '',
+                            other_social_help: '',
+                            state_social_help: '',
+                            building_savings: '',
+                            pension_insurance_contribution: '',
+                            eu_payment: '',
+                            other_usual_expenses: '',
+                            investment_purchases: '',
+                            investment_transfers_bussines: '',
+                            investment_state_funds: '',
+                            investment_regions: '',
+                            investment_contribution: '',
+                            other_investment: '',
+                            }" >
+                            <td><input type="text" x-model="year"></td>
+                            <td><input type="text" x-model="total_expenses"></td>
+                            <td><input type="text" x-model="salaries"></td>
+                            <td><input type="text" x-model="noninvestment_purchases"></td>
+                            <td><input type="text" x-model="noninvestment_bussines"></td>
+                            <td><input type="text" x-model="noninvestment_non_profit"></td>
+                            <td><input type="text" x-model="noninvestment_state_funds"></td>
+                            <td><input type="text" x-model="noninvestment_soc_and_health_funds"></td>
+                            <td><input type="text" x-model="noninvestment_regions"></td>
+                            <td><input type="text" x-model="noninvestment_contribution"></td>
+                            <td><input type="text" x-model="pensions"></td>
+                            <td><input type="text" x-model="unemployment_help"></td>
+                            <td><input type="text" x-model="other_social_help"></td>
+                            <td><input type="text" x-model="state_social_help"></td>
+                            <td><input type="text" x-model="building_savings"></td>
+                            <td><input type="text" x-model="pension_insurance_contribution"></td>
+                            <td><input type="text" x-model="eu_payment"></td>
+                            <td><input type="text" x-model="other_usual_expenses"></td>
+                            <td><input type="text" x-model="investment_purchases"></td>
+                            <td><input type="text" x-model="investment_transfers_bussines"></td>
+                            <td><input type="text" x-model="investment_state_funds"></td>
+                            <td><input type="text" x-model="investment_regions"></td>
+                            <td><input type="text" x-model="investment_contribution"></td>
+                            <td><input type="text" x-model="other_investment"></td>
+                            <td><button class="add_button" x-on:click.prevent="expenses = add_expenses(client, {
+                                year: year,
+                                total_expenses: total_expenses,
+                                salaries: salaries,
+                                noninvestment_purchases: noninvestment_purchases,
+                                noninvestment_bussines: noninvestment_bussines,
+                                noninvestment_non_profit: noninvestment_non_profit,
+                                noninvestment_state_funds: noninvestment_state_funds,
+                                noninvestment_soc_and_health_funds: noninvestment_soc_and_health_funds,
+                                noninvestment_regions: noninvestment_regions,
+                                noninvestment_contribution: noninvestment_contribution,
+                                pensions: pensions,
+                                unemployment_help: unemployment_help,
+                                other_social_help: other_social_help,
+                                state_social_help: state_social_help,
+                                building_savings: building_savings,
+                                pension_insurance_contribution: pension_insurance_contribution,
+                                eu_payment: eu_payment,
+                                other_usual_expenses: other_usual_expenses,
+                                investment_purchases: investment_purchases,
+                                investment_transfers_bussines: investment_transfers_bussines,
+                                investment_state_funds: investment_state_funds,
+                                investment_regions: investment_regions,
+                                investment_contribution: investment_contribution,
+                                other_investment: other_investment
+                                })">✓</button></td>
                         </tr>
                     </table>
                     </div>

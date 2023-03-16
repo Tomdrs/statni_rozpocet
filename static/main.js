@@ -372,3 +372,17 @@ async function remove_average(client, id) {
         sort: '-created',
     });
 }
+
+async function add_expenses(client, data) {
+    await client.collection('expenses').create(data);
+    return await client.collection('expenses').getFullList(200, {
+        sort: '-created',
+    });
+}
+
+async function remove_expenses(client, id) {
+    await client.collection('expenses').delete(id);
+    return await client.collection('expenses').getFullList(200, {
+        sort: '-created',
+    });
+}
