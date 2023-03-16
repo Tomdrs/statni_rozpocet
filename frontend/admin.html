@@ -222,25 +222,55 @@
                                 <td x-text="data.consumer_tax_beer"></td>
                                 <td x-text="data.consumer_tax_tobacco"></td>
                                 <td x-text="data.consumer_tax_alcohol"></td>
-                                <td></td>
+                                <td><button class="delete_button" x-on:click.prevent="state_levies_average = remove_average(client, data.id)">❌</button></td>
                             </tr>
                         </template>
-                        <tr>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td></td>
+                        <tr x-data="{ 
+                            year: '',
+                            gross_income: '',
+                            supergross: 'false',
+                            supergross_multiplier: '',
+                            vat_21: '',
+                            social_insurance: '',
+                            capital_gains: '',
+                            gambling_tax: '',
+                            consumer_tax_car_fuel: '',
+                            vat_food_mhd_medical_devices: '',
+                            vat_books_music_medicine_water_accomodations: '',
+                            consumer_tax_beer: '',
+                            consumer_tax_tobacco: '',
+                            consumer_tax_alcohol: ''
+                            }" >
+                            <td><input type="text" x-model="year"></td>
+                            <td><input type="text" x-model="gross_income"></td>
+                            <td><input type="checkbox" x-model="supergross"></td>
+                            <td><input type="text" x-model="supergross_multiplier"></td>
+                            <td><input type="text" x-model="vat_21"></td>
+                            <td><input type="text" x-model="social_insurance"></td>
+                            <td><input type="text" x-model="capital_gains"></td>
+                            <td><input type="text" x-model="gambling_tax"></td>
+                            <td><input type="text" x-model="consumer_tax_car_fuel"></td>
+                            <td><input type="text" x-model="vat_food_mhd_medical_devices"></td>
+                            <td><input type="text" x-model="vat_books_music_medicine_water_accomodations"></td>
+                            <td><input type="text" x-model="consumer_tax_beer"></td>
+                            <td><input type="text" x-model="consumer_tax_tobacco"></td>
+                            <td><input type="text" x-model="consumer_tax_alcohol"></td>
+                            <td><button class="add_button" x-on:click.prevent="state_levies_average = add_average(client, {
+                                year: year,
+                                gross_income: gross_income,
+                                supergross: supergross,
+                                supergross_multiplier: supergross_multiplier,
+                                vat_21: vat_21, social_insurance: social_insurance,
+                                capital_gains: capital_gains,
+                                gambling_tax: gambling_tax,
+                                consumer_tax_car_fuel: consumer_tax_car_fuel,
+                                vat_food_mhd_medical_devices: vat_food_mhd_medical_devices,
+                                vat_books_music_medicine_water_accomodations: vat_books_music_medicine_water_accomodations,
+                                consumer_tax_beer: consumer_tax_beer,
+                                consumer_tax_tobacco: consumer_tax_tobacco,
+                                consumer_tax_alcohol: consumer_tax_alcohol
+                                })"
+                                >✓</button></td>
                         </tr>
                     </table>
                     </div>

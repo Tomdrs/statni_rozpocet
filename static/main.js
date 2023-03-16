@@ -358,3 +358,17 @@ async function fetch_investments(client) {
         sort: '-created',
     });
 }
+
+async function add_average(client, data) {
+    await client.collection('state_levies_average').create(data);
+    return await client.collection('state_levies_average').getFullList(200, {
+        sort: '-created',
+    });
+}
+
+async function remove_average(client, id) {
+    await client.collection('state_levies_average').delete(id);
+    return await client.collection('state_levies_average').getFullList(200, {
+        sort: '-created',
+    });
+}
