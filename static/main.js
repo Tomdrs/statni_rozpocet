@@ -386,3 +386,17 @@ async function remove_expenses(client, id) {
         sort: '-created',
     });
 }
+
+async function add_budgets(client, data) {
+    await client.collection('budgets').create(data);
+    return await client.collection('budgets').getFullList(200, {
+        sort: '-created',
+    });
+}
+
+async function remove_budgets(client, id) {
+    await client.collection('budgets').delete(id);
+    return await client.collection('budgets').getFullList(200, {
+        sort: '-created',
+    });
+}

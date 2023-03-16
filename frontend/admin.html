@@ -63,28 +63,64 @@
                                 <td x-text="data.gambling_tax"></td>
                                 <td x-text="data.income_from_eu"></td>
                                 <td x-text="data.income_connected_with_eu"></td>
-                                <td></td>
+                                <td><button class="delete_button" x-on:click.prevent="budgets = remove_budgets(client, data.id)">❌</button></td>
                             </tr>
                         </template>
-                        <tr>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td></td>
+                        <tr x-data="{ 
+                            year: '',
+                            total_income: '',
+                            total_expense: '',
+                            vat: '',
+                            consumer_taxes: '',
+                            income_tax_individual: '',
+                            income_tax_company: '',
+                            mandatory_social_insurance: '',
+                            other_tax: '',
+                            other_nontax_income: '',
+                            consumer_tax_oils: '',
+                            consumer_tax_tobacco: '',
+                            consumer_tax_solar_energy: '',
+                            trash_fees: '',
+                            gambling_tax: '',
+                            income_from_eu: '',
+                            income_connected_with_eu: '',
+                            }" >
+                            <td><input type="text" x-model="year"></td>
+                            <td><input type="text" x-model="total_income"></td>
+                            <td><input type="text" x-model="total_expense"></td>
+                            <td><input type="text" x-model="vat"></td>
+                            <td><input type="text" x-model="consumer_taxes"></td>
+                            <td><input type="text" x-model="income_tax_individual"></td>
+                            <td><input type="text" x-model="income_tax_company"></td>
+                            <td><input type="text" x-model="mandatory_social_insurance"></td>
+                            <td><input type="text" x-model="other_tax"></td>
+                            <td><input type="text" x-model="other_nontax_income"></td>
+                            <td><input type="text" x-model="consumer_tax_oils"></td>
+                            <td><input type="text" x-model="consumer_tax_tobacco"></td>
+                            <td><input type="text" x-model="consumer_tax_solar_energy"></td>
+                            <td><input type="text" x-model="trash_fees"></td>
+                            <td><input type="text" x-model="gambling_tax"></td>
+                            <td><input type="text" x-model="income_from_eu"></td>
+                            <td><input type="text" x-model="income_connected_with_eu"></td>
+                            <td><button class="add_button" x-on:click.prevent="budgets = add_budgets(client, {
+                                year: year,
+                                total_income: total_income,
+                                total_expense: total_expense,
+                                vat: vat,
+                                consumer_taxes: consumer_taxes,
+                                income_tax_individual: income_tax_individual,
+                                income_tax_company: income_tax_company,
+                                mandatory_social_insurance: mandatory_social_insurance,
+                                other_tax: other_tax,
+                                other_nontax_income: other_nontax_income,
+                                consumer_tax_oils: consumer_tax_oils,
+                                consumer_tax_tobacco: consumer_tax_tobacco,
+                                consumer_tax_solar_energy: consumer_tax_solar_energy,
+                                trash_fees: trash_fees,
+                                gambling_tax: gambling_tax,
+                                income_from_eu: income_from_eu,
+                                income_connected_with_eu: income_connected_with_eu,
+                                })">✓</button></td>
                         </tr>
                     </table>
                     </div>
