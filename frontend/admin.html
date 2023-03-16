@@ -263,14 +263,14 @@
                                 <td x-text="data.start_year"></td>
                                 <td x-text="data.name"></td>
                                 <td x-text="data.cost"></td>
-                                <td></td>
+                                <td><button class="delete_button" x-on:click.prevent="investments = remove_investment(client, data.id)">❌</button></td>
                             </tr>
                         </template>
-                        <tr>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td><input type="text"></td>
-                            <td></td>
+                        <tr x-data="{ start_year: '', name: '', cost: '' }" x-effect="console.log(cost)">
+                            <td><input type="text" x-model="start_year"></td>
+                            <td><input type="text" x-model="name"></td>
+                            <td><input type="text" x-model="cost"></td>
+                            <td><button class="add_button" x-on:click.prevent="investments = add_investment(client, {start_year: start_year, name: name, cost: cost})">✓</button></td>
                         </tr>
                     </table>
                     </div>
