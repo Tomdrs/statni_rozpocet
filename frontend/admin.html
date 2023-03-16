@@ -375,11 +375,31 @@
                            x-for="data in investments"
                            x-show="false"
                         >
-                            <tr>
-                                <td x-text="data.start_year"></td>
-                                <td x-text="data.name"></td>
-                                <td x-text="data.cost"></td>
-                                <td><button class="delete_button" x-on:click.prevent="investments = remove_investment(client, data.id)">❌</button></td>
+                            <tr x-init="data.editing = false; $watch('data', async (new_data, old_data) => {
+                                console.log(new_data, old_data)
+                                if (new_data.editing == old_data.editing) {
+                                    await update_investments(client, new_data);
+                                }
+                            })">
+                                <template x-if="!data.editing">
+                                    <td x-text="data.start_year"></td>
+                                </template>
+                                <template x-if="data.editing">
+                                    <td><input type="text" x-model="data.start_year"></td>
+                                </template>
+                                <template x-if="!data.editing">
+                                    <td x-text="data.name"></td>
+                                </template>
+                                <template x-if="data.editing">
+                                    <td><input type="text" x-model="data.name"></td>
+                                </template>
+                                <template x-if="!data.editing">
+                                    <td x-text="data.cost"></td>
+                                </template>
+                                <template x-if="data.editing">
+                                    <td><input type="text" x-model="data.cost"></td>
+                                </template>
+                                <td><button x-on:click.prevent="data.editing = !data.editing">✏️</button><button class="delete_button" x-on:click.prevent="investments = remove_investment(client, data.id)">❌</button></td>
                             </tr>
                         </template>
                         <tr x-data="{ start_year: '', name: '', cost: '' }" x-effect="console.log(cost)">

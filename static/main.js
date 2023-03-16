@@ -400,3 +400,10 @@ async function remove_budgets(client, id) {
         sort: '-created',
     });
 }
+
+async function update_investments(client, data) {
+    await client.collection('investments').update(data.id, data);
+    return await client.collection('investments').getFullList(200, {
+        sort: '-created',
+    });
+}
