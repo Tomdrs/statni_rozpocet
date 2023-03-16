@@ -90,7 +90,7 @@
                     </div>
                 </article>
                 <article>
-                    <header>expenses</header>
+                    <header>Výdaje</header>
                     <div class="table-container">
                     <table x-data="{ expenses: [] }" x-effect="expenses = await fetch_expenses(client);">
                         <tr>
@@ -183,43 +183,48 @@
                     </div>
                 </article>
                 <article>
-                    <header>state levies average</header>
+                    <header>Průměrný občan</header>
                     <div class="table-container">
-                    <table>
+                    <table x-data="{ state_levies_average: [] }" x-effect="state_levies_average = await fetch_average(client);">
                         <tr>
-                            <th>year</th>
-                            <th>gross_income</th>
-                            <th>supergross</th>
-                            <th>supergross_multiplier</th>
-                            <th>vat_21</th>
-                            <th>social_insurance</th>
-                            <th>capital_gains</th>
-                            <th>gambling_tax</th>
-                            <th>consumer_tax_car_fuel</th>
-                            <th>vat_food_mhd_medical_devices</th>
-                            <th>vat_books_music_medicine_water_accomodations</th>
-                            <th>consumer_tax_beer</th>
-                            <th>consumer_tax_tobacco</th>
-                            <th>consumer_tax_alcohol</th>
+                            <th>Rok</th>
+                            <th>Hrubý příjem</th>
+                            <th>Superhrubá mzda</th>
+                            <th>Násobitel u superhrubé mzdy</th>
+                            <th>DPH 21%</th>
+                            <th>Sociální pojištění</th>
+                            <th>Kapitálové příjmy</th>
+                            <th>Daň z hazardu</th>
+                            <th>Spotřební daň z paliv</th>
+                            <th>DPH 15%</th>
+                            <th>DPH 10%</th>
+                            <th>Spotřební daň z piva</th>
+                            <th>Spotřební daň z tabáku</th>
+                            <th>Spotřební daň z alkoholu</th>
                             <th></th>
                         </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        <template
+                           x-for="data in state_levies_average"
+                           x-show="false"
+                        >
+                            <tr>
+                                <td x-text="data.year"></td>
+                                <td x-text="data.gross_income"></td>
+                                <td x-text="data.supergross"></td>
+                                <td x-text="data.supergross_multiplier"></td>
+                                <td x-text="data.vat_21"></td>
+                                <td x-text="data.social_insurance"></td>
+                                <td x-text="data.capital_gains"></td>
+                                <td x-text="data.gambling_tax"></td>
+                                <td x-text="data.consumer_tax_car_fuel"></td>
+                                <td x-text="data.vat_food_mhd_medical_devices"></td>
+                                <td x-text="data.vat_books_music_medicine_water_accomodations"></td>
+                                <td x-text="data.consumer_tax_beer"></td>
+                                <td x-text="data.consumer_tax_tobacco"></td>
+                                <td x-text="data.consumer_tax_alcohol"></td>
+                                <td></td>
+                            </tr>
+                        </template>
                         <tr>
                             <td><input type="text"></td>
                             <td><input type="text"></td>
@@ -241,21 +246,26 @@
                     </div>
                 </article>
                 <article>
-                    <header>investments</header>
+                    <header>Investice</header>
                     <div class="table-container">
-                    <table>
+                    <table x-data="{ investments: [] }" x-effect="investments = await fetch_investments(client);">
                         <tr>
-                            <th>start_year</th>
-                            <th>name</th>
-                            <th>cost</th>
+                            <th>Rok počátku investice</th>
+                            <th>Název</th>
+                            <th>Náklady</th>
                             <th></th>
                         </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        <template
+                           x-for="data in investments"
+                           x-show="false"
+                        >
+                            <tr>
+                                <td x-text="data.start_year"></td>
+                                <td x-text="data.name"></td>
+                                <td x-text="data.cost"></td>
+                                <td></td>
+                            </tr>
+                        </template>
                         <tr>
                             <td><input type="text"></td>
                             <td><input type="text"></td>

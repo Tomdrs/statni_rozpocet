@@ -346,3 +346,15 @@ async function fetch_expenses(client) {
         sort: '-created',
     });
 }
+
+async function fetch_average(client) {
+    return await client.collection('state_levies_average').getFullList(200, {
+        sort: '-created',
+    });
+}
+
+async function fetch_investments(client) {
+    return await client.collection('investments').getFullList(200, {
+        sort: '-created',
+    });
+}
