@@ -15,8 +15,8 @@
         />
         <link rel="stylesheet" href="/static/main.css" />
     </head>
-    <body x-init="console.log('start alpinejs')">
-        <main x-data="{ client: {}, is_admin: false }" x-init="client = pb_client(); is_admin = window.localStorage.getItem('pb_admin') !== null;" x-show="is_admin" class="admin-view">
+    <body x-init="console.log('start alpinejs'); is_admin = window.localStorage.getItem('pb_admin') !== null;" x-data="{ is_admin: false }">
+        <main x-data="{ client: {}}" x-init="client = pb_client();" x-show="is_admin" class="admin-view">
             <section>
                 <article>
                     <header>Příjmy</header>
@@ -276,6 +276,9 @@
                     </div>
                 </article>
             </section>
+        </main>
+        <main x-show="!is_admin" x-data>
+            <h1>Správa databáze je přístupná pouze adminům. Pro použití se přihlaste admin účtem!</h1>
         </main>
         <footer>
             Tomáš Hozda © <span x-text="new Date().getFullYear()"></span>
