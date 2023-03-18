@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request, Response
+from flask import Flask, jsonify, request, Response, send_from_directory
 from pocketbase import PocketBase
 
 from models import Budget, Expenses, State_levies_average, Investment
@@ -11,23 +11,22 @@ app = Flask(
     __name__,
     static_url_path="/static",
     static_folder="../static",
-    template_folder="../frontend",
 )
 
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return send_from_directory("../frontend/", "index.html")
 
 
 @app.route("/login")
 def login():
-    return render_template("login.html")
+    return send_from_directory("../frontend/", "login.html")
 
 
 @app.route("/admin")
 def admin():
-    return render_template("admin.html")
+    return send_from_directory("../frontend/", "admin.html")
 
 
 def fetch_rozpocet_na_rok(rok):
