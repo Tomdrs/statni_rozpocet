@@ -261,12 +261,8 @@ async function pb_signup(client, email, pass, pass_again) {
         });
         return 'success';
     } catch (err) {
-        //console.log(err);
         if (err.message) {
             let error = err.message;
-            //if (err.response.data.email) error += ` Email: ${err.response.data.email.message}`;
-            //if (err.response.data.password) error += ` Password: ${err.response.data.password.message}`;
-            //if (err.response.data.passwordConfirm) error += ` Password Confirm: ${err.response.data.passwordConfirm.message}`;
             return error;
         } else {
             return 'other error';

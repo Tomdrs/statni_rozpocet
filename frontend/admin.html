@@ -81,7 +81,7 @@
                                     <td>
                                         <button
                                             class="delete_button"
-                                            x-on:click.prevent="budgets = remove_budgets(client, data.id)"
+                                            x-on:click.prevent="budgets = await remove_budgets(client, data.id)"
                                         >
                                             ❌
                                         </button>
@@ -89,25 +89,25 @@
                                 </tr>
                             </template>
                             <tr
-                                x-data="{ 
-                            year: '',
-                            total_income: '',
-                            total_expense: '',
-                            vat: '',
-                            consumer_taxes: '',
-                            income_tax_individual: '',
-                            income_tax_company: '',
-                            mandatory_social_insurance: '',
-                            other_tax: '',
-                            other_nontax_income: '',
-                            consumer_tax_oils: '',
-                            consumer_tax_tobacco: '',
-                            consumer_tax_solar_energy: '',
-                            trash_fees: '',
-                            gambling_tax: '',
-                            income_from_eu: '',
-                            income_connected_with_eu: '',
-                            }"
+                                x-data="{
+                                    year: '',
+                                    total_income: '',
+                                    total_expense: '',
+                                    vat: '',
+                                    consumer_taxes: '',
+                                    income_tax_individual: '',
+                                    income_tax_company: '',
+                                    mandatory_social_insurance: '',
+                                    other_tax: '',
+                                    other_nontax_income: '',
+                                    consumer_tax_oils: '',
+                                    consumer_tax_tobacco: '',
+                                    consumer_tax_solar_energy: '',
+                                    trash_fees: '',
+                                    gambling_tax: '',
+                                    income_from_eu: '',
+                                    income_connected_with_eu: '',
+                                }"
                             >
                                 <td><input type="text" x-model="year" /></td>
                                 <td>
@@ -192,25 +192,25 @@
                                 <td>
                                     <button
                                         class="add_button"
-                                        x-on:click.prevent="budgets = add_budgets(client, {
-                                year: year,
-                                total_income: total_income,
-                                total_expense: total_expense,
-                                vat: vat,
-                                consumer_taxes: consumer_taxes,
-                                income_tax_individual: income_tax_individual,
-                                income_tax_company: income_tax_company,
-                                mandatory_social_insurance: mandatory_social_insurance,
-                                other_tax: other_tax,
-                                other_nontax_income: other_nontax_income,
-                                consumer_tax_oils: consumer_tax_oils,
-                                consumer_tax_tobacco: consumer_tax_tobacco,
-                                consumer_tax_solar_energy: consumer_tax_solar_energy,
-                                trash_fees: trash_fees,
-                                gambling_tax: gambling_tax,
-                                income_from_eu: income_from_eu,
-                                income_connected_with_eu: income_connected_with_eu,
-                                })"
+                                        x-on:click.prevent="budgets = await add_budgets(client, {
+                                            year: year,
+                                            total_income: total_income,
+                                            total_expense: total_expense,
+                                            vat: vat,
+                                            consumer_taxes: consumer_taxes,
+                                            income_tax_individual: income_tax_individual,
+                                            income_tax_company: income_tax_company,
+                                            mandatory_social_insurance: mandatory_social_insurance,
+                                            other_tax: other_tax,
+                                            other_nontax_income: other_nontax_income,
+                                            consumer_tax_oils: consumer_tax_oils,
+                                            consumer_tax_tobacco: consumer_tax_tobacco,
+                                            consumer_tax_solar_energy: consumer_tax_solar_energy,
+                                            trash_fees: trash_fees,
+                                            gambling_tax: gambling_tax,
+                                            income_from_eu: income_from_eu,
+                                            income_connected_with_eu: income_connected_with_eu,
+                                        });"
                                     >
                                         ✓
                                     </button>
@@ -323,7 +323,7 @@
                                     <td>
                                         <button
                                             class="delete_button"
-                                            x-on:click.prevent="expenses = remove_expenses(client, data.id)"
+                                            x-on:click.prevent="expenses = await remove_expenses(client, data.id)"
                                         >
                                             ❌
                                         </button>
@@ -331,32 +331,32 @@
                                 </tr>
                             </template>
                             <tr
-                                x-data="{ 
-                            year: '',
-                            total_expenses: '',
-                            salaries: '',
-                            noninvestment_purchases: '',
-                            noninvestment_bussines: '',
-                            noninvestment_non_profit: '',
-                            noninvestment_state_funds: '',
-                            noninvestment_soc_and_health_funds: '',
-                            noninvestment_regions: '',
-                            noninvestment_contribution: '',
-                            pensions: '',
-                            unemployment_help: '',
-                            other_social_help: '',
-                            state_social_help: '',
-                            building_savings: '',
-                            pension_insurance_contribution: '',
-                            eu_payment: '',
-                            other_usual_expenses: '',
-                            investment_purchases: '',
-                            investment_transfers_bussines: '',
-                            investment_state_funds: '',
-                            investment_regions: '',
-                            investment_contribution: '',
-                            other_investment: '',
-                            }"
+                                x-data="{
+                                    year: '',
+                                    total_expenses: '',
+                                    salaries: '',
+                                    noninvestment_purchases: '',
+                                    noninvestment_bussines: '',
+                                    noninvestment_non_profit: '',
+                                    noninvestment_state_funds: '',
+                                    noninvestment_soc_and_health_funds: '',
+                                    noninvestment_regions: '',
+                                    noninvestment_contribution: '',
+                                    pensions: '',
+                                    unemployment_help: '',
+                                    other_social_help: '',
+                                    state_social_help: '',
+                                    building_savings: '',
+                                    pension_insurance_contribution: '',
+                                    eu_payment: '',
+                                    other_usual_expenses: '',
+                                    investment_purchases: '',
+                                    investment_transfers_bussines: '',
+                                    investment_state_funds: '',
+                                    investment_regions: '',
+                                    investment_contribution: '',
+                                    other_investment: '',
+                                }"
                             >
                                 <td><input type="text" x-model="year" /></td>
                                 <td>
@@ -491,32 +491,32 @@
                                 <td>
                                     <button
                                         class="add_button"
-                                        x-on:click.prevent="expenses = add_expenses(client, {
-                                year: year,
-                                total_expenses: total_expenses,
-                                salaries: salaries,
-                                noninvestment_purchases: noninvestment_purchases,
-                                noninvestment_bussines: noninvestment_bussines,
-                                noninvestment_non_profit: noninvestment_non_profit,
-                                noninvestment_state_funds: noninvestment_state_funds,
-                                noninvestment_soc_and_health_funds: noninvestment_soc_and_health_funds,
-                                noninvestment_regions: noninvestment_regions,
-                                noninvestment_contribution: noninvestment_contribution,
-                                pensions: pensions,
-                                unemployment_help: unemployment_help,
-                                other_social_help: other_social_help,
-                                state_social_help: state_social_help,
-                                building_savings: building_savings,
-                                pension_insurance_contribution: pension_insurance_contribution,
-                                eu_payment: eu_payment,
-                                other_usual_expenses: other_usual_expenses,
-                                investment_purchases: investment_purchases,
-                                investment_transfers_bussines: investment_transfers_bussines,
-                                investment_state_funds: investment_state_funds,
-                                investment_regions: investment_regions,
-                                investment_contribution: investment_contribution,
-                                other_investment: other_investment
-                                })"
+                                        x-on:click.prevent="expenses = await add_expenses(client, {
+                                            year: year,
+                                            total_expenses: total_expenses,
+                                            salaries: salaries,
+                                            noninvestment_purchases: noninvestment_purchases,
+                                            noninvestment_bussines: noninvestment_bussines,
+                                            noninvestment_non_profit: noninvestment_non_profit,
+                                            noninvestment_state_funds: noninvestment_state_funds,
+                                            noninvestment_soc_and_health_funds: noninvestment_soc_and_health_funds,
+                                            noninvestment_regions: noninvestment_regions,
+                                            noninvestment_contribution: noninvestment_contribution,
+                                            pensions: pensions,
+                                            unemployment_help: unemployment_help,
+                                            other_social_help: other_social_help,
+                                            state_social_help: state_social_help,
+                                            building_savings: building_savings,
+                                            pension_insurance_contribution: pension_insurance_contribution,
+                                            eu_payment: eu_payment,
+                                            other_usual_expenses: other_usual_expenses,
+                                            investment_purchases: investment_purchases,
+                                            investment_transfers_bussines: investment_transfers_bussines,
+                                            investment_state_funds: investment_state_funds,
+                                            investment_regions: investment_regions,
+                                            investment_contribution: investment_contribution,
+                                            other_investment: other_investment
+                                        })"
                                     >
                                         ✓
                                     </button>
@@ -579,7 +579,7 @@
                                     <td>
                                         <button
                                             class="delete_button"
-                                            x-on:click.prevent="state_levies_average = remove_average(client, data.id)"
+                                            x-on:click.prevent="state_levies_average = await remove_average(client, data.id)"
                                         >
                                             ❌
                                         </button>
@@ -587,22 +587,22 @@
                                 </tr>
                             </template>
                             <tr
-                                x-data="{ 
-                            year: '',
-                            gross_income: '',
-                            supergross: 'false',
-                            supergross_multiplier: '',
-                            vat_21: '',
-                            social_insurance: '',
-                            capital_gains: '',
-                            gambling_tax: '',
-                            consumer_tax_car_fuel: '',
-                            vat_food_mhd_medical_devices: '',
-                            vat_books_music_medicine_water_accomodations: '',
-                            consumer_tax_beer: '',
-                            consumer_tax_tobacco: '',
-                            consumer_tax_alcohol: ''
-                            }"
+                                x-data="{
+                                    year: '',
+                                    gross_income: '',
+                                    supergross: 'false',
+                                    supergross_multiplier: '',
+                                    vat_21: '',
+                                    social_insurance: '',
+                                    capital_gains: '',
+                                    gambling_tax: '',
+                                    consumer_tax_car_fuel: '',
+                                    vat_food_mhd_medical_devices: '',
+                                    vat_books_music_medicine_water_accomodations: '',
+                                    consumer_tax_beer: '',
+                                    consumer_tax_tobacco: '',
+                                    consumer_tax_alcohol: ''
+                                }"
                             >
                                 <td><input type="text" x-model="year" /></td>
                                 <td>
@@ -675,21 +675,21 @@
                                 <td>
                                     <button
                                         class="add_button"
-                                        x-on:click.prevent="state_levies_average = add_average(client, {
-                                year: year,
-                                gross_income: gross_income,
-                                supergross: supergross,
-                                supergross_multiplier: supergross_multiplier,
-                                vat_21: vat_21, social_insurance: social_insurance,
-                                capital_gains: capital_gains,
-                                gambling_tax: gambling_tax,
-                                consumer_tax_car_fuel: consumer_tax_car_fuel,
-                                vat_food_mhd_medical_devices: vat_food_mhd_medical_devices,
-                                vat_books_music_medicine_water_accomodations: vat_books_music_medicine_water_accomodations,
-                                consumer_tax_beer: consumer_tax_beer,
-                                consumer_tax_tobacco: consumer_tax_tobacco,
-                                consumer_tax_alcohol: consumer_tax_alcohol
-                                })"
+                                        x-on:click.prevent="state_levies_average = await add_average(client, {
+                                            year: year,
+                                            gross_income: gross_income,
+                                            supergross: supergross,
+                                            supergross_multiplier: supergross_multiplier,
+                                            vat_21: vat_21, social_insurance: social_insurance,
+                                            capital_gains: capital_gains,
+                                            gambling_tax: gambling_tax,
+                                            consumer_tax_car_fuel: consumer_tax_car_fuel,
+                                            vat_food_mhd_medical_devices: vat_food_mhd_medical_devices,
+                                            vat_books_music_medicine_water_accomodations: vat_books_music_medicine_water_accomodations,
+                                            consumer_tax_beer: consumer_tax_beer,
+                                            consumer_tax_tobacco: consumer_tax_tobacco,
+                                            consumer_tax_alcohol: consumer_tax_alcohol
+                                        })"
                                     >
                                         ✓
                                     </button>
@@ -716,17 +716,15 @@
                                 x-show="false"
                             >
                                 <tr
-                                    x-init="data.editing = false; $watch('data', async (new_data, old_data) => {
-                                console.log(new_data, old_data)
-                                if (new_data.editing == old_data.editing) {
-                                    await update_investments(client, new_data);
-                                }
-                            })"
+                                    x-data="{ editing: false }"
+                                    x-init="editing = false; $watch('data', async (new_data, old_data) => {
+                                        await update_investments(client, new_data);
+                                    })"
                                 >
-                                    <template x-if="!data.editing">
+                                    <template x-if="!editing">
                                         <td x-text="data.start_year"></td>
                                     </template>
-                                    <template x-if="data.editing">
+                                    <template x-if="editing">
                                         <td>
                                             <input
                                                 type="text"
@@ -734,10 +732,10 @@
                                             />
                                         </td>
                                     </template>
-                                    <template x-if="!data.editing">
+                                    <template x-if="!editing">
                                         <td x-text="data.name"></td>
                                     </template>
-                                    <template x-if="data.editing">
+                                    <template x-if="editing">
                                         <td>
                                             <input
                                                 type="text"
@@ -745,10 +743,10 @@
                                             />
                                         </td>
                                     </template>
-                                    <template x-if="!data.editing">
+                                    <template x-if="!editing">
                                         <td x-text="data.cost"></td>
                                     </template>
-                                    <template x-if="data.editing">
+                                    <template x-if="editing">
                                         <td>
                                             <input
                                                 type="text"
@@ -758,12 +756,12 @@
                                     </template>
                                     <td>
                                         <button
-                                            x-on:click.prevent="data.editing = !data.editing"
+                                            x-on:click.prevent="editing = !editing"
                                         >
                                             ✏️</button
                                         ><button
                                             class="delete_button"
-                                            x-on:click.prevent="investments = remove_investment(client, data.id)"
+                                            x-on:click.prevent="investments = await remove_investment(client, data.id)"
                                         >
                                             ❌
                                         </button>
@@ -782,7 +780,7 @@
                                 <td>
                                     <button
                                         class="add_button"
-                                        x-on:click.prevent="investments = add_investment(client, {start_year: start_year, name: name, cost: cost})"
+                                        x-on:click.prevent="investments = await add_investment(client, {start_year: start_year, name: name, cost: cost})"
                                     >
                                         ✓
                                     </button>
