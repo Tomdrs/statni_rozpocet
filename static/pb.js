@@ -27,7 +27,7 @@ async function pb_login(client, email, pass) {
             window.localStorage.removeItem('pocketbase_auth');
             window.localStorage.removeItem('pb_admin');
             let user = await client.admins.authWithPassword(email, pass);
-            setTimeout(() => window.location = "/", 3000);
+            setTimeout(() => window.location = "/", 2000);
             window.localStorage.setItem('pb_admin', "true");
         } catch (err) {
             console.log(err.message);
@@ -45,6 +45,7 @@ async function pb_signup(client, email, pass, pass_again) {
             password: pass,
             passwordConfirm: pass_again
         });
+        setTimeout(() => window.location.reload(), 1000);
         return 'success';
     } catch (err) {
         if (err.message) {
