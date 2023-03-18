@@ -317,6 +317,10 @@ details p {
     overflow: scroll;
 }
 
+.table-container th, .table-container td {
+    min-width: 5em;
+}
+
 .delete_button {
     background-color: unset;
     color: var(--primary);

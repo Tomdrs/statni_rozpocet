@@ -74,6 +74,7 @@ async function restore_login(client) {
 
 function pb_client() {
     let client = new PocketBase(POCKETBASE_URL);
+    client.autoCancellation(false);
     client.afterSend = (r, d) => {
         if (r.status === 401) {
             window.localStorage.removeItem('pocketbase_auth');

@@ -734,7 +734,7 @@
                                         <td>
                                             <input
                                                 type="text"
-                                                x-model="data.start_year"
+                                                x-model.debounce.100ms="data.start_year"
                                             />
                                         </td>
                                     </template>
@@ -745,7 +745,7 @@
                                         <td>
                                             <input
                                                 type="text"
-                                                x-model="data.name"
+                                                x-model.debounce.100ms="data.name"
                                             />
                                         </td>
                                     </template>
@@ -756,12 +756,13 @@
                                         <td>
                                             <input
                                                 type="text"
-                                                x-model="data.cost"
+                                                x-model.debounce.100ms="data.cost"
                                             />
                                         </td>
                                     </template>
                                     <td>
                                         <button
+                                            class="edit-button"
                                             x-on:click.prevent="editing = !editing"
                                         >
                                             ✏️</button
