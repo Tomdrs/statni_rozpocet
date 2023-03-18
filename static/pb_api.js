@@ -1,90 +1,51 @@
-let POCKETBASE_URL = "https://pocketbase.gjk.cat";
+const POCKETBASE_URL = "https://pocketbase.gjk.cat";
 
-async function remove_user_investment(client, id) {
-    await client.collection('user_investments').delete(id);
-}
-
-async function add_user_investment(client, data) {
-    data.user_id = client.authStore.model.id;
-    return await client.collection('user_investments').create(data);
-}
-async function remove_investment(client, id) {
-    await client.collection('investments').delete(id);
+function fetch_collection(table) {
+    return async function(client) {
+        return await client.collection(table).getFullList(200, {
+            sort: '-created',
+        });
+    }
 }
 
-async function add_investment(client, data) {
-    let new_investment = await client.collection('investments').create(data);
-    return new_investment;
+function add_entry(table) {
+    return async function(client, data) {
+        return await client.collection(table).create(data);
+    }
 }
 
-async function fetch_budgets(client) {
-    return await client.collection('budgets').getFullList(200, {
-        sort: '-created',
-    });
-}
-async function fetch_expenses(client) {
-    return await client.collection('expenses').getFullList(200, {
-        sort: '-created',
-    });
+function update_entry(table) {
+    return async function(client, data) {
+        await client.collection(table).update(data.id, data);
+    };
 }
 
-async function fetch_average(client) {
-    return await client.collection('state_levies_average').getFullList(200, {
-        sort: '-created',
-    });
+function remove_entry(table) {
+    return async function(client, id) {
+        await client.collection(table).delete(id);
+    }
 }
 
-async function fetch_investments(client) {
-    return await client.collection('investments').getFullList(200, {
-        sort: '-created',
-    });
-}
+const add_user_investment = async (c, d) => { d.user_id = c.authStore.model.id; return await add_entry('user_investments')(c, d); };
+const remove_user_investment = remove_entry('user_investments');
 
-async function add_average(client, data) {
-    return await client.collection('state_levies_average').create(data);
-}
+const fetch_investments = fetch_collection('investments');
+const add_investment = add_entry('investments');
+const update_investments = update_entry('investments');
+const remove_investment = remove_entry('investments');
 
-async function remove_average(client, id) {
-    await client.collection('state_levies_average').delete(id);
-}
+const fetch_average = fetch_collection('state_levies_average');
+const add_average = add_entry('state_levies_average');
+const update_average = update_entry('state_levies_average');
+const remove_average = remove_entry('state_levies_average');
 
-async function add_expenses(client, data) {
-    return await client.collection('expenses').create(data);
-}
+const fetch_expenses = fetch_collection('expenses');
+const add_expenses = add_entry('expenses');
+const update_expenses = update_entry('expenses');
+const remove_expenses = remove_entry('expenses');
 
-async function remove_expenses(client, id) {
-    await client.collection('expenses').delete(id);
-}
+const fetch_budgets = fetch_collection('budgets');
+const add_budgets = add_entry('budgets');
+const update_budgets = update_entry('budgets');
+const remove_budgets = remove_entry('budgets');
 
-async function add_budgets(client, data) {
-    return await client.collection('budgets').create(data);
-}
-
-async function remove_budgets(client, id) {
-    await client.collection('budgets').delete(id);
-}
-
-async function update_investments(client, data) {
-    await client.collection('investments').update(data.id, data);
-}
-
-async function update_average(client, data) {
-    await client.collection('state_levies_average').update(data.id, data);
-    return await client.collection('state_levies_average').getFullList(200, {
-        sort: '-created',
-    });
-}
-
-async function update_expenses(client, data) {
-    await client.collection('expenses').update(data.id, data);
-    return await client.collection('expenses').getFullList(200, {
-        sort: '-created',
-    });
-}
-
-async function update_budgets(client, data) {
-    await client.collection('budgets').update(data.id, data);
-    return await client.collection('budgets').getFullList(200, {
-        sort: '-created',
-    });
-}
