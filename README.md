@@ -70,5 +70,9 @@ flask run
 - <https://www.businessinfo.cz/navody/provozovani-hazardnich-her-ppbi/3/>
 - <https://www.vlada.cz/assets/media-centrum/aktualne/Narodni-investicni-plan-CR-2020_2050.pdf>
 - <https://medium.com/@Mikepicker/build-a-multi-user-todo-list-app-with-pocketbase-in-a-single-html-file-8734bfb882fd>
+- <https://www.kurzy.cz/mzda/socialni-pojisteni/>
+- <https://www.finance.cz/503335-deti-a-dane/?_fid=m8yg#survey-place>
+- <https://vimjakna.cz/dane/zakladni-danova-sleva/>
+- <https://www.mpsv.cz/socialni-pojisteni>
 - Budget spreadsheets in resources/
 
