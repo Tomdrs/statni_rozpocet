@@ -5,9 +5,7 @@
             defer
             src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
         ></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/pocketbase/0.12.0/pocketbase.umd.js"
-        ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pocketbase/0.12.0/pocketbase.umd.js"></script>
         <script src="/static/main.js"></script>
 
         <link
@@ -79,10 +77,19 @@
                 }
                 console.log(extra_investice);
          "
-        >   <section class="user_buttons">
+        >
+            <section class="user_buttons">
                 <a role="button" href="/login" x-show="!is_logged">Login</a>
-                <a role="button" href="/admin" x-show="is_logged && is_admin">Admin</a>
-                <a role="button" href="#" x-show="is_logged" x-on:click.prevent="pb_logout(client); is_logged = false;">Logout</a>
+                <a role="button" href="/admin" x-show="is_logged && is_admin"
+                    >Admin</a
+                >
+                <a
+                    role="button"
+                    href="#"
+                    x-show="is_logged"
+                    x-on:click.prevent="pb_logout(client); is_logged = false;"
+                    >Logout</a
+                >
             </section>
             <h1 class="nadpis">
                 Kalkulačka podílu na státním rozpočtu a výdajů
@@ -916,8 +923,9 @@
                                         zaznamy = (await remove_investment(client, data.id));
                                     }
                                 "
-                                style="margin-top: 1em;"
-                            >Odebrat</a>
+                                style="margin-top: 1em"
+                                >Odebrat</a
+                            >
                         </template>
                     </article>
                 </template>

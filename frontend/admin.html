@@ -5,9 +5,7 @@
             defer
             src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
         ></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/pocketbase/0.12.0/pocketbase.umd.js"
-        ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pocketbase/0.12.0/pocketbase.umd.js"></script>
         <script src="/static/main.js"></script>
         <link
             rel="stylesheet"
@@ -15,58 +13,83 @@
         />
         <link rel="stylesheet" href="/static/main.css" />
     </head>
-    <body x-init="console.log('start alpinejs'); is_admin = window.localStorage.getItem('pb_admin') !== null;" x-data="{ is_admin: false }">
-        <main x-data="{ client: {}}" x-init="client = pb_client();" x-show="is_admin" class="admin-view">
+    <body
+        x-init="console.log('start alpinejs'); is_admin = window.localStorage.getItem('pb_admin') !== null;"
+        x-data="{ is_admin: false }"
+    >
+        <main
+            x-data="{ client: {}}"
+            x-init="client = pb_client();"
+            x-show="is_admin"
+            class="admin-view"
+        >
             <section>
                 <article>
                     <header>Příjmy</header>
                     <div class="table-container">
-                    <table x-data="{ budgets: [] }" x-effect="budgets = await fetch_budgets(client);">
-                        <tr>
-                            <th>Rok</th>
-                            <th>Celkové příjmy</th>
-                            <th>Celkové výdaje</th>
-                            <th>DPH</th>
-                            <th>Spotřební daně</th>
-                            <th>Daň z příjmu fyzických osob</th>
-                            <th>Daň z příjmu právnických osob</th>
-                            <th>Sociální zabezpečení</th>
-                            <th>Ostatní daně</th>
-                            <th>Ostatní nedaňové príjmy</th>
-                            <th>Spotřební daň z paliv</th>
-                            <th>Spotřební daň z tabáku</th>
-                            <th>Spotřební daň ze solární energie</th>
-                            <th>Poplatky za odpad</th>
-                            <th>Daň z hazardu</th>
-                            <th>Příjmy z EU</th>
-                            <th>Příjmy spojené s EU</th>
-                            <th></th>
-                        </tr>
-                        <template
-                           x-for="data in budgets"
+                        <table
+                            x-data="{ budgets: [] }"
+                            x-effect="budgets = await fetch_budgets(client);"
                         >
                             <tr>
-                                <td x-text="data.year"></td>
-                                <td x-text="data.total_income"></td>
-                                <td x-text="data.total_expense"></td>
-                                <td x-text="data.vat"></td>
-                                <td x-text="data.consumer_taxes"></td>
-                                <td x-text="data.income_tax_individual"></td>
-                                <td x-text="data.income_tax_company"></td>
-                                <td x-text="data.mandatory_social_insurance"></td>
-                                <td x-text="data.other_tax"></td>
-                                <td x-text="data.other_nontax_income"></td>
-                                <td x-text="data.consumer_tax_oils"></td>
-                                <td x-text="data.consumer_tax_tobacco"></td>
-                                <td x-text="data.consumer_tax_solar_energy"></td>
-                                <td x-text="data.trash_fees"></td>
-                                <td x-text="data.gambling_tax"></td>
-                                <td x-text="data.income_from_eu"></td>
-                                <td x-text="data.income_connected_with_eu"></td>
-                                <td><button class="delete_button" x-on:click.prevent="budgets = remove_budgets(client, data.id)">❌</button></td>
+                                <th>Rok</th>
+                                <th>Celkové příjmy</th>
+                                <th>Celkové výdaje</th>
+                                <th>DPH</th>
+                                <th>Spotřební daně</th>
+                                <th>Daň z příjmu fyzických osob</th>
+                                <th>Daň z příjmu právnických osob</th>
+                                <th>Sociální zabezpečení</th>
+                                <th>Ostatní daně</th>
+                                <th>Ostatní nedaňové príjmy</th>
+                                <th>Spotřební daň z paliv</th>
+                                <th>Spotřební daň z tabáku</th>
+                                <th>Spotřební daň ze solární energie</th>
+                                <th>Poplatky za odpad</th>
+                                <th>Daň z hazardu</th>
+                                <th>Příjmy z EU</th>
+                                <th>Příjmy spojené s EU</th>
+                                <th></th>
                             </tr>
-                        </template>
-                        <tr x-data="{ 
+                            <template x-for="data in budgets">
+                                <tr>
+                                    <td x-text="data.year"></td>
+                                    <td x-text="data.total_income"></td>
+                                    <td x-text="data.total_expense"></td>
+                                    <td x-text="data.vat"></td>
+                                    <td x-text="data.consumer_taxes"></td>
+                                    <td
+                                        x-text="data.income_tax_individual"
+                                    ></td>
+                                    <td x-text="data.income_tax_company"></td>
+                                    <td
+                                        x-text="data.mandatory_social_insurance"
+                                    ></td>
+                                    <td x-text="data.other_tax"></td>
+                                    <td x-text="data.other_nontax_income"></td>
+                                    <td x-text="data.consumer_tax_oils"></td>
+                                    <td x-text="data.consumer_tax_tobacco"></td>
+                                    <td
+                                        x-text="data.consumer_tax_solar_energy"
+                                    ></td>
+                                    <td x-text="data.trash_fees"></td>
+                                    <td x-text="data.gambling_tax"></td>
+                                    <td x-text="data.income_from_eu"></td>
+                                    <td
+                                        x-text="data.income_connected_with_eu"
+                                    ></td>
+                                    <td>
+                                        <button
+                                            class="delete_button"
+                                            x-on:click.prevent="budgets = remove_budgets(client, data.id)"
+                                        >
+                                            ❌
+                                        </button>
+                                    </td>
+                                </tr>
+                            </template>
+                            <tr
+                                x-data="{ 
                             year: '',
                             total_income: '',
                             total_expense: '',
@@ -84,25 +107,92 @@
                             gambling_tax: '',
                             income_from_eu: '',
                             income_connected_with_eu: '',
-                            }" >
-                            <td><input type="text" x-model="year"></td>
-                            <td><input type="text" x-model="total_income"></td>
-                            <td><input type="text" x-model="total_expense"></td>
-                            <td><input type="text" x-model="vat"></td>
-                            <td><input type="text" x-model="consumer_taxes"></td>
-                            <td><input type="text" x-model="income_tax_individual"></td>
-                            <td><input type="text" x-model="income_tax_company"></td>
-                            <td><input type="text" x-model="mandatory_social_insurance"></td>
-                            <td><input type="text" x-model="other_tax"></td>
-                            <td><input type="text" x-model="other_nontax_income"></td>
-                            <td><input type="text" x-model="consumer_tax_oils"></td>
-                            <td><input type="text" x-model="consumer_tax_tobacco"></td>
-                            <td><input type="text" x-model="consumer_tax_solar_energy"></td>
-                            <td><input type="text" x-model="trash_fees"></td>
-                            <td><input type="text" x-model="gambling_tax"></td>
-                            <td><input type="text" x-model="income_from_eu"></td>
-                            <td><input type="text" x-model="income_connected_with_eu"></td>
-                            <td><button class="add_button" x-on:click.prevent="budgets = add_budgets(client, {
+                            }"
+                            >
+                                <td><input type="text" x-model="year" /></td>
+                                <td>
+                                    <input type="text" x-model="total_income" />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="total_expense"
+                                    />
+                                </td>
+                                <td><input type="text" x-model="vat" /></td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="consumer_taxes"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="income_tax_individual"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="income_tax_company"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="mandatory_social_insurance"
+                                    />
+                                </td>
+                                <td>
+                                    <input type="text" x-model="other_tax" />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="other_nontax_income"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="consumer_tax_oils"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="consumer_tax_tobacco"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="consumer_tax_solar_energy"
+                                    />
+                                </td>
+                                <td>
+                                    <input type="text" x-model="trash_fees" />
+                                </td>
+                                <td>
+                                    <input type="text" x-model="gambling_tax" />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="income_from_eu"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="income_connected_with_eu"
+                                    />
+                                </td>
+                                <td>
+                                    <button
+                                        class="add_button"
+                                        x-on:click.prevent="budgets = add_budgets(client, {
                                 year: year,
                                 total_income: total_income,
                                 total_expense: total_expense,
@@ -120,75 +210,128 @@
                                 gambling_tax: gambling_tax,
                                 income_from_eu: income_from_eu,
                                 income_connected_with_eu: income_connected_with_eu,
-                                })">✓</button></td>
-                        </tr>
-                    </table>
+                                })"
+                                    >
+                                        ✓
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </article>
                 <article>
                     <header>Výdaje</header>
                     <div class="table-container">
-                    <table x-data="{ expenses: [] }" x-effect="expenses = await fetch_expenses(client);">
-                        <tr>
-                            <th>Rok</th>
-                            <th>Celkové výdaje</th>
-                            <th>Platy</th>
-                            <th>Neinvestiční nákupy</th>
-                            <th>Neinvestiční transfery podnikatelům</th>
-                            <th>Neinvestiční transfery neziskovým organizacím</th>
-                            <th>Neinvestiční transfery státním fondům</th>
-                            <th>Neinvestiční transfery fondům sociálního a zdravotního pojištění</th>
-                            <th>Neinvestiční transfery rozpočtům územní úrovně</th>
-                            <th>Neinvestiční transfery příspěvkovým organizacím</th>
-                            <th>Důchody</th>
-                            <th>Podpora v nezaměstnanosti</th>
-                            <th>Ostatní sociální dávky</th>
-                            <th>Státní sociální podpora</th>
-                            <th>Stavební spoření</th>
-                            <th>Státní příspěvěk na důchodové připojištění</th>
-                            <th>Odvody do rozpočtu EU</th>
-                            <th>Ostatní běžné výdaje</th>
-                            <th>Investiční nákupy</th>
-                            <th>Investiční transfery podnikatelům</th>
-                            <th>Investiční transfery státním fondům</th>
-                            <th>Investiční transfery rozpočtům územní úrovně</th>
-                            <th>Investiční transfery příspěvkovým organizacím</th>
-                            <th>Ostatní investice</th>
-                            <th></th>
-                        </tr>
-                        <template
-                           x-for="data in expenses"
-                           x-show="false"
+                        <table
+                            x-data="{ expenses: [] }"
+                            x-effect="expenses = await fetch_expenses(client);"
                         >
-                        <tr>
-                            <td x-text="data.year"></td>
-                            <td x-text="data.total_expenses"></td>
-                            <td x-text="data.salaries"></td>
-                            <td x-text="data.noninvestment_purchases"></td>
-                            <td x-text="data.noninvestment_bussines"></td>
-                            <td x-text="data.noninvestment_non_profit"></td>
-                            <td x-text="data.noninvestment_state_funds"></td>
-                            <td x-text="data.noninvestment_soc_and_health_funds"></td>
-                            <td x-text="data.noninvestment_regions"></td>
-                            <td x-text="data.noninvestment_contribution"></td>
-                            <td x-text="data.pensions"></td>
-                            <td x-text="data.unemployment_help"></td>
-                            <td x-text="data.other_social_help"></td>
-                            <td x-text="data.state_social_help"></td>
-                            <td x-text="data.building_savings"></td>
-                            <td x-text="data.pension_insurance_contribution"></td>
-                            <td x-text="data.eu_payment"></td>
-                            <td x-text="data.other_usual_expenses"></td>
-                            <td x-text="data.investment_purchases"></td>
-                            <td x-text="data.investment_transfers_bussines"></td>
-                            <td x-text="data.investment_state_funds"></td>
-                            <td x-text="data.investment_regions"></td>
-                            <td x-text="data.investment_contribution"></td>
-                            <td x-text="data.other_investment"></td>
-                            <td><button class="delete_button" x-on:click.prevent="expenses = remove_expenses(client, data.id)">❌</button></td>
-                        </tr>
-                        </template>
-                        <tr x-data="{ 
+                            <tr>
+                                <th>Rok</th>
+                                <th>Celkové výdaje</th>
+                                <th>Platy</th>
+                                <th>Neinvestiční nákupy</th>
+                                <th>Neinvestiční transfery podnikatelům</th>
+                                <th>
+                                    Neinvestiční transfery neziskovým
+                                    organizacím
+                                </th>
+                                <th>Neinvestiční transfery státním fondům</th>
+                                <th>
+                                    Neinvestiční transfery fondům sociálního a
+                                    zdravotního pojištění
+                                </th>
+                                <th>
+                                    Neinvestiční transfery rozpočtům územní
+                                    úrovně
+                                </th>
+                                <th>
+                                    Neinvestiční transfery příspěvkovým
+                                    organizacím
+                                </th>
+                                <th>Důchody</th>
+                                <th>Podpora v nezaměstnanosti</th>
+                                <th>Ostatní sociální dávky</th>
+                                <th>Státní sociální podpora</th>
+                                <th>Stavební spoření</th>
+                                <th>
+                                    Státní příspěvěk na důchodové připojištění
+                                </th>
+                                <th>Odvody do rozpočtu EU</th>
+                                <th>Ostatní běžné výdaje</th>
+                                <th>Investiční nákupy</th>
+                                <th>Investiční transfery podnikatelům</th>
+                                <th>Investiční transfery státním fondům</th>
+                                <th>
+                                    Investiční transfery rozpočtům územní úrovně
+                                </th>
+                                <th>
+                                    Investiční transfery příspěvkovým
+                                    organizacím
+                                </th>
+                                <th>Ostatní investice</th>
+                                <th></th>
+                            </tr>
+                            <template x-for="data in expenses" x-show="false">
+                                <tr>
+                                    <td x-text="data.year"></td>
+                                    <td x-text="data.total_expenses"></td>
+                                    <td x-text="data.salaries"></td>
+                                    <td
+                                        x-text="data.noninvestment_purchases"
+                                    ></td>
+                                    <td
+                                        x-text="data.noninvestment_bussines"
+                                    ></td>
+                                    <td
+                                        x-text="data.noninvestment_non_profit"
+                                    ></td>
+                                    <td
+                                        x-text="data.noninvestment_state_funds"
+                                    ></td>
+                                    <td
+                                        x-text="data.noninvestment_soc_and_health_funds"
+                                    ></td>
+                                    <td
+                                        x-text="data.noninvestment_regions"
+                                    ></td>
+                                    <td
+                                        x-text="data.noninvestment_contribution"
+                                    ></td>
+                                    <td x-text="data.pensions"></td>
+                                    <td x-text="data.unemployment_help"></td>
+                                    <td x-text="data.other_social_help"></td>
+                                    <td x-text="data.state_social_help"></td>
+                                    <td x-text="data.building_savings"></td>
+                                    <td
+                                        x-text="data.pension_insurance_contribution"
+                                    ></td>
+                                    <td x-text="data.eu_payment"></td>
+                                    <td x-text="data.other_usual_expenses"></td>
+                                    <td x-text="data.investment_purchases"></td>
+                                    <td
+                                        x-text="data.investment_transfers_bussines"
+                                    ></td>
+                                    <td
+                                        x-text="data.investment_state_funds"
+                                    ></td>
+                                    <td x-text="data.investment_regions"></td>
+                                    <td
+                                        x-text="data.investment_contribution"
+                                    ></td>
+                                    <td x-text="data.other_investment"></td>
+                                    <td>
+                                        <button
+                                            class="delete_button"
+                                            x-on:click.prevent="expenses = remove_expenses(client, data.id)"
+                                        >
+                                            ❌
+                                        </button>
+                                    </td>
+                                </tr>
+                            </template>
+                            <tr
+                                x-data="{ 
                             year: '',
                             total_expenses: '',
                             salaries: '',
@@ -213,32 +356,142 @@
                             investment_regions: '',
                             investment_contribution: '',
                             other_investment: '',
-                            }" >
-                            <td><input type="text" x-model="year"></td>
-                            <td><input type="text" x-model="total_expenses"></td>
-                            <td><input type="text" x-model="salaries"></td>
-                            <td><input type="text" x-model="noninvestment_purchases"></td>
-                            <td><input type="text" x-model="noninvestment_bussines"></td>
-                            <td><input type="text" x-model="noninvestment_non_profit"></td>
-                            <td><input type="text" x-model="noninvestment_state_funds"></td>
-                            <td><input type="text" x-model="noninvestment_soc_and_health_funds"></td>
-                            <td><input type="text" x-model="noninvestment_regions"></td>
-                            <td><input type="text" x-model="noninvestment_contribution"></td>
-                            <td><input type="text" x-model="pensions"></td>
-                            <td><input type="text" x-model="unemployment_help"></td>
-                            <td><input type="text" x-model="other_social_help"></td>
-                            <td><input type="text" x-model="state_social_help"></td>
-                            <td><input type="text" x-model="building_savings"></td>
-                            <td><input type="text" x-model="pension_insurance_contribution"></td>
-                            <td><input type="text" x-model="eu_payment"></td>
-                            <td><input type="text" x-model="other_usual_expenses"></td>
-                            <td><input type="text" x-model="investment_purchases"></td>
-                            <td><input type="text" x-model="investment_transfers_bussines"></td>
-                            <td><input type="text" x-model="investment_state_funds"></td>
-                            <td><input type="text" x-model="investment_regions"></td>
-                            <td><input type="text" x-model="investment_contribution"></td>
-                            <td><input type="text" x-model="other_investment"></td>
-                            <td><button class="add_button" x-on:click.prevent="expenses = add_expenses(client, {
+                            }"
+                            >
+                                <td><input type="text" x-model="year" /></td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="total_expenses"
+                                    />
+                                </td>
+                                <td>
+                                    <input type="text" x-model="salaries" />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="noninvestment_purchases"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="noninvestment_bussines"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="noninvestment_non_profit"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="noninvestment_state_funds"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="noninvestment_soc_and_health_funds"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="noninvestment_regions"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="noninvestment_contribution"
+                                    />
+                                </td>
+                                <td>
+                                    <input type="text" x-model="pensions" />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="unemployment_help"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="other_social_help"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="state_social_help"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="building_savings"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="pension_insurance_contribution"
+                                    />
+                                </td>
+                                <td>
+                                    <input type="text" x-model="eu_payment" />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="other_usual_expenses"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="investment_purchases"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="investment_transfers_bussines"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="investment_state_funds"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="investment_regions"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="investment_contribution"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="other_investment"
+                                    />
+                                </td>
+                                <td>
+                                    <button
+                                        class="add_button"
+                                        x-on:click.prevent="expenses = add_expenses(client, {
                                 year: year,
                                 total_expenses: total_expenses,
                                 salaries: salaries,
@@ -263,55 +516,78 @@
                                 investment_regions: investment_regions,
                                 investment_contribution: investment_contribution,
                                 other_investment: other_investment
-                                })">✓</button></td>
-                        </tr>
-                    </table>
+                                })"
+                                    >
+                                        ✓
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </article>
                 <article>
                     <header>Průměrný občan</header>
                     <div class="table-container">
-                    <table x-data="{ state_levies_average: [] }" x-effect="state_levies_average = await fetch_average(client);">
-                        <tr>
-                            <th>Rok</th>
-                            <th>Hrubý příjem</th>
-                            <th>Superhrubá mzda</th>
-                            <th>Násobitel u superhrubé mzdy</th>
-                            <th>DPH 21%</th>
-                            <th>Sociální pojištění</th>
-                            <th>Kapitálové příjmy</th>
-                            <th>Daň z hazardu</th>
-                            <th>Spotřební daň z paliv</th>
-                            <th>DPH 15%</th>
-                            <th>DPH 10%</th>
-                            <th>Spotřební daň z piva</th>
-                            <th>Spotřební daň z tabáku</th>
-                            <th>Spotřební daň z alkoholu</th>
-                            <th></th>
-                        </tr>
-                        <template
-                           x-for="data in state_levies_average"
-                           x-show="false"
+                        <table
+                            x-data="{ state_levies_average: [] }"
+                            x-effect="state_levies_average = await fetch_average(client);"
                         >
                             <tr>
-                                <td x-text="data.year"></td>
-                                <td x-text="data.gross_income"></td>
-                                <td x-text="data.supergross"></td>
-                                <td x-text="data.supergross_multiplier"></td>
-                                <td x-text="data.vat_21"></td>
-                                <td x-text="data.social_insurance"></td>
-                                <td x-text="data.capital_gains"></td>
-                                <td x-text="data.gambling_tax"></td>
-                                <td x-text="data.consumer_tax_car_fuel"></td>
-                                <td x-text="data.vat_food_mhd_medical_devices"></td>
-                                <td x-text="data.vat_books_music_medicine_water_accomodations"></td>
-                                <td x-text="data.consumer_tax_beer"></td>
-                                <td x-text="data.consumer_tax_tobacco"></td>
-                                <td x-text="data.consumer_tax_alcohol"></td>
-                                <td><button class="delete_button" x-on:click.prevent="state_levies_average = remove_average(client, data.id)">❌</button></td>
+                                <th>Rok</th>
+                                <th>Hrubý příjem</th>
+                                <th>Superhrubá mzda</th>
+                                <th>Násobitel u superhrubé mzdy</th>
+                                <th>DPH 21%</th>
+                                <th>Sociální pojištění</th>
+                                <th>Kapitálové příjmy</th>
+                                <th>Daň z hazardu</th>
+                                <th>Spotřební daň z paliv</th>
+                                <th>DPH 15%</th>
+                                <th>DPH 10%</th>
+                                <th>Spotřební daň z piva</th>
+                                <th>Spotřební daň z tabáku</th>
+                                <th>Spotřební daň z alkoholu</th>
+                                <th></th>
                             </tr>
-                        </template>
-                        <tr x-data="{ 
+                            <template
+                                x-for="data in state_levies_average"
+                                x-show="false"
+                            >
+                                <tr>
+                                    <td x-text="data.year"></td>
+                                    <td x-text="data.gross_income"></td>
+                                    <td x-text="data.supergross"></td>
+                                    <td
+                                        x-text="data.supergross_multiplier"
+                                    ></td>
+                                    <td x-text="data.vat_21"></td>
+                                    <td x-text="data.social_insurance"></td>
+                                    <td x-text="data.capital_gains"></td>
+                                    <td x-text="data.gambling_tax"></td>
+                                    <td
+                                        x-text="data.consumer_tax_car_fuel"
+                                    ></td>
+                                    <td
+                                        x-text="data.vat_food_mhd_medical_devices"
+                                    ></td>
+                                    <td
+                                        x-text="data.vat_books_music_medicine_water_accomodations"
+                                    ></td>
+                                    <td x-text="data.consumer_tax_beer"></td>
+                                    <td x-text="data.consumer_tax_tobacco"></td>
+                                    <td x-text="data.consumer_tax_alcohol"></td>
+                                    <td>
+                                        <button
+                                            class="delete_button"
+                                            x-on:click.prevent="state_levies_average = remove_average(client, data.id)"
+                                        >
+                                            ❌
+                                        </button>
+                                    </td>
+                                </tr>
+                            </template>
+                            <tr
+                                x-data="{ 
                             year: '',
                             gross_income: '',
                             supergross: 'false',
@@ -326,22 +602,80 @@
                             consumer_tax_beer: '',
                             consumer_tax_tobacco: '',
                             consumer_tax_alcohol: ''
-                            }" >
-                            <td><input type="text" x-model="year"></td>
-                            <td><input type="text" x-model="gross_income"></td>
-                            <td><input type="checkbox" x-model="supergross"></td>
-                            <td><input type="text" x-model="supergross_multiplier"></td>
-                            <td><input type="text" x-model="vat_21"></td>
-                            <td><input type="text" x-model="social_insurance"></td>
-                            <td><input type="text" x-model="capital_gains"></td>
-                            <td><input type="text" x-model="gambling_tax"></td>
-                            <td><input type="text" x-model="consumer_tax_car_fuel"></td>
-                            <td><input type="text" x-model="vat_food_mhd_medical_devices"></td>
-                            <td><input type="text" x-model="vat_books_music_medicine_water_accomodations"></td>
-                            <td><input type="text" x-model="consumer_tax_beer"></td>
-                            <td><input type="text" x-model="consumer_tax_tobacco"></td>
-                            <td><input type="text" x-model="consumer_tax_alcohol"></td>
-                            <td><button class="add_button" x-on:click.prevent="state_levies_average = add_average(client, {
+                            }"
+                            >
+                                <td><input type="text" x-model="year" /></td>
+                                <td>
+                                    <input type="text" x-model="gross_income" />
+                                </td>
+                                <td>
+                                    <input
+                                        type="checkbox"
+                                        x-model="supergross"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="supergross_multiplier"
+                                    />
+                                </td>
+                                <td><input type="text" x-model="vat_21" /></td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="social_insurance"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="capital_gains"
+                                    />
+                                </td>
+                                <td>
+                                    <input type="text" x-model="gambling_tax" />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="consumer_tax_car_fuel"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="vat_food_mhd_medical_devices"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="vat_books_music_medicine_water_accomodations"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="consumer_tax_beer"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="consumer_tax_tobacco"
+                                    />
+                                </td>
+                                <td>
+                                    <input
+                                        type="text"
+                                        x-model="consumer_tax_alcohol"
+                                    />
+                                </td>
+                                <td>
+                                    <button
+                                        class="add_button"
+                                        x-on:click.prevent="state_levies_average = add_average(client, {
                                 year: year,
                                 gross_income: gross_income,
                                 supergross: supergross,
@@ -356,65 +690,114 @@
                                 consumer_tax_tobacco: consumer_tax_tobacco,
                                 consumer_tax_alcohol: consumer_tax_alcohol
                                 })"
-                                >✓</button></td>
-                        </tr>
-                    </table>
+                                    >
+                                        ✓
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </article>
                 <article>
                     <header>Investice</header>
                     <div class="table-container">
-                    <table x-data="{ investments: [] }" x-effect="investments = await fetch_investments(client);">
-                        <tr>
-                            <th>Rok počátku investice</th>
-                            <th>Název</th>
-                            <th>Náklady</th>
-                            <th></th>
-                        </tr>
-                        <template
-                           x-for="data in investments"
-                           x-show="false"
+                        <table
+                            x-data="{ investments: [] }"
+                            x-effect="investments = await fetch_investments(client);"
                         >
-                            <tr x-init="data.editing = false; $watch('data', async (new_data, old_data) => {
+                            <tr>
+                                <th>Rok počátku investice</th>
+                                <th>Název</th>
+                                <th>Náklady</th>
+                                <th></th>
+                            </tr>
+                            <template
+                                x-for="data in investments"
+                                x-show="false"
+                            >
+                                <tr
+                                    x-init="data.editing = false; $watch('data', async (new_data, old_data) => {
                                 console.log(new_data, old_data)
                                 if (new_data.editing == old_data.editing) {
                                     await update_investments(client, new_data);
                                 }
-                            })">
-                                <template x-if="!data.editing">
-                                    <td x-text="data.start_year"></td>
-                                </template>
-                                <template x-if="data.editing">
-                                    <td><input type="text" x-model="data.start_year"></td>
-                                </template>
-                                <template x-if="!data.editing">
-                                    <td x-text="data.name"></td>
-                                </template>
-                                <template x-if="data.editing">
-                                    <td><input type="text" x-model="data.name"></td>
-                                </template>
-                                <template x-if="!data.editing">
-                                    <td x-text="data.cost"></td>
-                                </template>
-                                <template x-if="data.editing">
-                                    <td><input type="text" x-model="data.cost"></td>
-                                </template>
-                                <td><button x-on:click.prevent="data.editing = !data.editing">✏️</button><button class="delete_button" x-on:click.prevent="investments = remove_investment(client, data.id)">❌</button></td>
+                            })"
+                                >
+                                    <template x-if="!data.editing">
+                                        <td x-text="data.start_year"></td>
+                                    </template>
+                                    <template x-if="data.editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model="data.start_year"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!data.editing">
+                                        <td x-text="data.name"></td>
+                                    </template>
+                                    <template x-if="data.editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model="data.name"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!data.editing">
+                                        <td x-text="data.cost"></td>
+                                    </template>
+                                    <template x-if="data.editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model="data.cost"
+                                            />
+                                        </td>
+                                    </template>
+                                    <td>
+                                        <button
+                                            x-on:click.prevent="data.editing = !data.editing"
+                                        >
+                                            ✏️</button
+                                        ><button
+                                            class="delete_button"
+                                            x-on:click.prevent="investments = remove_investment(client, data.id)"
+                                        >
+                                            ❌
+                                        </button>
+                                    </td>
+                                </tr>
+                            </template>
+                            <tr
+                                x-data="{ start_year: '', name: '', cost: '' }"
+                                x-effect="console.log(cost)"
+                            >
+                                <td>
+                                    <input type="text" x-model="start_year" />
+                                </td>
+                                <td><input type="text" x-model="name" /></td>
+                                <td><input type="text" x-model="cost" /></td>
+                                <td>
+                                    <button
+                                        class="add_button"
+                                        x-on:click.prevent="investments = add_investment(client, {start_year: start_year, name: name, cost: cost})"
+                                    >
+                                        ✓
+                                    </button>
+                                </td>
                             </tr>
-                        </template>
-                        <tr x-data="{ start_year: '', name: '', cost: '' }" x-effect="console.log(cost)">
-                            <td><input type="text" x-model="start_year"></td>
-                            <td><input type="text" x-model="name"></td>
-                            <td><input type="text" x-model="cost"></td>
-                            <td><button class="add_button" x-on:click.prevent="investments = add_investment(client, {start_year: start_year, name: name, cost: cost})">✓</button></td>
-                        </tr>
-                    </table>
+                        </table>
                     </div>
                 </article>
             </section>
         </main>
         <main x-show="!is_admin" x-data>
-            <h1>Správa databáze je přístupná pouze adminům. Pro použití se přihlaste admin účtem!</h1>
+            <h1>
+                Správa databáze je přístupná pouze adminům. Pro použití se
+                přihlaste admin účtem!
+            </h1>
         </main>
         <footer>
             Tomáš Hozda © <span x-text="new Date().getFullYear()"></span>

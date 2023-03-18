@@ -281,7 +281,6 @@ details p {
     color: #c00;
 }
 
-
 /*
  * Account buttons
  */
@@ -325,6 +324,6 @@ details p {
 
 .add_button {
     background-color: unset;
-    color: #66FF00;
-    border-color: #66FF00;
+    color: #66ff00;
+    border-color: #66ff00;
 }
