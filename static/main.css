@@ -318,7 +318,7 @@ details p {
 }
 
 .table-container th, .table-container td {
-    min-width: 5em;
+    min-width: 8em;
 }
 
 .delete_button {

@@ -809,9 +809,10 @@
                         <button
                             x-on:click.prevent="
                               if (is_logged && !is_admin) {
-                                  extra_investice = await add_user_investment(client, { start_year: start_year, cost: cost * 1000000000, name: name });
+                                  let new_investment = await add_user_investment(client, { start_year: start_year, cost: cost * 1000000000, name: name });
+                                  extra_investice.push(new_investment);
                               } else {
-                                  zaznamy = await add_investment(client, { start_year: start_year, cost: cost * 1000000000, name: name });
+                                  zaznamy.push(await add_investment(client, { start_year: start_year, cost: cost * 1000000000, name: name }));
                               }
 
                               start_year = (new Date().getFullYear());
@@ -921,11 +922,13 @@
                                 href="#"
                                 role="button"
                                 x-on:click.prevent="
-                                    if (!is_admin)
-                                        extra_investice = (await remove_user_investment(client, data.id))
-                                    else {
+                                    if (!is_admin) {
+                                        await remove_user_investment(client, data.id);
+                                        remove_first_match(extra_investice, item => item.id == data.id);
+                                    } else {
                                         console.log(data);
-                                        zaznamy = (await remove_investment(client, data.id));
+                                        await remove_investment(client, data.id);
+                                        remove_first_match(zaznamy, item => item.id == data.id);
                                     }
                                 "
                                 style="margin-top: 1em"

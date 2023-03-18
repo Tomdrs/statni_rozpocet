@@ -13,3 +13,15 @@ function get_user_query(client) {
     return `user_id.id = \"${client.authStore.model.id}\"`;
 }
 
+function remove_first_match(arr, condition) {
+    let index;
+
+    for (const element of arr.entries()) {
+        if (condition(element[1])) {
+            index = element[0];
+            break;
+        }
+    }
+
+    if (index) arr.splice(index, 1);
+}

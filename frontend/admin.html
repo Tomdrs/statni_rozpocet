@@ -47,7 +47,7 @@
                                 <th>Daň z příjmu právnických osob</th>
                                 <th>Sociální zabezpečení</th>
                                 <th>Ostatní daně</th>
-                                <th>Ostatní nedaňové príjmy</th>
+                                <th>Ostatní nedaňové přijmy</th>
                                 <th>Spotřební daň z paliv</th>
                                 <th>Spotřební daň z tabáku</th>
                                 <th>Spotřební daň ze solární energie</th>
@@ -63,7 +63,7 @@
                                 x-init="editing = false; $watch('data', async (new_data, old_data) => {
                                     await update_budgets(client, new_data);
                                 })"
-                            >   
+                            >
                                 <template x-if="!editing">
                                     <td x-text="data.year"></td>
                                 </template>
@@ -260,7 +260,7 @@
                                         >
                                         <button
                                             class="delete_button"
-                                            x-on:click.prevent="budgets = await remove_budgets(client, data.id)"
+                                            x-on:click.prevent="await remove_budgets(client, data.id); remove_first_match(budgets, item => item.id == data.id)"
                                         >
                                             ❌
                                         </button>
@@ -371,7 +371,7 @@
                                 <td>
                                     <button
                                         class="add_button"
-                                        x-on:click.prevent="budgets = await add_budgets(client, {
+                                        x-on:click.prevent="let new_budget = await add_budgets(client, {
                                             year: year,
                                             total_income: total_income,
                                             total_expense: total_expense,
@@ -389,7 +389,9 @@
                                             gambling_tax: gambling_tax,
                                             income_from_eu: income_from_eu,
                                             income_connected_with_eu: income_connected_with_eu,
-                                        });"
+                                        });
+                                        budgets.push(new_budget);
+                                        "
                                     >
                                         ✓
                                     </button>
@@ -753,7 +755,7 @@
                                         >
                                         <button
                                             class="delete_button"
-                                            x-on:click.prevent="expenses = await remove_expenses(client, data.id)"
+                                            x-on:click.prevent="await remove_expenses(client, data.id); remove_first_match(expenses, item => item.id == data.id);"
                                         >
                                             ❌
                                         </button>
@@ -921,7 +923,7 @@
                                 <td>
                                     <button
                                         class="add_button"
-                                        x-on:click.prevent="expenses = await add_expenses(client, {
+                                        x-on:click.prevent="let new_expense = await add_expenses(client, {
                                             year: year,
                                             total_expenses: total_expenses,
                                             salaries: salaries,
@@ -946,7 +948,9 @@
                                             investment_regions: investment_regions,
                                             investment_contribution: investment_contribution,
                                             other_investment: other_investment
-                                        })"
+                                        });
+                                        expenses.push(new_expense);
+                                        "
                                     >
                                         ✓
                                     </button>
@@ -1160,7 +1164,7 @@
                                         >
                                         <button
                                             class="delete_button"
-                                            x-on:click.prevent="state_levies_average = await remove_average(client, data.id)"
+                                            x-on:click.prevent="await remove_average(client, data.id); remove_first_match(state_levies_average, item => item.id == data.id);"
                                         >
                                             ❌
                                         </button>
@@ -1256,7 +1260,7 @@
                                 <td>
                                     <button
                                         class="add_button"
-                                        x-on:click.prevent="state_levies_average = await add_average(client, {
+                                        x-on:click.prevent="let new_average = await add_average(client, {
                                             year: year,
                                             gross_income: gross_income,
                                             supergross: supergross,
@@ -1270,7 +1274,9 @@
                                             consumer_tax_beer: consumer_tax_beer,
                                             consumer_tax_tobacco: consumer_tax_tobacco,
                                             consumer_tax_alcohol: consumer_tax_alcohol
-                                        })"
+                                        });
+                                        state_levies_average.push(new_average);
+                                        "
                                     >
                                         ✓
                                     </button>
@@ -1343,7 +1349,7 @@
                                             ✏️</button
                                         ><button
                                             class="delete_button"
-                                            x-on:click.prevent="investments = await remove_investment(client, data.id)"
+                                            x-on:click.prevent="await remove_investment(client, data.id); remove_first_match(investments, item => item.id == data.id);"
                                         >
                                             ❌
                                         </button>
@@ -1361,7 +1367,7 @@
                                 <td>
                                     <button
                                         class="add_button"
-                                        x-on:click.prevent="investments = await add_investment(client, {start_year: start_year, name: name, cost: cost})"
+                                        x-on:click.prevent="investments.push(await add_investment(client, {start_year: start_year, name: name, cost: cost}));"
                                     >
                                         ✓
                                     </button>
