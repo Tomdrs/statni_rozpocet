@@ -23,5 +23,7 @@ function remove_first_match(arr, condition) {
         }
     }
 
-    if (index) arr.splice(index, 1);
+    if (typeof index !== 'undefined') {
+        arr.splice(index, 1);
+    }
 }
