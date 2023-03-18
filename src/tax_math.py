@@ -173,19 +173,9 @@ def investitions_ratio(
 def salaries(total_expenses, yearly_total_tax, salarie):
     return (salarie / total_expenses) * yearly_total_tax
 
-
-def salariesp(total_expenses, salarie):
-    return (salarie / total_expenses) * 100
-
-
 # částka a procento přispěné z odvedených daní na neinvestční nákupy
 def noninvestment_purchases(total_expenses, yearly_total_tax, non_purchases):
     return (non_purchases / total_expenses) * yearly_total_tax
-
-
-def noninvestment_purchasesp(total_expenses, non_purchases):
-    return (non_purchases / total_expenses) * 100
-
 
 # částka a procento přispěné z odvedených daní na neinvestiční transfery podnikatelům
 def noninvestment_transfers_to_bussines(
@@ -193,186 +183,82 @@ def noninvestment_transfers_to_bussines(
 ):
     return (non_transfers / total_expenses) * yearly_total_tax
 
-
-def noninvestment_transfers_to_bussinesp(total_expenses, non_transfers):
-    return (non_transfers / total_expenses) * 100
-
-
 # částka a procento přispěné z odvedených daní na neinvestiční transfery neziskovým organizacím
 def noninvestment_non_profit(total_expenses, yearly_total_tax, non_non_profit):
     return (non_non_profit / total_expenses) * yearly_total_tax
-
-
-def noninvestment_non_profitp(total_expenses, non_non_profit):
-    return (non_non_profit / total_expenses) * 100
-
 
 # částka a procento přispěné z odvedených daní na neinvestiční transfery státním fondům
 def noninvestment_state_funds(total_expenses, yearly_total_tax, non_state):
     return (non_state / total_expenses) * yearly_total_tax
 
-
-def noninvestment_state_fundsp(total_expenses, non_state):
-    return (non_state / total_expenses) * 100
-
-
 # částka a procento přispěné z odvedených daní na neinvestiční transfery fondům sociálního a zdravotního zabezpečení
 def noninvestment_social_and_health(total_expenses, yearly_total_tax, non_social):
     return (non_social / total_expenses) * yearly_total_tax
-
-
-def noninvestment_social_and_healthp(total_expenses, non_social):
-    return (non_social / total_expenses) * 100
-
 
 # částka a procento přispěné z odvedených daní na neinvestiční transfery rozpočtům územní úrovně
 def noninvestment_regions(total_expenses, yearly_total_tax, non_regions):
     return (non_regions / total_expenses) * yearly_total_tax
 
-
-def noninvestment_regionsp(total_expenses, non_regions):
-    return (non_regions / total_expenses) * 100
-
-
 # částka a procento přispěné z odvedených daní na neinvestiční transfery příspěvkovým organizacím
 def noninvestment_contributions(total_expenses, yearly_total_tax, non_contributions):
     return (non_contributions / total_expenses) * yearly_total_tax
-
-
-def noninvestment_contributionsp(total_expenses, non_contributions):
-    return (non_contributions / total_expenses) * 100
-
 
 # částka a procento přispěné z odvedených danína důchody
 def pensions(total_expenses, yearly_total_tax, pension):
     return (pension / total_expenses) * yearly_total_tax
 
-
-def pensionsp(total_expenses, pension):
-    return (pension / total_expenses) * 100
-
-
 # částka a procento přispěné z odvedených daní na podporu v nezaměstnanosti
 def unemployment_help(total_expenses, yearly_total_tax, unemployment):
     return (unemployment / total_expenses) * yearly_total_tax
-
-
-def unemployment_helpp(total_expenses, unemployment):
-    return (unemployment / total_expenses) * 100
-
 
 # částka a procento přispěné z odvedených daní na ostatní sociální dávky
 def other_social_help(total_expenses, yearly_total_tax, social_help):
     return (social_help / total_expenses) * yearly_total_tax
 
-
-def other_social_helpp(total_expenses, social_help):
-    return (social_help / total_expenses) * 100
-
-
 # částka a procento přispěné z odvedených danína státní sociální dávky
 def state_social_help(total_expenses, yearly_total_tax, state_help):
     return (state_help / total_expenses) * yearly_total_tax
-
-
-def state_social_helpp(total_expenses, state_help):
-    return (state_help / total_expenses) * 100
-
 
 # částka a procento přispěné z odvedených danína stavební spoření
 def building_savings(total_expenses, yearly_total_tax, buildings):
     return (buildings / total_expenses) * yearly_total_tax
 
-
-def building_savingsp(total_expenses, buildings):
-    return (buildings / total_expenses) * 100
-
-
 # částka a procento přispěné z odvedených daní na důchodové připojištění
 def pension_insurance(total_expenses, yearly_total_tax, pension_ins):
     return (pension_ins / total_expenses) * yearly_total_tax
-
-
-def pension_insurancep(total_expenses, pension_ins):
-    return (pension_ins / total_expenses) * 100
-
 
 # částka a procento přispěné z odvedených daní na platby Evropské unii
 def payments_to_eu(total_expenses, yearly_total_tax, eu_pay):
     return (eu_pay / total_expenses) * yearly_total_tax
 
-
-def payments_to_eup(total_expenses, eu_pay):
-    return (eu_pay / total_expenses) * 100
-
-
 # částka a procento přispěné z odvedených daní na ostatní běžné výdaje
 def other_usual_expenses(total_expenses, yearly_total_tax, other_expenses):
     return (other_expenses / total_expenses) * yearly_total_tax
-
-
-def other_usual_expensesp(total_expenses, other_expenses):
-    return (other_expenses / total_expenses) * 100
-
 
 # částka a procento přispěné z odvedených daní na investiční nákupy
 def investment_purchases(total_expenses, yearly_total_tax, inv_purchases):
     return (inv_purchases / total_expenses) * yearly_total_tax
 
-
-def investment_purchasesp(total_expenses, inv_purchases):
-    return (inv_purchases / total_expenses) * 100
-
-
 # částka a procento přispěné z odvedených daní na investiční transfery podnikatelům
 def investment_transfers_to_bussines(total_expenses, yearly_total_tax, inv_tansfers):
     return (inv_tansfers / total_expenses) * yearly_total_tax
-
-
-def investment_transfers_to_bussinesp(total_expenses, inv_tansfers):
-    return (inv_tansfers / total_expenses) * 100
-
 
 # částka a procento přispěné z odvedených daní na investiční transfery státním fondům
 def investment_state_funds(total_expenses, yearly_total_tax, inv_state_funds):
     return (inv_state_funds / total_expenses) * yearly_total_tax
 
-
-def investment_state_fundsp(total_expenses, inv_state_funds):
-    return (inv_state_funds / total_expenses) * 100
-
-
 # částka a procento přispěné z odvedených daní na investiční transfery rozpočtům územní úrovně
 def investment_regions(total_expenses, yearly_total_tax, inv_regions):
     return (inv_regions / total_expenses) * yearly_total_tax
-
-
-def investment_regionsp(total_expenses, inv_regions):
-    return (inv_regions / total_expenses) * 100
-
 
 # částka a procento přispěné z odvedených daní na investiční transfery příspěvkovým organizacím
 def investment_contribution(total_expenses, yearly_total_tax, inv_contribution):
     return (inv_contribution / total_expenses) * yearly_total_tax
 
-
-def investment_contributionp(total_expenses, inv_contribution):
-    return (inv_contribution / total_expenses) * 100
-
-
 # částka a procento přispěné z odvedených daní na ostatní kapitálové výdaje
 def other_capital_expenses(total_expenses, yearly_total_tax, other_capital):
     return (other_capital / total_expenses) * yearly_total_tax
 
-
-def other_capital_expensesp(total_expenses, other_capital):
-    return (other_capital / total_expenses) * 100
-
-
 # částka a procento přispěné z odvedených daní na jiné investice
 def other_investment(total_expenses, yearly_total_tax, oth_investments):
     return (oth_investments / total_expenses) * yearly_total_tax
-
-
-def other_investmentp(total_expenses, oth_investments):
-    return (oth_investments / total_expenses) * 100
