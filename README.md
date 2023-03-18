@@ -47,6 +47,7 @@ flask run
 - <https://grid.layoutit.com/>
 - <https://coryrylan.com/blog/how-to-center-in-css-with-flexbox>
 - <https://stackoverflow.com/questions/73164546/error-file-nixpkgs-was-not-found-in-the-nix-search-path-add-it-using-nix-pa>
+- <https://stackoverflow.com/questions/12433604/how-can-i-find-matching-values-in-two-arrays>
 - <https://stackoverflow.com/questions/20646822/how-to-serve-static-files-in-flask>
 - <https://flask.palletsprojects.com/en/2.2.x/>
 - <https://flask.palletsprojects.com/en/2.2.x/quickstart/#routing>

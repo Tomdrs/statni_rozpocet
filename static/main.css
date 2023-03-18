@@ -119,11 +119,13 @@ h1.nadpis {
 }
 
 .vyber-rok {
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
     margin-bottom: 0;
+    padding: .5em;
+    flex-wrap: wrap;
 }
 
 .vyber-rok input {

@@ -99,25 +99,19 @@
             <h1 class="nadpis">
                 Kalkulačka podílu na státním rozpočtu a výdajů
             </h1>
-            <section class="vyber-rok">
-                <input
-                    x-model="rok"
-                    type="radio"
-                    value="2020"
-                    id="rok-2020"
-                /><label for="rok-2020">2020</label>
-                <input
-                    x-model="rok"
-                    type="radio"
-                    value="2021"
-                    id="rok-2021"
-                /><label for="rok-2021">2021</label>
-                <input
-                    x-model="rok"
-                    type="radio"
-                    value="2022"
-                    id="rok-2022"
-                /><label for="rok-2022">2022</label>
+            <section class="vyber-rok-container">
+            <div class="vyber-rok" x-data="{ roky: [] }" x-init="roky = await resolve_valid_years(pb_client()); console.log(roky);">
+                <template x-for="select_rok in roky">
+                    <div>
+                    <input
+                        x-model="rok"
+                        type="radio"
+                        :value="select_rok"
+                        :id="'rok' + select_rok"
+                    /><label :for="'rok' + select_rok" x-text="select_rok"></label>
+                    </div>
+                </template>
+            </div>
             </section>
 
             <section class="instrukce-kontejner">

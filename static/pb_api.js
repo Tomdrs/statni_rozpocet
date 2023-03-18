@@ -49,3 +49,14 @@ const add_budgets = add_entry('budgets');
 const update_budgets = update_entry('budgets');
 const remove_budgets = remove_entry('budgets');
 
+async function resolve_valid_years(client) {
+    let budgets = await fetch_budgets(client);
+    let expenses = await fetch_expenses(client);
+
+    let budget_years = budgets.map(b => b.year);
+    let expense_years = expenses.map(e => e.year);
+
+    let years = budget_years.filter(element => expense_years.includes(element));
+
+    return years.sort();
+}
