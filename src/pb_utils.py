@@ -1,4 +1,5 @@
 from pocketbase import PocketBase
+import os
 
 def fetch_all_for_table(name):
     client = PocketBase(os.environ["POCKETBASE_URL"])
