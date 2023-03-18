@@ -777,7 +777,6 @@
                             </template>
                             <tr
                                 x-data="{ start_year: '', name: '', cost: '' }"
-                                x-effect="console.log(cost)"
                             >
                                 <td>
                                     <input type="text" x-model="start_year" />
@@ -798,7 +797,7 @@
                 </article>
             </section>
         </main>
-        <main x-show="!is_admin" x-data>
+        <main x-show="!is_admin">
             <h1>
                 Správa databáze je přístupná pouze adminům. Pro použití se
                 přihlaste admin účtem!

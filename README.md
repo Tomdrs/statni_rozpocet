@@ -51,6 +51,7 @@ flask run
 - <https://flask.palletsprojects.com/en/2.2.x/>
 - <https://flask.palletsprojects.com/en/2.2.x/quickstart/#routing>
 - <https://pocketbase.io/>
+- <https://github.com/pocketbase/js-sdk>
 - <https://en.wikipedia.org/wiki/Representational_state_transfer>
 - <https://unix.stackexchange.com/questions/519110/how-to-install-python-pip-on-nixos>
 - <https://www.codesuji.com/2020/10/25/Nix-For-Development/>
