@@ -1,11 +1,12 @@
 from flask import Flask, jsonify, request, Response, send_from_directory
 from pocketbase import PocketBase
 
-from models import Budget, Expenses, State_levies_average, Investment
-from tax_math import *
-
 import os
 from datetime import datetime
+
+from models import Budget, Expenses, State_levies_average, Investment
+from tax_math import *
+from pb_utils import fetch_all_for_table
 
 app = Flask(
     __name__,
@@ -30,9 +31,7 @@ def admin():
 
 
 def fetch_rozpocet_na_rok(rok):
-    client = PocketBase(os.environ["POCKETBASE_URL"])
-
-    rozpocty = client.records.get_full_list("budgets", 200, {"sort": "-created"})
+    rozpocty = fetch_all_for_table('budgets')
 
     spravny_rozpocet = next(rozpocet for rozpocet in rozpocty if rozpocet.year == rok)
     return Budget(spravny_rozpocet)
@@ -45,9 +44,7 @@ def rozpocet_na_rok(rok):
 
 
 def fetch_vydaje_na_rok(rok):
-    client = PocketBase(os.environ["POCKETBASE_URL"])
-
-    vydaje = client.records.get_full_list("expenses", 200, {"sort": "-created"})
+    vydaje = fetch_all_for_table('expenses')
 
     spravny_vydaj = next(vydaj for vydaj in vydaje if vydaj.year == rok)
     return Expenses(spravny_vydaj)
@@ -60,11 +57,7 @@ def vydaje_na_rok(rok):
 
 
 def fetch_prumerny_obcan():
-    client = PocketBase(os.environ["POCKETBASE_URL"])
-
-    prumerni_lide = client.records.get_full_list(
-        "state_levies_average", 200, {"sort": "-created"}
-    )
+    prumerni_lide = fetch_all_for_table('state_levies_average')
 
     prumer = prumerni_lide[0]
     return State_levies_average(prumer)
@@ -78,9 +71,7 @@ def prumerny_obcan():
 
 @app.route("/investice")
 def investice():
-    client = PocketBase(os.environ["POCKETBASE_URL"])
-
-    investice = client.records.get_full_list("investments", 200, {"sort": "-created"})
+    investice = fetch_all_for_table('investments')
 
     investice = list(map(lambda x: Investment(x), investice))
     investice_json = list(map(lambda x: x.to_json(), investice))
