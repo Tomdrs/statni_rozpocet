@@ -101,3 +101,24 @@ async function update_investments(client, data) {
         sort: '-created',
     });
 }
+
+async function update_average(client, data) {
+    await client.collection('state_levies_average').update(data.id, data);
+    return await client.collection('state_levies_average').getFullList(200, {
+        sort: '-created',
+    });
+}
+
+async function update_expenses(client, data) {
+    await client.collection('expenses').update(data.id, data);
+    return await client.collection('expenses').getFullList(200, {
+        sort: '-created',
+    });
+}
+
+async function update_budgets(client, data) {
+    await client.collection('budgets').update(data.id, data);
+    return await client.collection('budgets').getFullList(200, {
+        sort: '-created',
+    });
+}
