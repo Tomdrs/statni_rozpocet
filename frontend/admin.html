@@ -60,7 +60,7 @@
                                 <th>Příjmy spojené s EU</th>
                                 <th></th>
                             </tr>
-                            <template x-for="data in budgets">
+                            <template x-for="data in budgets" :key="data.id">
                                 <tr
                                 x-data="{ editing: false }"
                                 x-init="editing = false; $watch('data', async (new_data, old_data) => {
@@ -456,7 +456,7 @@
                                 <th>Ostatní investice</th>
                                 <th></th>
                             </tr>
-                            <template x-for="data in expenses" x-show="false">
+                            <template x-for="data in expenses" x-show="false" :key="data.id">
                                 <tr
                                 x-data="{ editing: false }"
                                 x-init="editing = false; $watch('data', async (new_data, old_data) => {
@@ -989,6 +989,7 @@
                             <template
                                 x-for="data in state_levies_average"
                                 x-show="false"
+                                :key="data.id"
                             >
                                 <tr
                                 x-data="{ editing: false }"
@@ -1304,6 +1305,7 @@
                             <template
                                 x-for="data in investments"
                                 x-show="false"
+                                :key="data.id"
                             >
                                 <tr
                                     x-data="{ editing: false }"
