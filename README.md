@@ -75,5 +75,7 @@ flask run
 - <https://www.finance.cz/503335-deti-a-dane/?_fid=m8yg#survey-place>
 - <https://vimjakna.cz/dane/zakladni-danova-sleva/>
 - <https://www.mpsv.cz/socialni-pojisteni>
+- <https://flask.palletsprojects.com/en/2.2.x/tutorial/deploy/>
+- <https://flask.palletsprojects.com/en/2.2.x/deploying/>
 - Budget spreadsheets in resources/
 
