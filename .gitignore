@@ -1,3 +1,5 @@
 pb_data/
 **__pycache__
 venv
+
+doc/*.swp
