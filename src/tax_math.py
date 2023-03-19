@@ -51,7 +51,7 @@ def yearly_kids_discount(rok, gross, kids):
 # výše platby na sociální zabezpečení:
 def yearly_social_insurance(gross, social_insurance):
     if social_insurance == 0:
-        return gross * 0.065 * 12 + gross * 0.248
+        return gross * 0.065 * 12 + gross * 0.248 * 12
     else:
         return social_insurance * 12
 
