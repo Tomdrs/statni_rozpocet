@@ -77,5 +77,9 @@ flask run
 - <https://www.mpsv.cz/socialni-pojisteni>
 - <https://flask.palletsprojects.com/en/2.2.x/tutorial/deploy/>
 - <https://flask.palletsprojects.com/en/2.2.x/deploying/>
+- <https://zpravy.aktualne.cz/ekonomika/spotreba-piva-loni-klesla-na-258-piv-na-obyvatele-snizila-se/r~5e67f25cc15411ecb13cac1f6b220ee8/>
+- <https://www.czso.cz/csu/czso/graf-spotreba-cigaret-na-1-obyvatele-v-ceske-republice>
+- <https://www.vlada.cz/cz/ppov/protidrogova-politika/media/alkohol-_-dobry-sluha-nebo-zly-pan--prvni-vladni-zprava-o-alkoholu-v-ceske-republice--195338/>
+- <https://www.idnes.cz/ekonomika/domaci/hazard-zprava-protidrogovy-odbor-vedralova-automaty.A200721_123720_eko-doprava_fih>
 - Budget spreadsheets in resources/
 
