@@ -101,7 +101,7 @@ def consumer_tax_tobacco_function(consumer_tobacco):
 
 # výše odvedené spotřební daně z pohonných hmot (objel litrů ethanulu násobený daní):
 def consumer_tax_alcohol_function(consumer_alcohol):
-    return consumer_alcohol * 285 * 12
+    return consumer_alcohol * 322.5 * 12
 
 
 # celková částka korun odvedených skrze daně do státního rozpočtu
