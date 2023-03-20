@@ -35,7 +35,7 @@ Cílem práce je vytvořit webovou aplikaci, která funguje jako kalkulačka pod
 
 % Abstrakt anglicky
 \def\AbstraktEN{%
-The goal of the project is to create a web application, that will serve as a calculator of an individual's participation in the state budget of Czech Republic. The user will
+The goal of the prohttps://www.youtube.com/watch?v=gbqBGeeScbsject is to create a web application, that will serve as a calculator of an individual's participation in the state budget of Czech Republic. The user will
 enter their income and expenses (different categories based on taxation), and the calculator will compute, how much of his money went into the state budget, and how the state used them (that is, what it spent the money on). The application manages a database of selected state investments, and displays, how the user participated on them. The database of expenses, just like budgets and average state levies is possible to modify, add, and delete through the web interface. The app has no issue with the possibility, that the state may spent more money, than is its income. The result is that the user gets a picture, of how much money is levied from them into the state budget, and how much of it has an actual use (and which uses those are).
 }
 
@@ -116,11 +116,454 @@ Zde kalkulačka vezme celkové náklady konkrétní investice a spočítá, jak�
 
 \chapter{Implementace}
 
-Druhá kapitola obsahuje detailní informace o tom, jak probíhala implementace. Zde se objeví zdůvodnění výběru technologií, řešení problémů, na které jste narazili, informace o použitých knihovnách apod. Pochvalte se, nikdo to za Vás neudělá. Přiznejte chyby, není to ostuda.
+\section{Zvolené technologie}
+Na implementaci projektu jsem zvolil následující technologie:
 
-\section{Ukázka sekce}
+\begin{itemize}
+  \item Programovací jazyk Python
+  \item Programovací jazyk JavaScript
+  \item Flask framework
+  \item AlpineJS framework
+  \item PicoCSS styly
+  \item PocketBase
+\end{itemize}
 
-\lipsum
+\subsection{Programovací jazyk Python}
+Python jsem zvolil z více důvodů. Mé dva hlavní důvody byly praktičnost a technický aspekt. Python je
+pro mě praktický, protože jsem se s ním dříve setkal při výuce informatiky, a tak jsem se spoléhal, že
+si jej připomenu a bude jednodušší pro mě jej používat, než abych se učil nový jazyk, se kterým vůbec nemám
+zkušenosti.
+
+Technický aspekt, proč jsem zvolil Python, je kvůli přesnosti jeho matematiky. Na semináři jsme se učili o
+standardu IEEE-754 a jeho nepřesnostech, a podle mého vyhledávání na internetu se tato čísla používají jako
+výchozí čísla s desetinnou čárkou ve většině populárních programovacích jazycích. Python používá čísla s
+neomezenou přesností, což mi pomáhá dělat přesnější výpočty. Vím, že pro ostatní programovací jazyky existují
+knihovny, které přidávají další číselné typy, ale to by byla komplexita navíc. Je mi také jasné, že čísla
+s neomezenou přesností jsou mnohem méně výkonné, než IEEE-754, ale pro účely mého projektu není výkon kritickým
+aspektem.
+
+\subsection{Programovací jazyk JavaScript}
+Jednou z mých obecných motivací při volbě použitých technologií byla jednoduchost. Nechtěl jsem používat
+nástroje navíc a zbytečně velké technologie. Nejsem sice odborníkem na tuto problematiku, ale NodeJS a další
+webové runtimy mi připadaly jako přehnané pro můj projekt. S JavaScriptem jsem se také setkal na školní informatice.
+Z těchto důvodů jsem rozhodl zvolit JavaScript, i když si jsem vědom některých jeho slabin a nepředvídatelného
+chování.
+
+S použitím JavaScriptu přímo v prohlížeči, bez žádného mezikroku jako NodeJS, Bun, nebo Deno, ve spolupráci
+s frameworkem AlpineJS se mi podařilo mít na frontendu pouze jeden jazyk a pouze
+jednu malou knihovnu jako závislost.
+
+\subsection{Flask framework}
+V Pythonu jsem slyšel o dvou knihovnách pro tvorbu webových aplikací - Flask a Django. Django se mi zdálo
+jako moc složité pro moje účely, a to byl hlavní důvod, proč jsem zvolil Flask. Pro Flask také existuje
+kurz na Codecademy, který má velký překryv s dalšími kurzy, které jsem splnil v přípravě na maturitní projekt,
+volba Flasku mi tedy ušetřila čas.
+
+\subsection{AlpineJS framework}
+O této knihovně jsem se dozvěděl z youtube videa na kanálu \emph{Fireship}. Líbilo se mi, že s ním můžu
+vepisovat chování rovnou do HTML, bez toho, aniž bych musel psát velké množství JavaScriptu. AlpineJS se
+dá do libovolné stránky vložit pomocí \emph{<script>} tagu, díky čemuž jsem se opět vyhnul studia NodeJS
+a dalších, složitějších technologií.
+
+Přístup AlpineJS mi připadá vizuálně přehledný a, přestože se jedná relativně malý framework, neměl jsem
+pocit, že by mi v něm chyběla nějaká funkcionalita.
+
+Způsob přemýšlení, který AlpineJS vyžaduje, byl pro mě ze začátku nezvyklý. V Alpine se většina akcí a interaktivity
+definuje pomocí atributů na HTML.
+
+Například:
+
+\begin{verbatim}
+<section
+	class="user_buttons"
+	x-data="{ is_logged: false, is_admin: false }"
+	x-init="
+		is_logged = window.localStorage.getItem('pocketbase_auth') !== null;
+		is_admin = window.localStorage.getItem('pocketbase_auth') !== null;
+	"
+>
+    <a
+    	role="button"
+    	href="/login"
+    	x-show="!is_logged"
+    >
+    	Login
+    </a>
+    <a
+    	role="button"
+    	href="/admin"
+    	x-show="is_logged && is_admin"
+    >
+        Admin
+    </a>
+    <a
+        role="button"
+        href="#"
+        x-show="is_logged"
+        x-on:click.prevent="pb_logout(client); is_logged = false;"
+    >
+    	Logout
+    </a>
+</section>
+\end{verbatim}
+
+Základní proces vývoje je takový, že si definuji na HTML prvcích, které mají být interaktivní,
+atribut \textbf{x-data}, ve kterém mám uložené v JavaScriptové objektové syntaxi proměnné patřící
+k tomuto prvku.
+
+K těmto proměnným se pak mohu odkazovat v jiných atributech na tomto prvku a na prvcích, které jsou
+potomky tohoto prvku.
+
+Dalším krokem je přidávání atributů jako \textbf{x-show} (podmínky, za kterých se má prvek zobrazovat)
+a \textbf{x-if}(podmínky, za kterých má prvek vůbec existovat, a tam, kde potřebuji zobrazit text
+nějaké proměnné, parametr \textbf{x-text}.
+
+Například, zde je textový \emph{input} a výpis textu, který je v něm napsaný:
+
+\begin{verbatim}
+<div x-data="{ vstup: '' }">
+   <p x-text="vstup"></p>
+   <input type="text" x-model="vstup">
+</div>
+\end{verbatim}
+
+AlpineJS je reaktivní, takže každá změna v inputu se automaticky zpropaguje skrz proměnnou \textbf{vstup}.
+
+To mě vede k posledním dvěma atributům, které byly klíčové na straně AlpineJS. Atribut \textbf{x-init}
+diktuje kód, který se spustí, když se prvek poprvé načte, a atribut \textbf{x-effect} se spustí, když
+se stránka načte, a pokaždé, když dojde ke změnám v reaktivních proměnných definovaných v \textbf{x-data},
+které jsou v kódu tohoto atributu zmíněny.
+
+V některých případech se hodí nemít jednotný \textbf{x-effect}, protože tím může docházet k vykonávání
+zbytečné (nebo i nežádoucí) práce. Pro tyto situace je možné použít \emph{kouzelnou funkci} (dle terminologie
+AlpineJS) \textbf{\$watch('jmeno\_promenne', hodnota => akce)}, která umožňuje reagovat na individuální
+změny proměnných.
+
+Tyto atributy používám k volání svého JavaScriptového kódu, který mám rozčleněný do dalších souborů.
+
+\subsection{PicoCSS}
+
+PicoCSS jsem zvolil jako minimalistický CSS framework. Nechtěl jsem všechny styly psát ručně, protože
+nejsem odborník na design a typografii, ale nechtěl jsem importovat velké a složité frameworky jako
+Bootstrap, které bych se musel učit. O PicoCSS jsem se také dozvěděl z YouTube videa. Kromě jeho jednoduchosti
+a malé velikosti mě zaujalo především to, že nevyžaduje, abych všude psal CSS třídy a učil se, jak se
+jmenují. PicoCSS definuje styly pro HTML elementy a používá další kontextové informace k identifikaci,
+jak by měl být daný prvek zobrazen.
+
+Například zobrazení karty, kterou jde skrýt pod její nadpis, vypadá takto:
+
+\begin{verbatim}
+<details>
+  <summary>Nadpis</summary>
+  <p>obsah</p>
+  <p>atd.</p>
+  <p>atd.</p>
+</details>
+\end{verbatim}
+
+Tuto funkcionalitu jsem používal na formátování svého layoutu způsobem, který mi připadal velmi praktický.
+Nevýhodou tohoto způsobu je však to, že zneužívá HTML5 sémantické prvky, které pak nemají nutně úplně logickou
+strukturu.
+
+Například toto je sekce, kde zobrazuji formulář, příjmy a výdaje státu. Potřeboval jsem vzhled, který
+je nadefinovaný na tagu \textbf{<article>}, i když vím, že ani jeden z těchto prvků není článkem:
+
+\begin{verbatim}
+<section class="main" x-data>
+    <article class="calc-form form">
+       ...
+    </article>
+    <article class="prijmy" x-data>
+       ...
+    </article>
+    <article class="vydaje" x-data>
+       ...
+    </article>
+</section>
+\end{verbatim}
+
+Nemyslím si, že by to toto byl zas tak pádný nedostatek v případě mojí aplikace, protože se nejedná o
+aplikaci určenou ke čtení nástroji, pro které jsou sémantické tagy důležité. Kdyby můj projekt spravoval
+například blogy, novinové články nebo odborné příspěvky, bylo by správné použití sématických tagů
+mnohem důležitější.
+
+Nezvyklým aspektem pro mě bylo rozlišování CSS stylů na základě parametrů jako \textbf{role="button"} nebo
+\textbf{aria-busy="true"}.
+
+\subsection{PocketBase}
+Ještě než jsem se pustil do implementace projektu mi bylo jasné, že budu potřebovat databázi. Z hodin
+informatiky a semináře jsem věděl o databá S kbdzích jako je SQLite nebo PostgreSQL, ale připadaly mi moc
+složité. Rozhodl jsem se proto najít nějaké řešení, které by bylo jednodušší, a přineslo by mi nejen databázi
+samotnou, ale i kvalitní podporu jak pro Python, tak pro Javascript, a pomohlo mi se správou uživatelů.
+Slyšel jsem o projektu Firebase od Googlu, ale ten se mi zdál moc složitý, a nelíbila se mi myšlenka,
+že by můj projekt závisel na Googlu.
+
+Nakonec jsem, opět na Youtube kanálu Fireship, dozvěděl o projektu PocketBase. PocketBase má webové API,
+pro které existuje JavaScriptový i Pythonový klient, má přehledné webové rozhraní, zabudovaný koncept uživatelů
+a jejich správy a umožňuje mi specifikovat pravidla, tak abych měl jistotu, že k databázi mohu přistupovat
+i z frontendu bez toho, aniž bych se vystavil riziku, že mi některý z uživatelů databázi zlomyslně vymaže.
+
+Pro jazyky JavaScript a Dart generuje PocketBase ukázky, jak provádět různé úkony na příslušné tabulce.
+Například, u akce pro přidání nové investice, vygeneruje webové rozhraní toto:
+
+\begin{verbatim}
+import PocketBase from 'pocketbase';
+
+const pb = new PocketBase('https://pocketbase.gjk.cat');
+
+...
+
+// example create data
+const data = {
+    "start_year": 123,
+    "name": "test",
+    "cost": 123
+};
+
+const record = await pb.collection('investments').create(data);
+\end{verbatim}
+
+Díky těmto ukázkám jsem se v PocketBase rychle zorientoval. Velmi užitečné bylo také nastavení pravidel,
+které používám u uživatelských investic:
+
+\begin{verbatim}
+# create action - custom rule
+user_id = @request.auth.id
+
+# update action - custom rule
+user_id = @request.auth.id
+
+# delete action - custom rule
+user_id = @request.auth.id
+\end{verbatim}
+
+Díky těmto pravidlům mám jistotu, že každý normální uživatel může přidávat, upravovat a odebírat pouze svoje
+investice, a nepotřebuji tuto akci provádět skrze svůj Flaskový backend, který by data a přístupy validoval
+manuálně.
+
+PocketBase má zabudovaný webserver a jde v něm vyvíjet plnohodnotné aplikace pomocí rozšíření napsaných
+v jazyce Go. Protože však Flask vyžaduje WSGI server a já neumím Go, nemohl jsem toto využít.
+
+Domnívám se, že pro znalce Go by bylo možné celou aplikaci napsat bez jakéhokoliv separátního backendu,
+a mít celý projekt jako jeden monolitický celek spravovaný PocketBasem.
+
+Velmi užitečnou funkcí na PocketBase je také \emph{Request log}, díky kterému jsem mohl zkoumat, proč
+něco, co zkouším, nefunguje. Když jsem se snažil přijít na to, jak správně filtrovat v databázi, vyhledávač
+požadavků byl další ergonomickou funkcí PocketBase.
+
+PocketBase také obsahuje integraci pro přihlašování skrze služby jako je Google účet, Facebook účet,
+Gitlab, nebo Twitch, ale do těchto integrací jsem se nepouštěl.
+
+Je nutné podotknout, že PocketBase je primárně interaktivní nástroj, schéma databáze jsem si musel
+manuálně exportovat do JSON souboru, import musí být také ruční.
+
+\section{Postup implementace}
+
+Pro mojí práci jsou klíčová data získaná od státu. Bez správných dat a správné organizace těchto dat
+bych nemohl provádět výpočty. Začal jsem tedy svůj postup od databáze tvorbou jednotlivých tabulek
+a naplňováním těchto tabulek daty.
+
+Všechny tabulky prošly několika verzemi, než jsem s nimi byl spokojený (a stejně jsem musel ještě
+během vývoje zbytku aplikace dělat v tabulkách drobné úpravy). Tabulku na uživatelské investice
+jsem přidal až na závěr.
+
+Když jsem byl spokojený s daty, ze kterých moje aplikace vychází, vytvořil jsem nový Flaskový projekt.
+Pro základní nastavení projektu jsem použil nástroj Nix, o kterém jsem se dozvěděl díky bratrovi, který
+mi doporučil a nainstaloval NixOS jakožto \emph{"nerozbitný Linux"}. Je nutné podotknout, že Nix a NixOS
+není to samé. Termín Nix označuje dvě věci - Nix jazyk a Nix balíčkovač, který je na tom jazyce postavený.
+NixOS je distribuce postavené na Nixu - balíčkovači. Nix jakožto balíčkovač, build systém a nástroj pro
+vytváření konzistentních prostředí a konfigurace není nijak závislý na NixOS a funguje na libovolné
+linuxové distribuci (i macOS v omezené míře), podobně jako Docker.
+
+Rozdíl mezi Dockerem a Nixem je ten, že Docker je imperativní, psaní Dockerfile souborů můžeme přirovnat
+k psaní instrukcí v receptu do kuchařky, kdežto Nix je deklarativní, specifikuji, co potřebuji, a to mám.
+
+Pro účely mého projektu mi stačilo napsat pouze soubor \emph{shell.nix}, který mi vytvoří prostředí,
+které má potřebné závislosti, nakonfigurované proměnné prostředí a vstoupí do virtuálního Python prostředí.
+
+Zde je moje Nix konfigurace pro tento projekt:
+\begin{verbatim}
+{ pkgs ? import <nixpkgs> { } }:
+
+pkgs.mkShell {
+  buildInputs = [
+    pkgs.coreutils-full
+    pkgs.python3Full
+    pkgs.python3.pkgs.virtualenv
+    pkgs.python310Packages.waitress
+    pkgs.pocketbase
+  ];
+  shellHook = ''
+    virtualenv -p python3 env
+    source env/bin/activate
+    pip install -r requirements.txt
+  '';
+  FLASK_APP = "src/main.py";
+  POCKETBASE_URL = "https://pocketbase.gjk.cat/";
+}
+\end{verbatim}
+
+Pole \emph{buildInputs} specifikuje, jaké programy potřebuji mít v prostředí, \emph{shellHook} co se má
+stát při spuštění tohoto shellu, a ostatní jsou proměnné prostředí.
+
+
+V této době jsem ještě neměl dokončený online kurz Flasku, tak jsem tento framework teprve zkoušel. První
+endpoint vracel pouze string \emph{"ahoj"}.
+
+Později jsem přidal knihovnu pro PocketBase a začal psát soubor s matematickými funkcemi pro výpočty
+jednotlivých statistik (\emph{tax\_math.py}). Vytvořil jsem několik endpointů, které prakticky pouze
+přeposílaly data z PocketBase. Těmto endpointům jsem se teoreticky mohl vyhnout, ale vzhledem k tomu,
+že jsem data z tabulek potřeboval číst i ve Flaskové aplikaci, jsem je vytvořil a volal je rovnou ve
+Flasku, místo toho, abych si je posílal přes frontend.
+
+Moje teze je, že tento přístup je rychlejší a efektivnější, když se PocketBase i Flask nachází na stejném
+stroji. Tyto endpointy používám i na frontendu, když už jsem je měl připravené. Pro vnitřní použití ve
+Flasku jsem je ale musel rozdělit na dvě funkce, kdy jedna získává data a druhá je flaskovým endpointem,
+který je posílá jako odpověď.
+
+Například, zde je tento pár pro získání dat pro rozpočet na daný rok:
+
+\begin{verbatim}
+def fetch_rozpocet_na_rok(rok):
+    rozpocty = fetch_all_for_table('budgets')
+
+    spravny_rozpocet =
+      next(rozpocet for rozpocet in rozpocty if rozpocet.year == rok)
+    return Budget(spravny_rozpocet)
+
+@app.route("/rozpocet/<int:rok>")
+def rozpocet_na_rok(rok):
+    rozpocet = fetch_rozpocet_na_rok(rok)
+    return rozpocet.to_json()
+\end{verbatim}
+
+Kvůli konverzi na JSON jsem si modely opsal do Pythonu, a naimplementoval na nich manuální převod
+následujícím způsobem:
+
+\begin{verbatim}
+from flask import jsonify
+
+class Budget:
+    def __init__(self, record):
+        print(record)
+        self.year = record.year
+        self.total_income = record.total_income
+        self.total_expense = record.total_expense
+        self.vat = record.vat
+        self.consumer_taxes = record.consumer_taxes
+        self.income_tax_individual = record.income_tax_individual
+        self.income_tax_company = record.income_tax_company
+        self.mandatory_social_insurance = record.mandatory_social_insurance
+        self.other_tax = record.other_tax
+        self.other_nontax_income = record.other_nontax_income
+        self.consumer_tax_oils = record.consumer_tax_oils
+        self.consumer_tax_tobacco = record.consumer_tax_tobacco
+        self.consumer_tax_solar_energy = record.consumer_tax_solar_energy
+        self.trash_fees = record.trash_fees
+        self.gambling_tax = record.gambling_tax
+        self.income_from_eu = record.income_from_eu
+        self.income_connected_with_eu = record.income_connected_with_eu
+        print(dir(self))         # debugging
+        print(self.total_income) #
+
+    def to_json(self):
+        return jsonify(
+            year=self.year,
+            total_income=self.total_income,
+            total_expense=self.total_expense,
+            vat=self.vat,
+            consumer_taxes=self.consumer_taxes,
+            income_tax_individual=self.income_tax_individual,
+            income_tax_company=self.income_tax_company,
+            mandatory_social_insurance=self.mandatory_social_insurance,
+            other_tax=self.other_tax,
+            other_nontax_income=self.other_nontax_income,
+            consumer_tax_oils=self.consumer_tax_oils,
+            consumer_tax_tobacco=self.consumer_tax_tobacco,
+            consumer_tax_solar_energy=self.consumer_tax_solar_energy,
+            trash_fees=self.trash_fees,
+            gambling_tax=self.gambling_tax,
+            income_from_eu=self.income_from_eu,
+            income_connected_with_eu=self.income_connected_with_eu,
+        )
+\end{verbatim}
+
+Uznávám, že tento způsob je trochu repetitivní, a že může docházet k chybám kvůli překlepům. Složitější řešení,
+která jsem na internetu potkal, mi ale připadala nepřehledná pro tuto aplikaci.
+
+Tyto základní endpointy jsem testoval pomocí programu \textbf{cURL}, v této chvíli neexistovalo ještě konkrétní
+spojení frontendu a backendu.
+
+Posléze jsem začal realizovat i vzhled frontendu. Nejdřív jsem psal pouze HTML, framework PicoCSS jsem přidal
+později, a AlpineJS jsem doopravdy začal používat až když jsem měl hlavní prvky vzhledu svojí aplikace.
+
+Můj první experiment s frameworkem AlpineJS bylo dynamické zobrazování roku v textu footeru stránky:
+
+\begin{verbatim}
+<footer>
+    Tomáš Hozda © <span x-text="new Date().getFullYear()"></span>
+</footer>
+\end{verbatim}
+
+Finální vzhled vzniknul částečně jako bug. Rozložení příjmů, výdajů a formuláře na ůdaje uživatele měly být
+tři rovnocené sloupce stejné barvy, ale kvůli špatně uzavřeným HTML tagům byl prostřední sloupec šedivý a zasunutý
+za těmi postraními. Tento vzhled se mi zalíbil, tak jsem se pro něj po opravě této chyby rozhodl.
+
+Nejnovější koncepty v CSS pro mě byly \emph{grid layout} a \emph{flexbox}. Flexbox jsem použil ve dvou případech:
+
+\begin{itemize}
+  \item Pro zobrazování více prvků najednou tak, aby se poskládaly správně na obrazovku (např. dlaždice s investicemi)
+  \item Pro centrování prvků v jejich rodičích
+\end{itemize}
+
+Příklad prvního použití u dlaždic investic:
+
+\begin{verbatim}
+flexperiment {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100vw;
+    margin-left: calc((100vw - 100%) / -2);
+    margin-right: calc((100vw - 100%) / -2);
+}
+
+.flexperiment article {
+    flex-grow: 0;
+}
+\end{verbatim}
+
+A centrování prvků:
+
+\begin{verbatim}
+.center-example {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+\end{verbatim}
+
+Intenzivní použití AlpineJS bylo až ke konci práce, když jsem potřeboval adekvátně spojit frontend a backend.
+V některých případech jsem narazil na nekonzistentní chování v AlpineJS. Zmíním dva příklady.
+
+Pomocí atributu \textbf{x-for} na HTML tagu \emph{<template>} je možné generovat prvky pro každý element
+pole. Používám jej vždy při zobrazování prvků nějaké tabulky z PocketBase. Když dochází k přidávání a odebírání
+elementů v poli bez toho, aniž by bylo vytvořeno nové pole, AlpineJS nedokáže poznat, o které prvky se jedná,
+a dochází k nezobrazování nebo duplikovanému zobrazení prvků.
+
+V těchto případech je zapotřebí specifikovat nějakou vlastnost prvků pole jako klíč:
+
+\begin{verbatim}
+<template x-for="data in budgets" :key="data.id">
+  ...
+</template>
+\end{verbatim}
+
+Druhá nekonzistence, se kterou jsem se potýkal, je reaktivnost v atributech \textbf{x-effect}. Když je kód
+moc komplexní a figuruje v něm mnoho reaktivních proměnný, tak je možné, že AlpineJS nedetekuje všechny
+odkazy a nepouští kód ve všechny správné momenty. Tento problém jsem ve všech případech vyřešil pomocí
+výše zmíněné \textbf{\$watch()} funkce sledováním jednotlivých proměnných.
+
 
 \chapter{Technická dokumentace}
 
@@ -131,8 +574,9 @@ ale je použitelný pouze na Linuxových distribucích (a případně Macu), pro
 S Nixem jsou závislosti pro spuštění následující:
 
 \begin{itemize}
-\item Rozumná Linuxová distribuce (nebo MacOS)
-\item \href{https://nixos.org/}{Nix}
+  \item Rozumná Linuxová distribuce (nebo MacOS)
+  \item \href{https://nixos.org/}{Nix}
+  \item \href{}{Git}
 \end{itemize}
 
 V případě postupu bez Nixu je možné použít i Windows, ale je zapotřebí explicitně nainstalovat více závislostí:
@@ -147,14 +591,32 @@ V případě postupu bez Nixu je možné použít i Windows, ale je zapotřebí 
 Následující instrukce jsou pro Linuxové operační systémy, jakožto pro platformu, která se nejvíc hodí
 na vývoj a provoz aplikací.
 
+\subsection{Git}
+Git by měl být předinstalovaný na většině distribucí. Pokud není, zpravidla je možné jej
+nainstalovat pomocí balíčkovače systému:
+
+\begin{verbatim}
+# debianovité distribuce
+sudo apt-get install git
+
+# archovité distribuce
+sudo pacman -S git
+
+# void linux
+sudo xbps-install -Sy git
+\end{verbatim}
+
+Pro zprovoznění maturitního projektu takhle git stačí, v praxi si však uživatel často bude potřebovat
+nakonfigurovat jméno, email, a SSH klíč.
+ S kbd
 \subsection{Nix}
 Nix je možné nainstalovat pomocí balíčkovače na vaší distribuci, například:
 
 \begin{verbatim}
-# debianovité
+# debianovité distribuce
 sudo apt-get install nix
 
-# archovité
+# archovité distribuce
 sudo pacman -S nix
 
 # void linux
@@ -163,33 +625,280 @@ sudo xbps-install -Sy nix
 
 Doporučený je ale způsob z webové stránky Nixu\footnote{\url{https://nixos.org}}, který nainstaluje
 Nix přes Nix:
+\begin{verbatim}
+$ sh <(curl -L https://nixos.org/nix/install) --daemon
+\end{verbatim}
+
+Aby uživatelé nepotřebovali na provoz Nixu práva superuživatele, vyplatí se pustit nixového démona:
+\begin{verbatim}
+# nix-daemon
+\end{verbatim}
+
+Každý uživatel si potom musí nastavit proměnnou  {\bf NIX\_REMOTE} na hodnotu {\bf daemon}:
 
 \begin{verbatim}
+echo 'export NIX_REMOTE=daemon' >> $HOME/.bashrc #nebo jinak pro jiné shelly
+\end{verbatim}
 
+Funkčnost Nixu můžeme ověřit například následujícím způsobem:
+
+\begin{verbatim}
+$ nix-shell -p neo-cowsay
+[nix-shell:~]$ cowsay kůň
+ _____
+< kůň >
+ -----
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
 \end{verbatim}
 
 \subsection{Python}
+Programovací jazyk Python je, podobně jako Git, na většině distribucí předinstalován. V případě,
+že tomu tak není, můžeme se ve většině případů opět spolehnout na nativní balíčkovač systému: 
+
+\begin{verbatim}
+# debianovité distribuce
+sudo apt-get install python
+
+# archovité distribuce
+sudo pacman -S python
+
+# void linux
+sudo xbps-install -Sy python
+\end{verbatim}
+
+Backend aplikace neobsahuje žádný složitý Python, kde by připadala v úvahu citlivost na verzi Pythonu.
+Projekt byl vyvinut s Pythonem 3.10.9, tuto verzi a každou novější můžeme považovat za jistotu.
+
+Je důležité podotknout, že některé instalace Pythonu jsou spíš minimalistické a neobsahují nástroje
+jako \emph{pip} a \emph{venv/virtualenv}, které je potom potřeba doinstalovat separátně.
 
 \subsection{PocketBase}
+PocketBase je asi nejméně známý software, co je potřeba nainstalovat pro zprovoznění aplikace.
+V případě, že nebude dostupný v balíčkovači linuxové distribuce, je zapotřebí jej nainstalovat
+buď stažením archivu z webu projektu:
+
+\url{https://pocketbase.io/docs/}
+
+Nebo, v případě, že distribuce obsahuje Go buď nainstalované nebo v repozitáři balíčkovače:
+
+\begin{verbatim}
+go get github.com/pocketbase/pocketbase
+\end{verbatim}
+
+Pro práci s PocketBase je zapotřebí ještě nainstalovat Pythonovou PocketBase knihovnu.
+Nejjednodušší je vytvořit virtuální prostředí a nainstalovat PocketBase pomocí \emph{pipu}
+ze souboru \emph{requirements.txt}:
+
+\begin{verbatim}
+virtualenv -p python3 env
+source env/bin/activate
+pip install -r requirements.txt
+\end{verbatim}
 
 \subsection{Flask}
+Podobně jako klientskou knihovnu PocketBase, je možné Flask nainstalovat ze souboru
+\emph{requirements.txt} pomocí \emph{pipu}. Vzhledem k tomu, že použití Flasku v tomto
+projektu není komplexní, měly by fungovat i verze z balíčkovače distribuce.
 
 \subsection{waitress}
+WSGI server \emph{waitress} je nutný nainstalovat pouze na produkční provoz aplikace,
+pro vývoj a testování aplikace stačí server zabudovaný v příkazu \emph{flask run}. Program \emph{waitress} se dá nainstalovat z balíčkovače některých linuxových distribucí, nebo pomocí pipu:
+
+\begin{verbatim}
+pip install waitress
+\end{verbatim}
 
 \section{Instalace a spouštění}
+Pro spuštění projektu je nejdříve potřeba naklonovat
+repozitář:
+
+\begin{verbatim}
+git clone https://github.com/Tomdrs/statni_rozpocet
+\end{verbatim}
+
+Dobrovolným krokem je spustit lokální instanci PocketBase:
+
+\begin{verbatim}
+pocketbase serve
+\end{verbatim}
+
+Tato instance PocketBase bude prázdná. Postup pro naimportování
+databázového schématu je následující:
+
+\begin{enumerate}
+  \item Otevřete v prohlížeči adresu \url{http://localhost:8090/_/}
+  \item Vytvořte první admin účet podle instrukcí na obrazovce
+  \item V kartě \emph{Settings} v sidebaru na levé straně naimportujte schéma ze souboru \emph{pb\_schema.json} v repozitáři
+  \item Případně rozšiřte nebo upravte data v jednotlivých tabulkách
+\end{enumerate}
+
+Kromě lokální instance PocketBase je možné použít instanci na adrese \url{https://pocketbase.gjk.cat}.
+Dalším krokem je nastavení proměnných prostředí:
+
+\begin{verbatim}
+export FLASK_APP="src/main.py"
+export POCKETBASE_URL="https://pocketbase.gjk.cat" # nebo lokální instance
+\end{verbatim}
+
+A vytvořit a vstoupit do virtuálního Python prostředí, pokud k tomu nedošlo dříve:
+
+\begin{verbatim}
+virtualenv -p python3 envhttps://github.com/Tomdrs/statni_rozpocet
+source env/bin/activate
+pip install -r requirements.txt
+\end{verbatim}
+
+\subsection{Spouštění s Nixem}
+Pro spuštění s Nixem není nutné explicitně vstupovat do virtuálního Python prostředí nebo nastavovat proměnné prostředí.
+Výchozí hodnoty jsou v souboru \emph{shell.nix}.
+
+Měly by stačit následující dva příkazy:
+\begin{verbatim}
+$ nix-shell
+[nix-shell:~/statni_rozpocet]$ flask run
+\end{verbatim}
+
+\subsection{Spouštění bez Nixu}
+Bez Nixu je nutné vstoupit do virtuálního Python prostředí a nastavit proměnné prostředí. Kompletní postup je následující:
+
+\begin{verbatim}
+export FLASK_APP="src/main.py"
+export POCKETBASE_URL="https://pocketbase.gjk.cat" # nebo lokální instance
+virtualenv -p python3 envhttps://github.com/Tomdrs/statni_rozpocet
+source env/bin/activate
+pip install -r requirements.txt
+flask run
+\end{verbatim}
+
+V případě úspěchu by měl příkaz \emph{flask run} zobrazit následující text:
+
+\begin{verbatim}
+ * Serving Flask app 'src/main.py'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in
+a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000 * Serving Flask app 'src/main.py'
+Press CTRL+C to quit
+\end{verbatim}
+
+Nyní by otevření URL adresy \url{http://127.0.0.1:5000} mělo zobrazit aplikaci.
+
 \section{Uživatelská dokumentace}
-Poslední kapitola obsahuje informace o tom, jak projekt, který v rámci maturitní práce vznikl, nainstalovat, spustit a používat.
+\subsection{Spuštění aplikace}
+Projekt je webová aplikace, stačí v prohlížeči otevřít URl, na které běží Flask.
+V případě lokálního běhu aplikace se jedná o URL \url{http://127.0.0.1:5000}.
 
-\section{Ukázka sekce}
+Aplikace se skládá z tří webových stránek:
 
+\begin{itemize}
+  \item Index (Hlavní stránka)
+  \item Stránka přihlašování/registrace
+  \item Admin stránka
+\end{itemize}
 
-\subsection{A jedné podsekce}
+\subsection{Hlavní stránka}
 
-\lipsum
+Hlavní stránka má tři hlavní sekce:
 
-\section{A další sekce}
+\begin{itemize}
+  \item Formulář se zobrazením celkových dat rozpočtu
+  \item Formulář na přidání vlastní investice
+  \item Zobrazení investic
+\end{itemize}
 
-\lipsum
+V pravo nahoře na stránce se, v závislosti na stavu uživatele, zobrazují
+tlačítka \emph{Login}, \emph{Admin} a \emph{Logout}.
+
+\subsubsection{Formulář se zobrazením celkových dat rozpočtu}
+
+Pod výběrem roku se nalézají tři sloupce.
+
+První sloupec zobrazuje příjmy rozpočtu, druhý formulář na údaje, třetí
+výdaje rozpočtu.
+
+Aplikace zná průměrné hodnoty pro všechny parametry formuláře, proto aplikace
+okamžitě vypočítá participaci na rozpočtu a výdajích. Uživatel dodá informace
+ze svého života, které zná.
+
+Hodnoty není potřeba potvrdit, výpočet se aktualizuje automaticky s postupným
+vyplňováním formuláře.
+
+Pro návrat na výchozí hodnotu průměrného občana stačí smazat vyplněnou hodnotu.
+
+V případě, že jsou zadány nesprávné údaje, zobrazuje formulář chybu.
+
+\subsubsection{Formulář na přidání investice}
+
+Tato funkcionalita je dostupná pouze, pokud je uživatel přihlášený buď jako
+normální uživatel, nebo jako administrátor.
+
+Tento formulář umožňuje přidávat uživatelské investice. Po vyplnění kolonek
+\emph{Název investice}, \emph{Celkové náklady investice (v mld. Kč)} a
+\emph{Rok počátku realizace} kliknutí na tlačítko \emph{Přidat} se pod formulářem
+objeví nová investice.
+
+Investice, které normální uživatel přidá sám pro sebe, jsou předřazeny vždy dostupnýmn investicím,
+které přidali administrátoři.
+
+V případě, že je uživatel přihlášen jako administrátor, přidává formulář
+sdílené investice.
+
+\subsubsection{Zobrazení investic}
+Závěrem stránky je vyhledávací pole a galerie dlaždic jednotlivých investic.
+
+Vyhledávací pole filtruje investice. Prohledávané informace jsou jméno a rok
+spuštění projektu. Pole je interaktivní, filtr se aplikuje automaticky
+během psaní.
+
+Pokud je uživatel přihlášený, zobrazují se nejdříve jeho investice. U dlaždic
+pro tyto investice je přidáno tlačítko \emph{Odebrat}, které investici smaže.
+
+Administrátor má tlačítko \emph{Odebrat} u každé investice.
+
+Dlaždice zobrazují rok počátku investice, náklady v miliardách korun, podíl
+rozpočtu, pokud by byla investice v celé míře splacena ve zvoleném roce, a
+kolika korunami by se v tomto roce uživatel na realizaci investice podílel.
+
+\subsection{Stránka přihlášení a registrace}
+
+Tato stránka obsahuje kartu s dvěma panely, jeden pro přihlášení, druhý pro
+registraci.
+
+Formulář registrace umožňuje vytvořit v rámci aplikace nového normálního
+uživatele.
+
+Pokud je registrace úspěšná, tedy pokud uživatel zadal správné údaje,
+dojde k přesměrování na formulář přihlášení.
+
+V produkci je možné nakonfigurovat v PocketBase SMTP server, aby posílal potvrzovací
+emaily po registraci.
+
+Po přihlášení pomocí formuláře dojde k přesměrování na hlavní stránku.
+
+Formulář přihlášení je platný jak pro normální uživatele, tak pro administrátory.
+
+Administrátorské účty lze vytvořit pouze prostřednictvím admin panelu PocketBase
+na url \emph{<adresa\_pocketbase>:<port>/\_/}.
+
+\subsection{Administrátorská stránka}
+
+Tato stránka je dostupná pouze přihlášeným administrátorům. Přístup bez přihlášení
+zobrazí uživateli hlášku, že stránka je určena pouze pro administrátory.
+
+Administrátorům stránka zobrazí rozhraní pro upravování všech tabulek, které jsou
+uloženy v PocketBase.
+
+Každá tabulka zobrazuje všechny uložené hodnoty, a políčka pro přidání nového záznamu.
+Vedle každého záznamu jsou dvě tlačítka - tužka pro úpravu, křížek pro smazání daného
+záznamu.
+
+Kliknutí na tlačítko tužky přepne řádek do editovatelného módu, kde jsou všechny
+buňky přeměněny na upravitelná políčka. Hodnoty se v databázi aktualizují automaticky,
+není potřeba změny potvrzovat.
 
 \chapter*{Závěr}
 \pagestyle{empty}
