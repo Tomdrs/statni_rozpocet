@@ -37,7 +37,7 @@
                     justify-content: center;
                 "
             >
-                <article style="width: 600px">
+                <article class="login-window">
                     <header>
                         <div class="vyber-rok">
                             <input
@@ -82,14 +82,14 @@
                             </button>
                             <p
                                 x-show="login_status == 'success'"
-                                class="ok-status"
+                                class="ok-status account-status"
                             >
                                 Přihlášení proběhlo úspěšně, přesměrování na
                                 hlavní stránku...
                             </p>
                             <p
                                 x-show="login_status == 'error'"
-                                class="error-status"
+                                class="error-status account-status"
                             >
                                 Přihlášení bylo neúspěšné, zkontrolujte údaje.
                             </p>
@@ -111,7 +111,7 @@
                                 type="password"
                                 id="password-signup"
                             />
-                            <p x-show="pass.length < 8" class="error-status">
+                            <p x-show="pass.length < 8" class="error-status account-status">
                                 Hesla musí mít 8-72 znaků.
                             </p>
                             <label for="password-signup-again"
@@ -122,7 +122,7 @@
                                 type="password"
                                 id="password-signup-again"
                             />
-                            <p x-show="pass != pass_again" class="error-status">
+                            <p x-show="pass != pass_again" class="error-status account-status">
                                 Hesla se nerovnají
                             </p>
                             <button
@@ -131,13 +131,13 @@
                             >Registrovat
                             </button>
                             <p
-                                class="error-status"
+                                class="error-status account-status"
                                 x-show="signup_status !== 'success' && signup_status !== ''"
                             >
                                 Registrace se nepodařila, zkontrolujte údaje
                             </p>
                             <p
-                                class="ok-status"
+                                class="ok-status account-status"
                                 x-show="signup_status === 'success'"
                             >
                                 Registrace byla úspěšná, přesměrování na login
