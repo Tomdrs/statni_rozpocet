@@ -27,7 +27,7 @@
             x-data="{ client: {}, mobile: false }"
             x-init="
               client = pb_client();
-              mobile = screen.orientation.type == 'portrait-primary' || screen.orientation.type == 'portrait-secondary';
+              mobile = detect_mobile();
               addEventListener('orientationchange', (e) => mobile = screen.orientation.type == 'portrait-primary' || screen.orientation.type == 'portrait-secondary');
             "
             x-show="is_admin"

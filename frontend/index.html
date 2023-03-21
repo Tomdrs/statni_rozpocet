@@ -62,7 +62,7 @@
                 });
                 vysledky = await calculate_dane(rok, form_data);
                 client = pb_client();
-                mobile = screen.orientation.type == 'portrait-primary' || screen.orientation.type == 'portrait-secondary';
+                mobile = detect_mobile();
                 addEventListener('orientationchange', (e) => mobile = screen.orientation.type == 'portrait-primary' || screen.orientation.type == 'portrait-secondary');
             "
             x-effect="
@@ -139,7 +139,7 @@
                             interaktivní, takže mění své výpočty při každé změně
                             údajů nebo vybraného roku.<br />
                         </p>
-                        <p>
+                        <p x-show="!mobile">
                             Po levé straně se Vám vedle obecných údajů o
                             státních příjmech za vybraný rok zobrazí, prostřednictvím jakých
                             daní jste peníze do rozpočtu odvedli, a po pravé
@@ -147,7 +147,20 @@
                             výdajích za vybraný rok zobrazí, na jaké výdaje stát
                             peníze distribuoval. V sekci pod formulářem pak
                             naleznete plánované státní investice vycházející z
-                            národního investičního plánu. U těchto investic se
+                            národního investičního plánu.
+                        </p>
+                        <p x-show="mobile">
+                            Pod formulářem se Vám vedle obecných údajů o
+                            státních příjmech za vybraný rok zobrazí, prostřednictvím jakých
+                            daní jste peníze do rozpočtu odvedli.
+                            Pod tabulkou s příjmy se Vám vedle obecných údajů o státních
+                            výdajích za vybraný rok zobrazí, na jaké výdaje stát
+                            peníze distribuoval. V sekci pod tabulkou s výdaji pak
+                            naleznete plánované státní investice vycházející z
+                            národního investičního plánu.
+                        </p>
+                        <p>
+                            U těchto investic se
                             Vám zobrazí, kolik procent z celkové částky určené k
                             investicím ve vybraném roce by tato konkrétní
                             investice tvořila, pokud by všechny její náklady
@@ -920,9 +933,7 @@
                             </article>
                         </div>
                         <template x-if="data.user_id || is_admin">
-                            <a
-                                href="#"
-                                role="button"
+                            <button
                                 x-on:click.prevent="
                                     if (!is_admin) {
                                         await remove_user_investment(client, data.id);
@@ -934,7 +945,7 @@
                                     }
                                 "
                                 style="margin-top: 1em"
-                                >Odebrat</a
+                                >Odebrat</button
                             >
                         </template>
                     </article>

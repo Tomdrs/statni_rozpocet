@@ -27,3 +27,7 @@ function remove_first_match(arr, condition) {
         arr.splice(index, 1);
     }
 }
+
+function detect_mobile() {
+    return screen.orientation.type == 'portrait-primary' || screen.orientation.type == 'portrait-secondary';
+}

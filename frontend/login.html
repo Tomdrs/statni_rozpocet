@@ -26,7 +26,7 @@
             x-init="
               client = pb_client();
               console.log(client);
-              mobile = screen.orientation.type == 'portrait-primary' || screen.orientation.type == 'portrait-secondary';
+              mobile = detect_mobile();
               addEventListener('orientationchange', (e) => mobile = screen.orientation.type == 'portrait-primary' || screen.orientation.type == 'portrait-secondary');
             "
         >
@@ -75,12 +75,11 @@
                                 type="password"
                                 id="password-login"
                             />
-                            <input
-                                type="submit"
-                                value="Přihlásit"
+                            <button
                                 :disabled="login_status == 'success'"
                                 x-on:click.prevent="login_status = (await pb_login(client, email, pass)); console.log('bruh', login_status)"
-                            />
+                            >Přihlásit
+                            </button>
                             <p
                                 x-show="login_status == 'success'"
                                 class="ok-status"
@@ -126,12 +125,11 @@
                             <p x-show="pass != pass_again" class="error-status">
                                 Hesla se nerovnají
                             </p>
-                            <input
-                                type="submit"
-                                value="Registrovat"
+                            <button
                                 :disabled="pass != pass_again || pass.length < 8"
                                 x-on:click.prevent="signup_status = (await pb_signup(client, email, pass, pass_again)); console.log('status', signup_status)"
-                            />
+                            >Registrovat
+                            </button>
                             <p
                                 class="error-status"
                                 x-show="signup_status !== 'success' && signup_status !== ''"

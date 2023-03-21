@@ -362,15 +362,15 @@ details p {
  */
 
 .mobile h1 {
-    font-size: 350%;
+    font-size: 400%;
 }
 
 .mobile h4 {
-    font-size: 225%;
+    font-size: 300%;
 }
 
 .mobile th, .mobile td {
-    font-size: 200%;
+    font-size: 210%;
 }
 
 .mobile p {
@@ -378,7 +378,7 @@ details p {
 }
 
 .mobile form label {
-    font-size: 150%;
+    font-size: 225%;
 }
 
 .mobile input[type="text"], .mobile input[type="password"] {
@@ -386,7 +386,7 @@ details p {
     padding: 2em 1em;
 }
 
-.mobile input[type="submit"] {
+.mobile button {
     font-size: 200%;
     height: 3em;
 }
@@ -400,7 +400,7 @@ details p {
 section.mobile.main {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto
+    grid-template-rows: auto auto auto;
     gap: 0px 0px;
     grid-auto-flow: column;
     grid-template-areas: "form" "prijmy" "vydaje";
@@ -413,7 +413,7 @@ section.mobile.main {
 }
 
 .mobile article.expense-display header {
-    font-size: 200%;
+    font-size: 250%;
 }
 
 .mobile article.expense-display {
@@ -421,10 +421,33 @@ section.mobile.main {
     width: 100%;
 }
 
+.mobile article.expense-stat header {
+    font-size: 150%;
+}
+
 .mobile .expense-stat span {
     font-size: 300%;
 }
 
+.mobile .expense-stat {
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
 .mobile header > div.vyber-rok {
     font-size: 200%;
+}
+
+.mobile article.instrukce p {
+    font-size: 200%;
+}
+
+.mobile article {
+    padding-left: 5em;
+    padding-right: 5em;
+}
+
+.mobile details summary {
+    margin-bottom: 4em;
+    margin-top: 4em;
 }
