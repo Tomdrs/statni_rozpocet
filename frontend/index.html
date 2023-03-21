@@ -35,6 +35,7 @@
                 is_logged: false,
                 client: {},
                 zaznamy: [],
+                mobile: false,
             }"
             x-init="
                 $watch('form_data', async (f) => {
@@ -61,6 +62,8 @@
                 });
                 vysledky = await calculate_dane(rok, form_data);
                 client = pb_client();
+                mobile = screen.orientation.type == 'portrait-primary' || screen.orientation.type == 'portrait-secondary';
+                addEventListener('orientationchange', (e) => mobile = screen.orientation.type == 'portrait-primary' || screen.orientation.type == 'portrait-secondary');
             "
             x-effect="
                 budget = (await get_income_data(rok));
@@ -81,9 +84,10 @@
                     });
                 }
                 console.log(extra_investice);
-         "
+            "
+            :class="mobile && 'mobile'"
         >
-            <section class="user_buttons">
+            <section class="user_buttons" :class="mobile && 'mobile'">
                 <a role="button" href="/login" x-show="!is_logged">Login</a>
                 <a role="button" href="/admin" x-show="is_logged && is_admin"
                     >Admin</a
@@ -115,7 +119,7 @@
             </section>
 
             <section class="instrukce-kontejner">
-                <article class="instrukce">
+                <article class="instrukce" :class="mobile && 'mobile'">
                     <details>
                         <summary><h4>Instrukce</h4></summary>
                         <p>
@@ -174,7 +178,7 @@
                     </details>
                 </article>
             </section>
-            <section class="status-kontejner">
+            <section class="status-kontejner" :class="mobile && 'mobile'">
                 <template x-if="status == 'ok'">
                     <p class="ok-status">✓ Vypočteno</p>
                 </template>
@@ -189,7 +193,7 @@
                     </p>
                 </template>
             </section>
-            <section class="main" x-data>
+            <section class="main" x-data :class="mobile && 'mobile'">
                 <article class="calc-form form">
                     <form x-data>
                         <label for="gross_income">Hrubý příjem:</label>

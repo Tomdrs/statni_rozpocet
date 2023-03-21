@@ -24,8 +24,12 @@
         x-data="{ is_admin: false }"
     >
         <main
-            x-data="{ client: {}}"
-            x-init="client = pb_client();"
+            x-data="{ client: {}, mobile: false }"
+            x-init="
+              client = pb_client();
+              mobile = screen.orientation.type == 'portrait-primary' || screen.orientation.type == 'portrait-secondary';
+              addEventListener('orientationchange', (e) => mobile = screen.orientation.type == 'portrait-primary' || screen.orientation.type == 'portrait-secondary');
+            "
             x-show="is_admin"
             class="admin-view"
         >

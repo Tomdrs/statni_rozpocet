@@ -81,5 +81,6 @@ flask run
 - <https://www.czso.cz/csu/czso/graf-spotreba-cigaret-na-1-obyvatele-v-ceske-republice>
 - <https://www.vlada.cz/cz/ppov/protidrogova-politika/media/alkohol-_-dobry-sluha-nebo-zly-pan--prvni-vladni-zprava-o-alkoholu-v-ceske-republice--195338/>
 - <https://www.idnes.cz/ekonomika/domaci/hazard-zprava-protidrogovy-odbor-vedralova-automaty.A200721_123720_eko-doprava_fih>
+- <https://developer.mozilla.org/en-US/docs/Web/API/Screen/orientation>
 - Budget spreadsheets in resources/
 

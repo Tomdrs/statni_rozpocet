@@ -141,6 +141,14 @@ h1.nadpis {
     border-bottom: 2px var(--primary) solid;
 }
 
+
+/*
+ *
+ * Instrukce
+ *
+ *
+ */
+
 .instrukce-kontejner {
     width: 100%;
     display: flex;
@@ -148,9 +156,14 @@ h1.nadpis {
     justify-content: center;
     margin: 0;
 }
+
 .instrukce {
     width: 50%;
     padding-bottom: 1em;
+}
+
+.mobile.instrukce {
+    width: 100%;
 }
 
 .instrukce h4 {
@@ -271,6 +284,10 @@ details p {
     margin-bottom: 0;
 }
 
+.mobile.status-kontejner p {
+    font-size: 200%;
+}
+
 .ok-status {
     color: #0c0;
 }
@@ -305,6 +322,10 @@ details p {
     border: solid 1px #ccc;
 }
 
+.mobile.user_buttons a {
+    font-size: 200%;
+}
+
 /*
  * Admin page
  */
@@ -332,4 +353,78 @@ details p {
     background-color: unset;
     color: #66ff00;
     border-color: #66ff00;
+}
+
+/*
+ *
+ * Mobile
+ *
+ */
+
+.mobile h1 {
+    font-size: 350%;
+}
+
+.mobile h4 {
+    font-size: 225%;
+}
+
+.mobile th, .mobile td {
+    font-size: 200%;
+}
+
+.mobile p {
+    font-size: 100%;
+}
+
+.mobile form label {
+    font-size: 150%;
+}
+
+.mobile input[type="text"], .mobile input[type="password"] {
+    font-size: 200%;
+    padding: 2em 1em;
+}
+
+.mobile input[type="submit"] {
+    font-size: 200%;
+    height: 3em;
+}
+
+.mobile input[type="search"] {
+    padding: 2em 2em;
+    font-size: 200%;
+    background-size: 2rem auto;
+}
+
+section.mobile.main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto
+    gap: 0px 0px;
+    grid-auto-flow: column;
+    grid-template-areas: "form" "prijmy" "vydaje";
+}
+
+.mobile details > summary::after {
+    background-size: 2rem auto;
+    width: 2rem;
+    height: 2rem;
+}
+
+.mobile article.expense-display header {
+    font-size: 200%;
+}
+
+.mobile article.expense-display {
+    max-width: unset;
+    width: 100%;
+}
+
+.mobile .expense-stat span {
+    font-size: 300%;
+}
+
+.mobile header > div.vyber-rok {
+    font-size: 200%;
 }

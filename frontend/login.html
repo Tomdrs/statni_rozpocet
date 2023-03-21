@@ -21,8 +21,14 @@
     </head>
     <body x-init="console.log('start alpinejs')">
         <main
-            x-data="{ tab: 'login', client: {} }"
-            x-init="client = pb_client(); console.log(client)"
+            :class="mobile && 'mobile'"
+            x-data="{ tab: 'login', client: {}, mobile: false }"
+            x-init="
+              client = pb_client();
+              console.log(client);
+              mobile = screen.orientation.type == 'portrait-primary' || screen.orientation.type == 'portrait-secondary';
+              addEventListener('orientationchange', (e) => mobile = screen.orientation.type == 'portrait-primary' || screen.orientation.type == 'portrait-secondary');
+            "
         >
             <section
                 style="
