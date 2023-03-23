@@ -564,6 +564,29 @@ moc komplexní a figuruje v něm mnoho reaktivních proměnný, tak je možné, 
 odkazy a nepouští kód ve všechny správné momenty. Tento problém jsem ve všech případech vyřešil pomocí
 výše zmíněné \textbf{\$watch()} funkce sledováním jednotlivých proměnných.
 
+Posledním problémem, který jsem řešil byl vývoj mobilní verze. Po přečtení mnoha článků jsem dospěl
+k žávěru, že detekovat, zda se nacházím mobilním zařízení, není vůbec jednoduchá záležitost. Použití
+\emph{@media queries} podle sířky displeje není jistota, protože mobilní zařízení mají různá rozlišení.
+
+Pomocí \emph{@media queries} nebo JavaScriptu je také možné zjistit, zda obrazovka podporuje
+ovládání dotykem. Některé prohlížeče ale hlásí podporu doteku vždy, i když zařízení dotykové
+není, nebo naopak nehlásí podporu doteku, i když zařízení dotykovou obrazovku má.
+
+Nakonec jsem se rozhodl si napsat funkci v JavaScriptu, které rozhodne o detekci mobilního zařízení
+pomocí objektu \emph{screen}:
+
+\begin{verbatim}
+function detect_mobile() {
+    return screen.orientation.type == 'portrait-primary' || screen.orientation.type == 'portrait-secondary';
+}
+\end{verbatim}
+
+Tato funkce vrací \emph{true}, pokud orientace obrazovky je na výšku, v \emph{portrait} módu. Obrazovka
+v portrétovém módu je pouze na mobilních zařízeních. U stolního počítače i monitor namontovaný vertikálně
+je v prohlížeči interpretovaný jako \emph{landscape}.
+
+Tento způsob detekce má některá omezení. Velmi staré prohlížeče Edge, staré mobilní prohlížeče Safari, a
+samozřejmě Internet Explorer, tento objekt nedpodporují.
 
 \chapter{Technická dokumentace}
 
@@ -576,7 +599,7 @@ S Nixem jsou závislosti pro spuštění následující:
 \begin{itemize}
   \item Rozumná Linuxová distribuce (nebo MacOS)
   \item \href{https://nixos.org/}{Nix}
-  \item \href{}{Git}
+  \item \href{https://git-scm.com/}{Git}
 \end{itemize}
 
 V případě postupu bez Nixu je možné použít i Windows, ale je zapotřebí explicitně nainstalovat více závislostí:
