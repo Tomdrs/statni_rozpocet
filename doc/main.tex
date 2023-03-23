@@ -25,7 +25,7 @@ o~změně některých zákonů (autorský zákon) ve znění pozdějších před
 
 % Text poděkování
 \def\Podekovani{%
-Rád bych poděkoval vedoucímu práce, rodině, především bratrovi, a přátelům za konzultaci práce a podporu při tvoření projektu.
+Rád bych poděkoval vedoucímu práce, rodině, především bratrovi Lukášovi, a přátelům za konzultaci práce a podporu při tvoření projektu.
 }
 
 % Abstrakt česky
@@ -64,15 +64,15 @@ Z teoretické části jsem se tedy musel zaměřit především na daňový syst
 
 \section{Státní rozpočet}
 
-Svoji teoretickou analýzu jsem začal hledáním údajů o státním rozpočtu. Stát musí být v těchto záležitostech transparentní, a tak na webu ministerstva financí jsou k dispozici tabulky plnění státního rozpočtu, které uvádí jednotlivé důležité položky příjmů a výdajů státního rozpočtu. U každé položky je uvedeno, jaká hodnota se pro daný rok očekávala a jaká finálně hodnota skutečně byla. Já jsem samozřejmě pracoval se skutečnými hodnotami, aby kalkulačka byla přesnější. Rozhodl jsem se pro práci s údaji z let 2020, 2021 a 2022, protože v době dokončení projektu mají již vyplněné skutečné údaje. Počítal jsem s tím, že v rámci správy databáze bude pak možné přidat údaje i pro jiné roky.
+Svoji teoretickou analýzu jsem začal hledáním údajů o státním rozpočtu. Stát musí být v těchto záležitostech transparentní, a tak na webu Ministerstva financí jsou k dispozici tabulky plnění státního rozpočtu, které uvádí jednotlivé důležité položky příjmů a výdajů státního rozpočtu. U každé položky je uvedeno, jaká hodnota se pro daný rok očekávala a jaká finálně hodnota skutečně byla. Já jsem samozřejmě pracoval se skutečnými hodnotami, aby kalkulačka byla přesnější. Rozhodl jsem se pro práci s údaji z let 2020, 2021 a 2022, protože v době dokončení projektu mají již vyplněné skutečné údaje. Počítal jsem s tím, že v rámci správy databáze bude pak možné přidat údaje i pro jiné roky.
 
-Tyto údaje jsem si potřeboval pouze přepsat do databáze. Zpočátku jsem se potýkal s tím, že v souboru s údaji bylo více tabulek a uváděly různé příjmy. Na internetu jsem však poté dohledal, že existuje rozpočtové určení daní. Částka, kterou daňový poplatník odvede na daních, nemíří pouze do státního rozpočtu, ale dělí se. Část putuje do rozpočtu obcí, část do krajských rozpočtů a teprve zbytek skončí ve státním rozpočtu. Některé daně se dokonce odvádí pouze do obecních a krajských rozpočtů. Veřejné zdravotní pojištění se také nepočítá do příjmů státního rozpočtu. Pochopil jsem tedy, že do databáze si potřebuji vypsat údaje z tabulky, která zohledňuje opravdu pouze příjmy státního rozpočtu a ne celkové daňové příjmy.
+Tyto údaje jsem si potřeboval pouze přepsat do databáze. Zpočátku jsem se potýkal s tím, že v souboru s údaji bylo více tabulek a uváděly různé příjmy. Na internetu jsem však poté dohledal, že existuje rozpočtové určení daní. Částka, kterou daňový poplatník odvede na daních, nemíří pouze do státního rozpočtu, ale dělí se. Část putuje do rozpočtu obcí, část do krajských rozpočtů, a teprve zbytek skončí ve státním rozpočtu. Některé daně se dokonce odvádí pouze do obecních a krajských rozpočtů. Veřejné zdravotní pojištění se také nepočítá do příjmů státního rozpočtu. Pochopil jsem tedy, že do databáze si potřebuji vypsat údaje z tabulky, která zohledňuje opravdu pouze příjmy státního rozpočtu a ne celkové daňové příjmy.
 
 \section{Konkrétní státní investice}
 
-Vedle údajů o státním rozpočtu jsem také potřeboval získat příklady konkrétních investic a jejich náklady. Myslím si, že pro uživatele jsou snadno představitelnější a pochopitelnější konkrétní investice (např. nákup stíhacích letounů nebo dostavba Pražského okruhu) než obecné pojmy státních výdajů (např. neinvestiční transfery rozpočtům územní úrovně nebo ostatní běžné výdaje). Velmi dobře mi v tomto ohledu pomohl národní investiční plán na roky 2020 až 2050. Plán jsem prošel a vybral jsem si z něj důležité a velké investice, které jsem zapsal do databáze. Samozřejmě je možné přidávat další investice z plánu skrze správu databáze aplikace.
+Vedle údajů o státním rozpočtu jsem také potřeboval získat příklady konkrétních investic a jejich náklady. Myslím si, že pro uživatele jsou snadno představitelnější a pochopitelnější konkrétní investice (např. nákup stíhacích letounů nebo dostavba Pražského okruhu) než obecné pojmy státních výdajů (např. neinvestiční transfery rozpočtům územní úrovně nebo ostatní běžné výdaje). Velmi dobře mi v tomto ohledu pomohl národní investiční plán na roky 2020 až 2050. Plán jsem prošel a vybral jsem si z něj důležité a velké investice, které jsem zapsal do databáze. Samozřejmě je možné přidávat další investice z plánu prostřednictvím správy databáze aplikace.
 
-Při vybírání investic z plánu jsem si ale uvědomil problém složitosti výpočtu podílu jednotlivce na těchto investicích. Investice se většinou realizují mnoho let a není jasné, jakým přesným způsobem je stát financuje. Moje aplikace pracuje vždy s údaji za jeden rok, a i když z celkových výdajů státního rozpočtu vím, kolik putovalo na investice, tak nevím, kolik na jaké. Rozhodl jsem se tedy, že pro výpočet budu vycházet z předpokladu, že investice se celá realizovala a zaplatila pouze v roce, pro který si uživatel počítá své odvody a zobrazuje údaje o státním rozpočtu. U konkrétní investice by se tak zobrazil procentuální podíl na celkové částce, která za daný rok mířila na investice a podle toho částka, jakou by se uživatel podílel. Nejedná se tak o reálnou částku, ale i tak poskytuje představu o nákladnosti investice a velikosti podílu uživatele aplikace.
+Při vybírání investic z plánu jsem si ale uvědomil problém složitosti výpočtu podílu jednotlivce na těchto investicích. Investice se většinou realizují mnoho let a není jasné, jakým přesným způsobem je stát financuje. Moje aplikace pracuje vždy s údaji za jeden rok, a i když z celkových výdajů státního rozpočtu vím, kolik putovalo na investice, tak nevím, kolik na jaké. Rozhodl jsem se tedy, že pro výpočet budu vycházet z předpokladu, že investice se celá realizovala a zaplatila pouze v roce, pro který si uživatel počítá své odvody a zobrazuje údaje o státním rozpočtu. U konkrétní investice by se tak zobrazil procentuální podíl na celkové částce, která za daný rok mířila na investice, a podle toho částka, jakou by se uživatel podílel. Nejedná se tak o reálnou částku, ale i tak poskytuje představu o nákladnosti investice a velikosti podílu uživatele aplikace.
 
 \section{Výpočet celkové odvedené částky na daních}
 
@@ -80,23 +80,23 @@ S již získanými obecnými informacemi o státních rozpočtech jsem se mohl z
 
 \subsection{DPH}
 
-DPH se dělí podle procentuálního odvodu do tří kategorií - základní sazba, první snížená sazba a druhá snížená sazba. V druhé snížené sazbě se odvádí daň ve výši 10\%, a to především z vodného a stočného, nákupu knih, hudby, léků a z ubytovacích služeb. V první snížené sazbě to je 15\% a vyměřuje se pro potraviny a gastronomické služby, veřejnou dopravu a léčební pomůcky. Základní sazba je 21\% a vztahuje se na všechny ostatní nákupy a útraty. Od uživatele tedy potřebuji zjistit, kolik průměrné měsíčně utratí za dané kategorie.
+DPH se dělí podle procentuálního odvodu do tří kategorií - základní sazba, první snížená sazba a druhá snížená sazba. V druhé snížené sazbě se odvádí daň ve výši 10 \%, a to především z vodného a stočného, nákupu knih, hudby, léků a z ubytovacích služeb. V první snížené sazbě to je 15 \% a vyměřuje se pro potraviny a gastronomické služby, veřejnou dopravu a léčební pomůcky. Základní sazba je 21 \% a vztahuje se na všechny ostatní nákupy a útraty. Od uživatele tedy potřebuji zjistit, kolik průměrné měsíčně utratí za dané kategorie.
 
 \subsection{Daň z příjmu}
 
-Daň z příjmu fyzických osob se dnes vypočítává z hrubého příjmu. Z hrubého příjmu tvoří 15\%. Výpočet probíhá tak, že si spočítáme 15\% z hrubého příjmu a odečteme od toho slevu na poplatníka - 2570 Kč měsíčně. Do roku 2020 se daň vypočítávala ze superhrubé mzdy - 15\% z 1,338 násobku hrubé mzdy. Pokud si poplatník nárokuje slevu na dítě, odečte se i ta. Sleva na první dítě je 15 204 Kč za rok, na druhé 22 320 Kč za rok a na každé další 27 840 Kč za rok. Dříve byl maximální součet omezen na 60 300 Kč za rok, od roku 2022 sleva na děti nemá horní hranici. Ze slevy na děti je možné vyměřit daňový bonus. Tedy pokud sleva na děti převyšuje daň z příjmů, stát musí uhradit daňovému plátci rozdíl. V extrémních případech může stát díky slevě na děti zaplatit jednotlivci více, než by jinak jednotlivec celkově odvedl do státního rozpočtu. Na slevu má nárok pouze jeden z rodičů. K dani z příjmu patří ještě daň z kapitálových příjmů. To je také 15\%, ale vyměřuje se pouze, pokud za rok plátce zaznamená zisk z kapitálových příjmů vyšší než 100 000 Kč. Pro výpočet musí uživatel zadat svůj hrubý příjem, počet dětí, pokud na ně uplatňuje slevu, a kapitálové příjmy.
+Daň z příjmu fyzických osob se dnes vypočítává z hrubého příjmu. Z hrubého příjmu tvoří 15 \%. Výpočet probíhá tak, že si spočítáme 15 \% z hrubého příjmu a odečteme od toho slevu na poplatníka - 2570 Kč měsíčně. Do roku 2020 se daň vypočítávala ze superhrubé mzdy - 15 \% z 1,338násobku hrubé mzdy. Pokud si poplatník nárokuje slevu na dítě, odečte se i ta. Sleva na první dítě je 15 204 Kč za rok, na druhé 22 320 Kč za rok a na každé další 27 840 Kč za rok. Dříve byl maximální součet omezen na 60 300 Kč za rok, od roku 2022 sleva na děti nemá horní hranici. Ze slevy na děti je možné vyměřit daňový bonus. Tedy pokud sleva na děti převyšuje daň z příjmů, stát musí uhradit daňovému plátci rozdíl. V extrémních případech může stát díky slevě na děti zaplatit jednotlivci více, než by jinak jednotlivec celkově odvedl do státního rozpočtu. Na slevu má nárok pouze jeden z rodičů. K dani z příjmů patří ještě daň z kapitálových příjmů. To je také 15 \%, ale vyměřuje se pouze, pokud za rok plátce zaznamená zisk z kapitálových příjmů vyšší než 100 000 Kč. Pro výpočet musí uživatel zadat svůj hrubý příjem, počet dětí, pokud na ně uplatňuje slevu, a kapitálové příjmy.
 
 \subsection{Sociální pojištění}
 
-Při výpočtu odvodu na sociální pojištění záleží na tom, jestli je uživatel zaměstnanec nebo OSVČ. Výpočet se podle toho liší. V případě OSVČ jsem se rozhodl částku nepočítat, protože nevím, z jakého vyměřovacího základu si ji uživatel počítá. Po uživateli, který je OSVČ, tedy požaduji, aby vyplnil kolonku s tím, kolik si na pojištění platí. Stejně tak požaduji, aby kolonku vyplnili ti, co pracují jako zaměstnanci, ale na zkrácený úvazek. Opět nevím, z čeho bych daň vypočítal. Pro klasické zaměstnance je to pak jednoduché. Zaměstnanec  na sociální pojištění sám odvádí 6,5\% ze své hrubé mzdy a k tomu za něj zaměstnavatel odvádí ještě 24,8\% z hrubé mzdy. Ve své aplikaci zohledňuji i peníze odvedené zaměstnavatelem, protože je také vnímám jako odměnu za práci zaměstnance.
+Při výpočtu odvodu na sociální pojištění záleží na tom, jestli je uživatel zaměstnanec nebo OSVČ. Výpočet se podle toho liší. V případě OSVČ jsem se rozhodl částku nepočítat, protože nevím, z jakého vyměřovacího základu si ji uživatel počítá. Po uživateli, který je OSVČ, tedy požaduji, aby vyplnil kolonku s tím, kolik si na pojištění platí. Stejně tak požaduji, aby kolonku vyplnili ti, co pracují jako zaměstnanci, ale na zkrácený úvazek. Opět nevím, z čeho bych daň vypočítal. Pro klasické zaměstnance je to pak jednoduché. Zaměstnanec  na sociální pojištění sám odvádí 6,5 \% ze své hrubé mzdy a k tomu za něj zaměstnavatel odvádí ještě 24,8 \% z hrubé mzdy. Ve své aplikaci zohledňuji i peníze odvedené zaměstnavatelem, protože je také vnímám jako odměnu za práci zaměstnance.
 
 \subsection{Spotřební daně a daň z hazardu}
 
-Daň z hazardu je 23\%, spotřební daň z paliv je v průměru 11,5 Kč/l, spotřební daň z piva je 0,32 Kč/l, spotřební daň z lihovin je 322,5 Kč na litr ethanolu a spotřební daň za jednu cigaretu je 2,9 Kč. Uživatel tedy do kolonek zadá průměrnou částku, kterou prohraje na hazardu, kolik utratí za paliva, kolik vypije piva a lihovin a kolik vykouří cigaret za měsíc.
+Daň z hazardu je 23 \%, spotřební daň z paliv je v průměru 11,5 Kč/l, spotřební daň z piva je 0,32 Kč/l, spotřební daň z lihovin je 322,5 Kč na litr ethanolu a spotřební daň za jednu cigaretu je 2,9 Kč. Uživatel tedy do kolonek zadá průměrnou částku, kterou prohraje na hazardu, kolik utratí za paliva, kolik vypije piva a lihovin a kolik vykouří cigaret za měsíc.
 
 \subsection{Finální částka}
 
-V instrukcích jsem upřesnil, že uživatelé mají do každé kolonky vyplnit průměrnou měsíční hodnotu údaje. Pomocí výše uvedených procentuálních sazeb kalkulačka spočítá, kolik peněz uživatel odvedl na daních za vybrané položky a samozřejmě to vynásobí dvanácti, aby výsledkem byl údaj za celý rok. U vybraných daní také zohlední rozpočtové určení daní. Z prostředků odvedených prostřednictvím DPH a daně z příjmu fyzických osob míří do státního rozpočtu pouze 64,38\%. U daně z hazardu je to 70\%. Výsledkem výpočtů je celková částka, kterou uživatel za rok odvedl do státního rozpočtu.
+V instrukcích jsem upřesnil, že uživatelé mají do každé kolonky vyplnit průměrnou měsíční hodnotu údaje. Pomocí výše uvedených procentuálních sazeb kalkulačka spočítá, kolik peněz uživatel odvedl na daních za vybrané položky a samozřejmě to vynásobí dvanácti, aby výsledkem byl údaj za celý rok. U vybraných daní také zohlední rozpočtové určení daní. Z prostředků odvedených prostřednictvím DPH a daně z příjmů fyzických osob míří do státního rozpočtu pouze 64,38 \%. U daně z hazardu je to 70 \%. Výsledkem výpočtů je celková částka, kterou uživatel za rok odvedl do státního rozpočtu.
 
 \section{Rozbor uplatnění odvedené částky}
 
@@ -131,12 +131,12 @@ Na implementaci projektu jsem zvolil následující technologie:
 \subsection{Programovací jazyk Python}
 Python jsem zvolil z více důvodů. Mé dva hlavní důvody byly praktičnost a technický aspekt. Python je
 pro mě praktický, protože jsem se s ním dříve setkal při výuce informatiky, a tak jsem se spoléhal, že
-si jej připomenu a bude jednodušší pro mě jej používat, než abych se učil nový jazyk, se kterým vůbec nemám
+si jej připomenu a bude pro mě jednodušší  jej používat, než abych se učil nový jazyk, se kterým vůbec nemám
 zkušenosti.
 
 Technický aspekt, proč jsem zvolil Python, je kvůli přesnosti jeho matematiky. Na semináři jsme se učili o
 standardu IEEE-754 a jeho nepřesnostech, a podle mého vyhledávání na internetu se tato čísla používají jako
-výchozí čísla s desetinnou čárkou ve většině populárních programovacích jazycích. Python používá čísla s
+výchozí čísla s desetinnou čárkou ve většině populárních programovacích jazyků. Python používá čísla s
 neomezenou přesností, což mi pomáhá dělat přesnější výpočty. Vím, že pro ostatní programovací jazyky existují
 knihovny, které přidávají další číselné typy, ale to by byla komplexita navíc. Je mi také jasné, že čísla
 s neomezenou přesností jsou mnohem méně výkonné, než IEEE-754, ale pro účely mého projektu není výkon kritickým
@@ -145,8 +145,8 @@ aspektem.
 \subsection{Programovací jazyk JavaScript}
 Jednou z mých obecných motivací při volbě použitých technologií byla jednoduchost. Nechtěl jsem používat
 nástroje navíc a zbytečně velké technologie. Nejsem sice odborníkem na tuto problematiku, ale NodeJS a další
-webové runtimy mi připadaly jako přehnané pro můj projekt. S JavaScriptem jsem se také setkal na školní informatice.
-Z těchto důvodů jsem rozhodl zvolit JavaScript, i když si jsem vědom některých jeho slabin a nepředvídatelného
+webové runtimy mi připadaly pro můj projekt jako přehnané. S JavaScriptem jsem se také setkal na školní informatice.
+Z těchto důvodů jsem se rozhodl zvolit JavaScript, i když si jsem vědom některých jeho slabin a nepředvídatelného
 chování.
 
 S použitím JavaScriptu přímo v prohlížeči, bez žádného mezikroku jako NodeJS, Bun, nebo Deno, ve spolupráci
@@ -162,10 +162,10 @@ volba Flasku mi tedy ušetřila čas.
 \subsection{AlpineJS framework}
 O této knihovně jsem se dozvěděl z youtube videa na kanálu \emph{Fireship}. Líbilo se mi, že s ním můžu
 vepisovat chování rovnou do HTML, bez toho, aniž bych musel psát velké množství JavaScriptu. AlpineJS se
-dá do libovolné stránky vložit pomocí \emph{<script>} tagu, díky čemuž jsem se opět vyhnul studia NodeJS
+dá do libovolné stránky vložit pomocí \emph{<script>} tagu, díky čemuž jsem se opět vyhnul studiu NodeJS
 a dalších, složitějších technologií.
 
-Přístup AlpineJS mi připadá vizuálně přehledný a, přestože se jedná relativně malý framework, neměl jsem
+Přístup AlpineJS mi připadá vizuálně přehledný, a přestože se jedná o relativně malý framework, neměl jsem
 pocit, že by mi v něm chyběla nějaká funkcionalita.
 
 Způsob přemýšlení, který AlpineJS vyžaduje, byl pro mě ze začátku nezvyklý. V Alpine se většina akcí a interaktivity
@@ -215,7 +215,7 @@ K těmto proměnným se pak mohu odkazovat v jiných atributech na tomto prvku a
 potomky tohoto prvku.
 
 Dalším krokem je přidávání atributů jako \textbf{x-show} (podmínky, za kterých se má prvek zobrazovat)
-a \textbf{x-if}(podmínky, za kterých má prvek vůbec existovat, a tam, kde potřebuji zobrazit text
+a \textbf{x-if} (podmínky, za kterých má prvek vůbec existovat)file:///home/tomdrs/Downloads/hozda.pdf, a tam, kde potřebuji zobrazit text
 nějaké proměnné, parametr \textbf{x-text}.
 
 Například, zde je textový \emph{input} a výpis textu, který je v něm napsaný:
@@ -291,16 +291,16 @@ Nezvyklým aspektem pro mě bylo rozlišování CSS stylů na základě parametr
 \textbf{aria-busy="true"}.
 
 \subsection{PocketBase}
-Ještě než jsem se pustil do implementace projektu mi bylo jasné, že budu potřebovat databázi. Z hodin
-informatiky a semináře jsem věděl o databá S kbdzích jako je SQLite nebo PostgreSQL, ale připadaly mi moc
-složité. Rozhodl jsem se proto najít nějaké řešení, které by bylo jednodušší, a přineslo by mi nejen databázi
+Ještě než jsem se pustil do implementace projektu, mi bylo jasné, že budu potřebovat databázi. Z hodin
+informatiky a semináře jsem věděl o databázích jako je SQLite nebo PostgreSQL, ale připadaly mi moc
+složité. Rozhodl jsem se proto najít nějaké řešení, které by bylo jednodušší a přineslo by mi nejen databázi
 samotnou, ale i kvalitní podporu jak pro Python, tak pro Javascript, a pomohlo mi se správou uživatelů.
-Slyšel jsem o projektu Firebase od Googlu, ale ten se mi zdál moc složitý, a nelíbila se mi myšlenka,
+Slyšel jsem o projektu Firebase od Googlu, ale ten se mi zdál moc složitý a nelíbila se mi myšlenka,
 že by můj projekt závisel na Googlu.
 
-Nakonec jsem, opět na Youtube kanálu Fireship, dozvěděl o projektu PocketBase. PocketBase má webové API,
+Nakonec jsem se, opět na Youtube kanálu Fireship, dozvěděl o projektu PocketBase. PocketBase má webové API,
 pro které existuje JavaScriptový i Pythonový klient, má přehledné webové rozhraní, zabudovaný koncept uživatelů
-a jejich správy a umožňuje mi specifikovat pravidla, tak abych měl jistotu, že k databázi mohu přistupovat
+a jejich správy a umožňuje mi specifikovat pravidla tak, abych měl jistotu, že k databázi mohu přistupovat
 i z frontendu bez toho, aniž bych se vystavil riziku, že mi některý z uživatelů databázi zlomyslně vymaže.
 
 Pro jazyky JavaScript a Dart generuje PocketBase ukázky, jak provádět různé úkony na příslušné tabulce.
@@ -359,7 +359,7 @@ manuálně exportovat do JSON souboru, import musí být také ruční.
 
 \section{Postup implementace}
 
-Pro mojí práci jsou klíčová data získaná od státu. Bez správných dat a správné organizace těchto dat
+Pro moji práci jsou klíčová data získaná od státu. Bez správných dat a správné organizace těchto dat
 bych nemohl provádět výpočty. Začal jsem tedy svůj postup od databáze tvorbou jednotlivých tabulek
 a naplňováním těchto tabulek daty.
 
@@ -371,7 +371,7 @@ Když jsem byl spokojený s daty, ze kterých moje aplikace vychází, vytvořil
 Pro základní nastavení projektu jsem použil nástroj Nix, o kterém jsem se dozvěděl díky bratrovi, který
 mi doporučil a nainstaloval NixOS jakožto \emph{"nerozbitný Linux"}. Je nutné podotknout, že Nix a NixOS
 není to samé. Termín Nix označuje dvě věci - Nix jazyk a Nix balíčkovač, který je na tom jazyce postavený.
-NixOS je distribuce postavené na Nixu - balíčkovači. Nix jakožto balíčkovač, build systém a nástroj pro
+NixOS je distribuce postavená na Nixu - balíčkovači. Nix jakožto balíčkovač, build systém a nástroj pro
 vytváření konzistentních prostředí a konfigurace není nijak závislý na NixOS a funguje na libovolné
 linuxové distribuci (i macOS v omezené míře), podobně jako Docker.
 
@@ -403,7 +403,7 @@ pkgs.mkShell {
 }
 \end{verbatim}
 
-Pole \emph{buildInputs} specifikuje, jaké programy potřebuji mít v prostředí, \emph{shellHook} co se má
+Pole \emph{buildInputs} specifikuje, jaké programy potřebuji mít v prostředí, \emph{shellHook}, co se má
 stát při spuštění tohoto shellu, a ostatní jsou proměnné prostředí.
 
 
@@ -437,7 +437,7 @@ def rozpocet_na_rok(rok):
     return rozpocet.to_json()
 \end{verbatim}
 
-Kvůli konverzi na JSON jsem si modely opsal do Pythonu, a naimplementoval na nich manuální převod
+Kvůli konverzi na JSON jsem si modely opsal do Pythonu a naimplementoval na nich manuální převod
 následujícím způsobem:
 
 \begin{verbatim}
@@ -488,14 +488,14 @@ class Budget:
         )
 \end{verbatim}
 
-Uznávám, že tento způsob je trochu repetitivní, a že může docházet k chybám kvůli překlepům. Složitější řešení,
+Uznávám, že tento způsob je trochu repetitivní a že může docházet k chybám kvůli překlepům. Složitější řešení,
 která jsem na internetu potkal, mi ale připadala nepřehledná pro tuto aplikaci.
 
 Tyto základní endpointy jsem testoval pomocí programu \textbf{cURL}, v této chvíli neexistovalo ještě konkrétní
 spojení frontendu a backendu.
 
 Posléze jsem začal realizovat i vzhled frontendu. Nejdřív jsem psal pouze HTML, framework PicoCSS jsem přidal
-později, a AlpineJS jsem doopravdy začal používat až když jsem měl hlavní prvky vzhledu svojí aplikace.
+později, a AlpineJS jsem doopravdy začal používat, až když jsem měl hlavní prvky vzhledu svojí aplikace.
 
 Můj první experiment s frameworkem AlpineJS bylo dynamické zobrazování roku v textu footeru stránky:
 
@@ -505,8 +505,8 @@ Můj první experiment s frameworkem AlpineJS bylo dynamické zobrazování roku
 </footer>
 \end{verbatim}
 
-Finální vzhled vzniknul částečně jako bug. Rozložení příjmů, výdajů a formuláře na ůdaje uživatele měly být
-tři rovnocené sloupce stejné barvy, ale kvůli špatně uzavřeným HTML tagům byl prostřední sloupec šedivý a zasunutý
+Finální vzhled vznikl částečně jako bug. Rozložení příjmů, výdajů a formuláře na údaje uživatele měly být
+tři rovnocenné sloupce stejné barvy, ale kvůli špatně uzavřeným HTML tagům byl prostřední sloupec šedivý a zasunutý
 za těmi postraními. Tento vzhled se mi zalíbil, tak jsem se pro něj po opravě této chyby rozhodl.
 
 Nejnovější koncepty v CSS pro mě byly \emph{grid layout} a \emph{flexbox}. Flexbox jsem použil ve dvou případech:
@@ -560,19 +560,19 @@ V těchto případech je zapotřebí specifikovat nějakou vlastnost prvků pole
 \end{verbatim}
 
 Druhá nekonzistence, se kterou jsem se potýkal, je reaktivnost v atributech \textbf{x-effect}. Když je kód
-moc komplexní a figuruje v něm mnoho reaktivních proměnný, tak je možné, že AlpineJS nedetekuje všechny
+moc komplexní a figuruje v něm mnoho reaktivních proměnných, tak je možné, že AlpineJS nedetekuje všechny
 odkazy a nepouští kód ve všechny správné momenty. Tento problém jsem ve všech případech vyřešil pomocí
 výše zmíněné \textbf{\$watch()} funkce sledováním jednotlivých proměnných.
 
-Posledním problémem, který jsem řešil byl vývoj mobilní verze. Po přečtení mnoha článků jsem dospěl
-k žávěru, že detekovat, zda se nacházím mobilním zařízení, není vůbec jednoduchá záležitost. Použití
-\emph{@media queries} podle sířky displeje není jistota, protože mobilní zařízení mají různá rozlišení.
+Posledním problémem, který jsem řešil, byl vývoj mobilní verze. Po přečtení mnoha článků jsem dospěl
+k žávěru, že detekovat, zda se nacházím na mobilním zařízení, není vůbec jednoduchá záležitost. Použití
+\emph{@media queries} podle šířky displeje není jistota, protože mobilní zařízení mají různá rozlišení.
 
 Pomocí \emph{@media queries} nebo JavaScriptu je také možné zjistit, zda obrazovka podporuje
-ovládání dotykem. Některé prohlížeče ale hlásí podporu doteku vždy, i když zařízení dotykové
-není, nebo naopak nehlásí podporu doteku, i když zařízení dotykovou obrazovku má.
+ovládání dotykem. Některé prohlížeče ale hlásí podporu dotyku vždy, i když zařízení dotykové
+není, nebo naopak nehlásí podporu dotyku, i když zařízení dotykovou obrazovku má.
 
-Nakonec jsem se rozhodl si napsat funkci v JavaScriptu, které rozhodne o detekci mobilního zařízení
+Nakonec jsem se rozhodl si napsat funkci v JavaScriptu, která rozhodne o detekci mobilního zařízení
 pomocí objektu \emph{screen}:
 
 \begin{verbatim}
@@ -585,8 +585,8 @@ Tato funkce vrací \emph{true}, pokud orientace obrazovky je na výšku, v \emph
 v portrétovém módu je pouze na mobilních zařízeních. U stolního počítače i monitor namontovaný vertikálně
 je v prohlížeči interpretovaný jako \emph{landscape}.
 
-Tento způsob detekce má některá omezení. Velmi staré prohlížeče Edge, staré mobilní prohlížeče Safari, a
-samozřejmě Internet Explorer, tento objekt nedpodporují.
+Tento způsob detekce má některá omezení. Velmi staré prohlížeče Edge, staré mobilní prohlížeče Safari a
+samozřejmě Internet Explorer tento objekt nepodporují.
 
 \chapter{Technická dokumentace}
 
@@ -631,7 +631,7 @@ sudo xbps-install -Sy git
 
 Pro zprovoznění maturitního projektu takhle git stačí, v praxi si však uživatel často bude potřebovat
 nakonfigurovat jméno, email, a SSH klíč.
- S kbd
+
 \subsection{Nix}
 Nix je možné nainstalovat pomocí balíčkovače na vaší distribuci, například:
 
@@ -723,7 +723,7 @@ pip install -r requirements.txt
 \end{verbatim}
 
 \subsection{Flask}
-Podobně jako klientskou knihovnu PocketBase, je možné Flask nainstalovat ze souboru
+Podobně jako klientskou knihovnu PocketBase je možné Flask nainstalovat ze souboru
 \emph{requirements.txt} pomocí \emph{pipu}. Vzhledem k tomu, že použití Flasku v tomto
 projektu není komplexní, měly by fungovat i verze z balíčkovače distribuce.
 
@@ -767,7 +767,7 @@ export FLASK_APP="src/main.py"
 export POCKETBASE_URL="https://pocketbase.gjk.cat" # nebo lokální instance
 \end{verbatim}
 
-A vytvořit a vstoupit do virtuálního Python prostředí, pokud k tomu nedošlo dříve:
+a vytvořit a vstoupit do virtuálního Python prostředí, pokud k tomu nedošlo dříve:
 
 \begin{verbatim}
 virtualenv -p python3 envhttps://github.com/Tomdrs/statni_rozpocet
@@ -815,7 +815,7 @@ Nyní by otevření URL adresy \url{http://127.0.0.1:5000} mělo zobrazit aplika
 Projekt je webová aplikace, stačí v prohlížeči otevřít URl, na které běží Flask.
 V případě lokálního běhu aplikace se jedná o URL \url{http://127.0.0.1:5000}.
 
-Aplikace se skládá z tří webových stránek:
+Aplikace se skládá ze tří webových stránek:
 
 \begin{itemize}
   \item Index (Hlavní stránka)
@@ -833,7 +833,7 @@ Hlavní stránka má tři hlavní sekce:
   \item Zobrazení investic
 \end{itemize}
 
-V pravo nahoře na stránce se, v závislosti na stavu uživatele, zobrazují
+Vpravo nahoře na stránce se, v závislosti na stavu uživatele, zobrazují
 tlačítka \emph{Login}, \emph{Admin} a \emph{Logout}.
 
 \subsubsection{Formulář se zobrazením celkových dat rozpočtu}
@@ -864,7 +864,7 @@ Tento formulář umožňuje přidávat uživatelské investice. Po vyplnění ko
 \emph{Rok počátku realizace} kliknutí na tlačítko \emph{Přidat} se pod formulářem
 objeví nová investice.
 
-Investice, které normální uživatel přidá sám pro sebe, jsou předřazeny vždy dostupnýmn investicím,
+Investice, které normální uživatel přidá sám pro sebe, jsou předřazeny vždy dostupným investicím,
 které přidali administrátoři.
 
 V případě, že je uživatel přihlášen jako administrátor, přidává formulář
@@ -915,7 +915,7 @@ zobrazí uživateli hlášku, že stránka je určena pouze pro administrátory.
 Administrátorům stránka zobrazí rozhraní pro upravování všech tabulek, které jsou
 uloženy v PocketBase.
 
-Každá tabulka zobrazuje všechny uložené hodnoty, a políčka pro přidání nového záznamu.
+Každá tabulka zobrazuje všechny uložené hodnoty a políčka pro přidání nového záznamu.
 Vedle každého záznamu jsou dvě tlačítka - tužka pro úpravu, křížek pro smazání daného
 záznamu.
 
@@ -927,11 +927,11 @@ není potřeba změny potvrzovat.
 \pagestyle{empty}
 \addcontentsline{toc}{chapter}{Závěr}
 
-Když se již s hotovým projektem ohlédnu na začátek a na cíle, které jsem si vytyčil, odvedl jsem na něm dobrou práci. Projekt splňuje funkcionalitu, kterou jsem slíbil. Uživatel tak opravdu po zadání svých příjmů a výdajů vidí, kolik a jakým způsobem odvedl do státního rozpočtu peněz a co se pak s nimi stalo. Správa databáze rozpočtů a investic funguje správně, aplikace se tak dá i nadále rozvíjet tím, že se budou přidávat další investice a rozpočty na minulé i budoucí roky. Samozřejmě s častými změnami v zákonech matematika kalkulačky nemůže být plně funkční na budoucí léta i ty předcházející před rokem 2020, pokud nebude ve zdrojovém kódu modifikována. Daňový systém a finanční správa státu jsou natolik složité, že aplikace nemá šanci být naprosto přesná, ale myslím si, že uživateli poskytne velmi zajímavý obrázek o státních financích a o tom, jak se sám na nich podílí.
+Když se s již  hotovým projektem ohlédnu na začátek a na cíle, které jsem si vytyčil, myslím, že jsem na něm odvedl dobrou práci. Projekt splňuje funkcionalitu, kterou jsem slíbil. Uživatel tak opravdu po zadání svých příjmů a výdajů vidí, kolik a jakým způsobem odvedl do státního rozpočtu peněz a co se pak s nimi stalo. Správa databáze rozpočtů a investic funguje správně, aplikace se tak dá i nadále rozvíjet tím, že se budou přidávat další investice a rozpočty na minulé i budoucí roky. Samozřejmě s častými změnami v zákonech matematika kalkulačky nemůže být plně funkční na budoucí léta i ta předcházející před rokem 2020, pokud nebude ve zdrojovém kódu modifikována. Daňový systém a finanční správa státu jsou natolik složité, že aplikace nemá šanci být naprosto přesná, ale myslím si, že uživateli poskytne velmi zajímavý obrázek o státních financích a o tom, jak se sám na nich podílí.
 
-Když jsem s projektem začínal, měl jsem jenom drobné zkušenosti s Pythonem a žádný jiný programovací jazyk jsem neuměl. Bylo mi tedy jasné, že pro splnění projektu se vše budu muset naučit. Plnil jsem tedy internetové výukové kurzy, sledoval jsem videa a hledal články, které by mi pomohly naučit se alespoň základní práci s prostředky, jež jsem se rozhodl využívat. Mnoho informací a způsobů práce jsem si musel vyhledávat a učit se ještě v průběhu práce, takže postup byl pomalejší, než bych si přál, a prací jsem strávil o dost více času, než jsem si původně myslel, ale nakonec se to vyplatilo a povedlo se mi projekt dokončit. Výsledkem pro mě tak není pouze aplikace, kterou jsou vytvořil, ale také získané zkušenosti minimálně základní práce s Pythonem, HTML, CSS, Javascriptem, Alpinem, Flaskem a Pocketbasem. Nerozvíjel jsem se ale pouze v technických dovednostech, ale také ve znalostech ekonomických a finančních. Původně jsem si vlastně téma projektu vybral, protože mě ekonomická a finanční témata zajímají a v budoucnu bych se jim chtěl nadále věnovat. S prací na projektu jsem tak nahlédl do světa daňového systému a pochopil, jak složitý vlastně je. Věřím tak, že zkušenosti získané prací na projektu využiji i v budoucnosti.
+Když jsem s projektem začínal, měl jsem jenom drobné zkušenosti s Pythonem a žádný jiný programovací jazyk jsem neuměl. Bylo mi tedy jasné, že pro splnění projektu se vše budu muset naučit.  Plnil jsem tedy internetové výukové kurzy, sledoval jsem videa a hledal články, které by mi pomohly naučit se alespoň základní práci s prostředky, jež jsem se rozhodl využívat. Mnoho informací a způsobů práce jsem si musel vyhledávat a učit se ještě v průběhu, takže postup byl pomalejší, než bych si přál, a prací jsem strávil o dost více času, než jsem si původně myslel, ale nakonec se to vyplatilo a povedlo se mi projekt dokončit. Výsledkem pro mě tak není pouze aplikace, kterou jsem vytvořil, ale také získané zkušenosti minimálně základní práce s Pythonem, HTML, CSS, Javascriptem, Alpinem, Flaskem a Pocketbasem. Nerozvíjel jsem se ale pouze v technických dovednostech, ale také ve znalostech ekonomických a finančních. Původně jsem si vlastně téma projektu vybral, protože mě ekonomická a finanční témata zajímají a v budoucnu bych se jim chtěl nadále věnovat. S prací na projektu jsem tak nahlédl do světa daňového systému a pochopil, jak složitý vlastně je. Věřím tak, že zkušenosti získané prací na projektu využiji i v budoucnosti.
 
-S výsledkem, který jsem projektu věnoval, jsem spokojený. Ačkoliv se mi občas nedařilo nebo mi dělalo potíže něco vymyslet, vyvinul jsem velké úsilí a pokračoval, dokud jsem nedosáhl cíle. Mnoho také vděčím svému bratrovi, který mi díky svým zkušenostem v oblasti programování dokázal poradit, když jsem měl potíže, a vždy se mnou ochotně projekt konzultoval. Výsledkem je tak funkční aplikace, která poskytuje zajímavé údaje a mně přinesla její tvorba mnohé zkušenosti.
+S výsledkem, který jsem projektu věnoval, jsem spokojený. Ačkoliv se mi občas nedařilo nebo mi dělalo potíže něco vymyslet, vyvinul jsem velké úsilí a pokračoval, dokud jsem nedosáhl cíle. Mnoho také vděčím svému bratrovi, který mi díky svým zkušenostem v oblasti programování dokázal poradit, když jsem měl potíže, a vždy se mnou ochotně projekt konzultoval. Výsledkem je tak funkční aplikace, která poskytuje zajímavé údaje, a mně přinesla její tvorba mnohé zkušenosti.
 
 %%% Seznam použité literatury
 \nocite{einstein}\nocite{latexcompanion}\nocite{knuthwebsite}
