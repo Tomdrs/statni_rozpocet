@@ -33,9 +33,9 @@
             x-show="is_admin"
             class="admin-view"
         >
-        <section class="user_buttons">
-            <a role="button" href="/">Hlavní stránka</a>
-        </section>
+            <section class="user_buttons">
+                <a role="button" href="/">Hlavní stránka</a>
+            </section>
             <section>
                 <article>
                     <header>Příjmy</header>
@@ -66,205 +66,221 @@
                             </tr>
                             <template x-for="data in budgets" :key="data.id">
                                 <tr
-                                x-data="{ editing: false }"
-                                x-init="editing = false; $watch('data', async (new_data, old_data) => {
+                                    x-data="{ editing: false }"
+                                    x-init="editing = false; $watch('data', async (new_data, old_data) => {
                                     await update_budgets(client, new_data);
                                 })"
-                            >
-                                <template x-if="!editing">
-                                    <td x-text="data.year"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.year"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.total_income"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.total_income"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.total_expense"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.total_expense"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.vat"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.vat"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.consumer_taxes"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.consumer_taxes"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.income_tax_individual"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.income_tax_individual"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.income_tax_company"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.income_tax_company"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.mandatory_social_insurance"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.mandatory_social_insurance"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.other_tax"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.other_tax"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.other_nontax_income"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.other_nontax_income"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.consumer_tax_oils"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.consumer_tax_oils"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.consumer_tax_tobacco"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.consumer_tax_tobacco"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.consumer_tax_solar_energy"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.consumer_tax_solar_energy"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.trash_fees"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.trash_fees"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.gambling_tax"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.gambling_tax"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.income_from_eu"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.income_from_eu"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.income_connected_with_eu"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.income_connected_with_eu"
-                                        />
-                                    </td>
-                                </template>
+                                >
+                                    <template x-if="!editing">
+                                        <td x-text="data.year"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.year"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.total_income"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.total_income"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.total_expense"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.total_expense"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.vat"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.vat"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.consumer_taxes"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.consumer_taxes"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.income_tax_individual"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.income_tax_individual"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.income_tax_company"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.income_tax_company"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.mandatory_social_insurance"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.mandatory_social_insurance"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.other_tax"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.other_tax"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.other_nontax_income"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.other_nontax_income"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.consumer_tax_oils"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.consumer_tax_oils"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.consumer_tax_tobacco"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.consumer_tax_tobacco"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.consumer_tax_solar_energy"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.consumer_tax_solar_energy"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.trash_fees"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.trash_fees"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.gambling_tax"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.gambling_tax"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.income_from_eu"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.income_from_eu"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.income_connected_with_eu"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.income_connected_with_eu"
+                                            />
+                                        </td>
+                                    </template>
                                     <td>
                                         <button
                                             class="edit-button"
                                             x-on:click.prevent="editing = !editing"
                                         >
-                                            ✏️</button
-                                        >
+                                            ✏️
+                                        </button>
                                         <button
                                             class="delete_button"
                                             x-on:click.prevent="await remove_budgets(client, data.id); remove_first_match(budgets, item => item.id == data.id)"
@@ -460,306 +476,322 @@
                                 <th>Ostatní investice</th>
                                 <th></th>
                             </tr>
-                            <template x-for="data in expenses" x-show="false" :key="data.id">
+                            <template
+                                x-for="data in expenses"
+                                x-show="false"
+                                :key="data.id"
+                            >
                                 <tr
-                                x-data="{ editing: false }"
-                                x-init="editing = false; $watch('data', async (new_data, old_data) => {
+                                    x-data="{ editing: false }"
+                                    x-init="editing = false; $watch('data', async (new_data, old_data) => {
                                     await update_expenses(client, new_data);
                                 })"
-                            >
-                                <template x-if="!editing">
-                                    <td x-text="data.year"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.year"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.total_expenses"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.total_expenses"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.salaries"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.salaries"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td
-                                        x-text="data.noninvestment_purchases"
-                                    ></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.noninvestment_purchases"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td
-                                        x-text="data.noninvestment_bussines"
-                                    ></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.noninvestment_bussines"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td
-                                        x-text="data.noninvestment_non_profit"
-                                    ></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.noninvestment_non_profit"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td
-                                        x-text="data.noninvestment_state_funds"
-                                    ></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.noninvestment_state_funds"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td
-                                        x-text="data.noninvestment_soc_and_health_funds"
-                                    ></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.noninvestment_soc_and_health_funds"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td
-                                        x-text="data.noninvestment_regions"
-                                    ></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.noninvestment_regions"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td
-                                        x-text="data.noninvestment_contribution"
-                                    ></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.noninvestment_contribution"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.pensions"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.pensions"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.unemployment_help"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.unemployment_help"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.other_social_help"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.other_social_help"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.state_social_help"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.state_social_help"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.building_savings"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.building_savings"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td
-                                        x-text="data.pension_insurance_contribution"
-                                    ></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.pension_insurance_contribution"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.eu_payment"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.eu_payment"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.other_usual_expenses"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.other_usual_expenses"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.investment_purchases"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.investment_purchases"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td
-                                        x-text="data.investment_transfers_bussines"
-                                    ></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.investment_transfers_bussines"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td
-                                        x-text="data.investment_state_funds"
-                                    ></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.investment_state_funds"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.investment_regions"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.investment_regions"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td
-                                        x-text="data.investment_contribution"
-                                    ></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.investment_contribution"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.other_investment"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.other_investment"
-                                        />
-                                    </td>
-                                </template>
+                                >
+                                    <template x-if="!editing">
+                                        <td x-text="data.year"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.year"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.total_expenses"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.total_expenses"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.salaries"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.salaries"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.noninvestment_purchases"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.noninvestment_purchases"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.noninvestment_bussines"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.noninvestment_bussines"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.noninvestment_non_profit"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.noninvestment_non_profit"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.noninvestment_state_funds"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.noninvestment_state_funds"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.noninvestment_soc_and_health_funds"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.noninvestment_soc_and_health_funds"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.noninvestment_regions"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.noninvestment_regions"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.noninvestment_contribution"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.noninvestment_contribution"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.pensions"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.pensions"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.unemployment_help"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.unemployment_help"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.other_social_help"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.other_social_help"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.state_social_help"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.state_social_help"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.building_savings"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.building_savings"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.pension_insurance_contribution"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.pension_insurance_contribution"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.eu_payment"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.eu_payment"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.other_usual_expenses"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.other_usual_expenses"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.investment_purchases"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.investment_purchases"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.investment_transfers_bussines"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.investment_transfers_bussines"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.investment_state_funds"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.investment_state_funds"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.investment_regions"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.investment_regions"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.investment_contribution"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.investment_contribution"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.other_investment"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.other_investment"
+                                            />
+                                        </td>
+                                    </template>
                                     <td>
                                         <button
                                             class="edit-button"
                                             x-on:click.prevent="editing = !editing"
                                         >
-                                            ✏️</button
-                                        >
+                                            ✏️
+                                        </button>
                                         <button
                                             class="delete_button"
                                             x-on:click.prevent="await remove_expenses(client, data.id); remove_first_match(expenses, item => item.id == data.id);"
@@ -987,7 +1019,10 @@
                                 <th>DPH 10%</th>
                                 <th>Počet vypitých litrů piva</th>
                                 <th>Počet krabiček cigaret</th>
-                                <th>Objem vypitého ethanolu obsaženého v lihovinách</th>
+                                <th>
+                                    Objem vypitého ethanolu obsaženého v
+                                    lihovinách
+                                </th>
                                 <th></th>
                             </tr>
                             <template
@@ -996,180 +1031,187 @@
                                 :key="data.id"
                             >
                                 <tr
-                                x-data="{ editing: false }"
-                                x-init="editing = false; $watch('data', async (new_data, old_data) => {
+                                    x-data="{ editing: false }"
+                                    x-init="editing = false; $watch('data', async (new_data, old_data) => {
                                     await update_average(client, new_data);
                                 })"
-                            >
-                                <template x-if="!editing">
-                                    <td x-text="data.year"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.year"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">>
-                                    <td x-text="data.gross_income"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.gross_income"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.supergross"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="checkbox"
-                                            x-model.debounce.100ms="data.supergross"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td
-                                        x-text="data.supergross_multiplier"
-                                    ></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.supergross_multiplier"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.vat_21"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.vat_21"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.social_insurance"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.social_insurance"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.capital_gains"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.capital_gains"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.gambling_tax"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.gambling_tax"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td
-                                        x-text="data.consumer_tax_car_fuel"
-                                    ></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.consumer_tax_car_fuel"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td
-                                    x-text="data.vat_food_mhd_medical_devices"
-                                    ></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.vat_food_mhd_medical_devices"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td
-                                        x-text="data.vat_books_music_medicine_water_accomodations"
-                                    ></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.vat_books_music_medicine_water_accomodations"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.consumer_tax_beer"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.consumer_tax_beer"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.consumer_tax_tobacco"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.consumer_tax_tobacco"
-                                        />
-                                    </td>
-                                </template>
-                                <template x-if="!editing">
-                                    <td x-text="data.consumer_tax_alcohol"></td>
-                                </template>
-                                <template x-if="editing">
-                                    <td>
-                                        <input
-                                            type="text"
-                                            x-model.debounce.100ms="data.consumer_tax_alcohol"
-                                        />
-                                    </td>
-                                </template>
+                                >
+                                    <template x-if="!editing">
+                                        <td x-text="data.year"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.year"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing"
+                                        >>
+                                        <td x-text="data.gross_income"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.gross_income"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.supergross"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="checkbox"
+                                                x-model.debounce.100ms="data.supergross"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.supergross_multiplier"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.supergross_multiplier"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.vat_21"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.vat_21"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.social_insurance"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.social_insurance"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.capital_gains"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.capital_gains"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td x-text="data.gambling_tax"></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.gambling_tax"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.consumer_tax_car_fuel"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.consumer_tax_car_fuel"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.vat_food_mhd_medical_devices"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.vat_food_mhd_medical_devices"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.vat_books_music_medicine_water_accomodations"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.vat_books_music_medicine_water_accomodations"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.consumer_tax_beer"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.consumer_tax_beer"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.consumer_tax_tobacco"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.consumer_tax_tobacco"
+                                            />
+                                        </td>
+                                    </template>
+                                    <template x-if="!editing">
+                                        <td
+                                            x-text="data.consumer_tax_alcohol"
+                                        ></td>
+                                    </template>
+                                    <template x-if="editing">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                x-model.debounce.100ms="data.consumer_tax_alcohol"
+                                            />
+                                        </td>
+                                    </template>
                                     <td>
                                         <button
                                             class="edit-button"
                                             x-on:click.prevent="editing = !editing"
                                         >
-                                            ✏️</button
-                                        >
+                                            ✏️
+                                        </button>
                                         <button
                                             class="delete_button"
                                             x-on:click.prevent="await remove_average(client, data.id); remove_first_match(state_levies_average, item => item.id == data.id);"
@@ -1365,9 +1407,7 @@
                                     </td>
                                 </tr>
                             </template>
-                            <tr
-                                x-data="{ start_year: '', name: '', cost: '' }"
-                            >
+                            <tr x-data="{ start_year: '', name: '', cost: '' }">
                                 <td>
                                     <input type="text" x-model="start_year" />
                                 </td>

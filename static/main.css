@@ -124,7 +124,7 @@ h1.nadpis {
     justify-content: center;
     width: 100%;
     margin-bottom: 0;
-    padding: .5em;
+    padding: 0.5em;
     flex-wrap: wrap;
 }
 
@@ -140,7 +140,6 @@ h1.nadpis {
 .vyber-rok input:checked + label {
     border-bottom: 2px var(--primary) solid;
 }
-
 
 /*
  *
@@ -340,7 +339,8 @@ details p {
     overflow: scroll;
 }
 
-.table-container th, .table-container td {
+.table-container th,
+.table-container td {
     min-width: 8em;
 }
 
@@ -373,7 +373,8 @@ details p {
     font-size: 300%;
 }
 
-.mobile th, .mobile td {
+.mobile th,
+.mobile td {
     font-size: 210%;
 }
 
@@ -385,7 +386,8 @@ details p {
     font-size: 225%;
 }
 
-.mobile input[type="text"], .mobile input[type="password"] {
+.mobile input[type="text"],
+.mobile input[type="password"] {
     font-size: 200%;
     padding: 2em 1em;
 }

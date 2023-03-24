@@ -78,7 +78,8 @@
                             <button
                                 :disabled="login_status == 'success'"
                                 x-on:click.prevent="login_status = (await pb_login(client, email, pass)); console.log('bruh', login_status)"
-                            >Přihlásit
+                            >
+                                Přihlásit
                             </button>
                             <p
                                 x-show="login_status == 'success'"
@@ -111,7 +112,10 @@
                                 type="password"
                                 id="password-signup"
                             />
-                            <p x-show="pass.length < 8" class="error-status account-status">
+                            <p
+                                x-show="pass.length < 8"
+                                class="error-status account-status"
+                            >
                                 Hesla musí mít 8-72 znaků.
                             </p>
                             <label for="password-signup-again"
@@ -122,13 +126,17 @@
                                 type="password"
                                 id="password-signup-again"
                             />
-                            <p x-show="pass != pass_again" class="error-status account-status">
+                            <p
+                                x-show="pass != pass_again"
+                                class="error-status account-status"
+                            >
                                 Hesla se nerovnají
                             </p>
                             <button
                                 :disabled="pass != pass_again || pass.length < 8"
                                 x-on:click.prevent="signup_status = (await pb_signup(client, email, pass, pass_again)); console.log('status', signup_status)"
-                            >Registrovat
+                            >
+                                Registrovat
                             </button>
                             <p
                                 class="error-status account-status"
@@ -142,7 +150,6 @@
                             >
                                 Registrace byla úspěšná, přesměrování na login
                             </p>
-
                         </form>
                     </template>
                 </article>

@@ -1,8 +1,7 @@
 function display_number(number, zero_if_undef = true, allow_negative = false) {
     if (number)
         return (allow_negative ? number : Math.max(number, 0)).toFixed(2);
-    else
-        return (zero_if_undef ? 0 : "");
+    else return zero_if_undef ? 0 : "";
 }
 
 function random_string() {
@@ -23,11 +22,14 @@ function remove_first_match(arr, condition) {
         }
     }
 
-    if (typeof index !== 'undefined') {
+    if (typeof index !== "undefined") {
         arr.splice(index, 1);
     }
 }
 
 function detect_mobile() {
-    return screen.orientation.type == 'portrait-primary' || screen.orientation.type == 'portrait-secondary';
+    return (
+        screen.orientation.type == "portrait-primary" ||
+        screen.orientation.type == "portrait-secondary"
+    );
 }

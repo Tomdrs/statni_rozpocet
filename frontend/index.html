@@ -104,18 +104,25 @@
                 Kalkulačka podílu na státním rozpočtu a výdajů
             </h1>
             <section class="vyber-rok-container">
-            <div class="vyber-rok" x-data="{ roky: [] }" x-init="roky = await resolve_valid_years(pb_client()); console.log(roky);">
-                <template x-for="select_rok in roky">
-                    <div>
-                    <input
-                        x-model="rok"
-                        type="radio"
-                        :value="select_rok"
-                        :id="'rok' + select_rok"
-                    /><label :for="'rok' + select_rok" x-text="select_rok"></label>
-                    </div>
-                </template>
-            </div>
+                <div
+                    class="vyber-rok"
+                    x-data="{ roky: [] }"
+                    x-init="roky = await resolve_valid_years(pb_client()); console.log(roky);"
+                >
+                    <template x-for="select_rok in roky">
+                        <div>
+                            <input
+                                x-model="rok"
+                                type="radio"
+                                :value="select_rok"
+                                :id="'rok' + select_rok"
+                            /><label
+                                :for="'rok' + select_rok"
+                                x-text="select_rok"
+                            ></label>
+                        </div>
+                    </template>
+                </div>
             </section>
 
             <section class="instrukce-kontejner">
@@ -125,7 +132,8 @@
                         <p>
                             Tato webová kalkulačka slouží k výpočtu částky,
                             jakou se podílíte na státním rozpočtu České
-                            republiky prostřednictvím daní, které povinně odvádíte.
+                            republiky prostřednictvím daní, které povinně
+                            odvádíte.
                         </p>
                         <p>
                             Kalkulačka přijme Vámi zadané údaje a podle nich
@@ -134,52 +142,79 @@
                             počítat, zaklikněte v sekci nad instrukcemi. Do
                             políček formuláře vždy uveďte průměrnou měsíční
                             hodnotu. Některá pole jsou předvyplněná hodnotami,
-                            které odpovídají průměrnému občanovi a mnoho z nich vychází ze spotřebních výdajů domácností na osobu. Pro přesnější
-                            výpočet však pole vyplňte. Pole s počtem dětí vyplňte pouze, pokud slevu na děti uplatňujete (nárok na ni má pouze jeden z rodičů). Kalkulačka je
-                            interaktivní, takže mění své výpočty při každé změně
-                            údajů nebo vybraného roku.<br />
+                            které odpovídají průměrnému občanovi a mnoho z nich
+                            vychází ze spotřebních výdajů domácností na osobu.
+                            Pro přesnější výpočet však pole vyplňte. Pole s
+                            počtem dětí vyplňte pouze, pokud slevu na děti
+                            uplatňujete (nárok na ni má pouze jeden z rodičů).
+                            Kalkulačka je interaktivní, takže mění své výpočty
+                            při každé změně údajů nebo vybraného roku.<br />
                         </p>
                         <p x-show="!mobile">
                             Po levé straně se Vám vedle obecných údajů o
-                            státních příjmech za vybraný rok zobrazí, prostřednictvím jakých
-                            daní jste peníze do rozpočtu odvedli, a po pravé
-                            straně se Vám vedle obecných údajů o státních
-                            výdajích za vybraný rok zobrazí, na jaké výdaje stát
-                            peníze distribuoval. V sekci pod formulářem pak
-                            naleznete plánované státní investice vycházející z
-                            národního investičního plánu.
+                            státních příjmech za vybraný rok zobrazí,
+                            prostřednictvím jakých daní jste peníze do rozpočtu
+                            odvedli, a po pravé straně se Vám vedle obecných
+                            údajů o státních výdajích za vybraný rok zobrazí, na
+                            jaké výdaje stát peníze distribuoval. V sekci pod
+                            formulářem pak naleznete plánované státní investice
+                            vycházející z národního investičního plánu.
                         </p>
                         <p x-show="mobile">
                             Pod formulářem se Vám vedle obecných údajů o
-                            státních příjmech za vybraný rok zobrazí, prostřednictvím jakých
-                            daní jste peníze do rozpočtu odvedli.
-                            Pod tabulkou s příjmy se Vám vedle obecných údajů o státních
-                            výdajích za vybraný rok zobrazí, na jaké výdaje stát
-                            peníze distribuoval. V sekci pod tabulkou s výdaji pak
-                            naleznete plánované státní investice vycházející z
-                            národního investičního plánu.
+                            státních příjmech za vybraný rok zobrazí,
+                            prostřednictvím jakých daní jste peníze do rozpočtu
+                            odvedli. Pod tabulkou s příjmy se Vám vedle obecných
+                            údajů o státních výdajích za vybraný rok zobrazí, na
+                            jaké výdaje stát peníze distribuoval. V sekci pod
+                            tabulkou s výdaji pak naleznete plánované státní
+                            investice vycházející z národního investičního
+                            plánu.
                         </p>
                         <p>
-                            U těchto investic se
-                            Vám zobrazí, kolik procent z celkové částky určené k
-                            investicím ve vybraném roce by tato konkrétní
-                            investice tvořila, pokud by všechny její náklady
-                            měly být uhrazené ve vybraném roce. V políčku vedle
-                            se Vám zobrazí částka, která by na investici
-                            putovala z Vámi odvedených daní, kdyby se investice
-                            realizovala a uhradila pouze v roce, pro který
-                            počítáte svůj podíl na rozpočtu. Je možné, že výše
-                            investice bude vyšší než vyčleněná celková částka na
-                            investice za daný rok, a tak se Vám zobrazí údaje,
-                            které budou převyšovat částku, jež z Vámi
-                            odvedených peněz měla zamířit na investice.<br />
+                            U těchto investic se Vám zobrazí, kolik procent z
+                            celkové částky určené k investicím ve vybraném roce
+                            by tato konkrétní investice tvořila, pokud by
+                            všechny její náklady měly být uhrazené ve vybraném
+                            roce. V políčku vedle se Vám zobrazí částka, která
+                            by na investici putovala z Vámi odvedených daní,
+                            kdyby se investice realizovala a uhradila pouze v
+                            roce, pro který počítáte svůj podíl na rozpočtu. Je
+                            možné, že výše investice bude vyšší než vyčleněná
+                            celková částka na investice za daný rok, a tak se
+                            Vám zobrazí údaje, které budou převyšovat částku,
+                            jež z Vámi odvedených peněz měla zamířit na
+                            investice.<br />
                         </p>
                         <p>
-                            V rámci aplikace je možné přidávat do seznamu vlastní investice, pro které Vám kalkulačka automaticky vypočítá podíl na investicích a Váš hypotetický podíl. Pro přidání vlastní investice je nutné si založit účet. Na začátku stránky vpravo nahoře klikněte na tlačítko Login a poté si vytvořte vlastní účet. S účtem se přihlašte a ve formuláři nad investicemi si budete moci vytvořit vlastní investice, které se uloží do databáze. Investice je pak možné smazat tlačítkem odebrat. V seznamu se Vám Vaše investice budou vždy zobrazovat, pokud budete přihlášeni.<br />
+                            V rámci aplikace je možné přidávat do seznamu
+                            vlastní investice, pro které Vám kalkulačka
+                            automaticky vypočítá podíl na investicích a Váš
+                            hypotetický podíl. Pro přidání vlastní investice je
+                            nutné si založit účet. Na začátku stránky vpravo
+                            nahoře klikněte na tlačítko Login a poté si vytvořte
+                            vlastní účet. S účtem se přihlašte a ve formuláři
+                            nad investicemi si budete moci vytvořit vlastní
+                            investice, které se uloží do databáze. Investice je
+                            pak možné smazat tlačítkem odebrat. V seznamu se Vám
+                            Vaše investice budou vždy zobrazovat, pokud budete
+                            přihlášeni.<br />
                         </p>
                         <p>
                             <strong
-                                >Reálně na daních odvedete ještě více peněz, kalkulačka ale pracuje pouze s tím, co zamíří do státního rozpočtu! Část z Vámi odvedených peněz prostřednictvím daní míří do obecních a krajských rozpočtů a z některých daní a poplatků neputuje do státního rozpočtu vůbec nic. Hodnota u částky odvedené na sociální pojištění je tak vysoká, protože zohledňuje i to, co za Vás zaplatí na sociální pojištění Váš zaměstnavatel. Odvody zaměstnavatele na sociální pojištění zaměstnance se nepočítají do hrubé mzdy, ale fakticky jsou také odměnou za Vaší práci.</strong
+                                >Reálně na daních odvedete ještě více peněz,
+                                kalkulačka ale pracuje pouze s tím, co zamíří do
+                                státního rozpočtu! Část z Vámi odvedených peněz
+                                prostřednictvím daní míří do obecních a
+                                krajských rozpočtů a z některých daní a poplatků
+                                neputuje do státního rozpočtu vůbec nic. Hodnota
+                                u částky odvedené na sociální pojištění je tak
+                                vysoká, protože zohledňuje i to, co za Vás
+                                zaplatí na sociální pojištění Váš zaměstnavatel.
+                                Odvody zaměstnavatele na sociální pojištění
+                                zaměstnance se nepočítají do hrubé mzdy, ale
+                                fakticky jsou také odměnou za Vaší
+                                práci.</strong
                             >
                         </p>
                         <p>
@@ -235,7 +270,8 @@
                         />
                         <label
                             for="vat_books_music_medicine_water_accomodations"
-                            >Vodné a stočné, knihy, hudba, léky, ubytovací služby:</label
+                            >Vodné a stočné, knihy, hudba, léky, ubytovací
+                            služby:</label
                         >
                         <input
                             type="text"
@@ -945,8 +981,9 @@
                                     }
                                 "
                                 style="margin-top: 1em"
-                                >Odebrat</button
                             >
+                                Odebrat
+                            </button>
                         </template>
                     </article>
                 </template>
