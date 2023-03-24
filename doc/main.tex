@@ -150,7 +150,8 @@ S již získanými obecnými informacemi o státních rozpočtech jsem se mohl z
 a podíval se, které daně přináší peníze do rozpočtu. Z těch jsem si vybral ty, na kterých se podílí jednotlivec
 sám - DPH, daň z příjmu fyzických osob, pojistné na sociální zabezpečení, daň z hazardu a spotřební daň z
 paliva, tabáku a alkoholu. Podle toho jsem si určil, jaké údaje od uživatele budu požadovat, abych konkrétní
-daň vypočítal.
+daň vypočítal. Pokud uživatel některé údaje neposkytne, bude kalkulačka pracovat s údaji odpovídajícími průměrnému
+občanovi ČR. Zdroje, odkud jsem tyto údaje čerpal, jsou uvedené v README.md. 
 
 \subsection{DPH}
 
@@ -332,7 +333,7 @@ K těmto proměnným se pak mohu odkazovat v jiných atributech na tomto prvku a
 potomky tohoto prvku.
 
 Dalším krokem je přidávání atributů jako \textbf{x-show} (podmínky, za kterých se má prvek zobrazovat)
-a \textbf{x-if} (podmínky, za kterých má prvek vůbec existovat)file:///home/tomdrs/Downloads/hozda.pdf, a tam, kde potřebuji zobrazit text
+a \textbf{x-if} (podmínky, za kterých má prvek vůbec existovat), a tam, kde potřebuji zobrazit text
 nějaké proměnné, parametr \textbf{x-text}.
 
 Například, zde je textový \emph{input} a výpis textu, který je v něm napsaný:
@@ -362,7 +363,7 @@ Tyto atributy používám k volání svého JavaScriptového kódu, který mám 
 
 PicoCSS jsem zvolil jako minimalistický CSS framework. Nechtěl jsem všechny styly psát ručně, protože
 nejsem odborník na design a typografii, ale nechtěl jsem importovat velké a složité frameworky jako
-Bootstrap, které bych se musel učit. O PicoCSS jsem se také dozvěděl z YouTube videa. Kromě jeho jednoduchosti
+Bootstrap, které bych se musel učit. O PicoCSS jsem se také dozvěděl z YouTube videa\footfullcite{fireship}. Kromě jeho jednoduchosti
 a malé velikosti mě zaujalo především to, že nevyžaduje, abych všude psal CSS třídy a učil se, jak se
 jmenují. PicoCSS definuje styly pro HTML elementy a používá další kontextové informace k identifikaci,
 jak by měl být daný prvek zobrazen.
@@ -1099,4 +1100,3 @@ funkční aplikace, která poskytuje zajímavé údaje, a mně přinesla její t
 %\appendix
 
 \end{document}
-
