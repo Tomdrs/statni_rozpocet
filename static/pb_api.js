@@ -1,5 +1,3 @@
-const POCKETBASE_URL = "https://pocketbase.gjk.cat";
-
 function fetch_collection(table) {
     return async function (client) {
         return await client.collection(table).getFullList(200, {

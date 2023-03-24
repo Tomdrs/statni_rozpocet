@@ -1,6 +1,9 @@
 { pkgs ? import <nixpkgs> { } }:
 
-pkgs.mkShell {
+pkgs.mkShell rec {
+  POCKETBASE_URL = "https://pocketbase.gjk.cat/";
+  FLASK_APP = "src/main.py";
+
   buildInputs = [
     pkgs.coreutils-full
     pkgs.python3Full
@@ -13,7 +16,6 @@ pkgs.mkShell {
     virtualenv -p python3 env
     source env/bin/activate
     pip install -r requirements.txt
+    echo 'let POCKETBASE_URL = "${POCKETBASE_URL}";' > static/config.js
   '';
-  FLASK_APP = "src/main.py";
-  POCKETBASE_URL = "https://pocketbase.gjk.cat/";
 }

@@ -1,5 +1,5 @@
 pb_data/
 **__pycache__
 venv
-
+static/config.js
 doc/*.swp
