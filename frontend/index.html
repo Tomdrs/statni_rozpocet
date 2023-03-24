@@ -50,9 +50,9 @@
                     }
                     console.log(vysledky);
                 });
-                $watch('rok', async (f) => {
+                $watch('rok', async (r) => {
                     status = 'loading';
-                    var res = await calculate_dane(rok, f);
+                    var res = await calculate_dane(r, form_data);
                     if (res == 'error')
                       status = 'error';
                     else {
