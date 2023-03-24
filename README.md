@@ -39,9 +39,9 @@ flask run
     - CSS
     - [AlpineJS](https://alpinejs.dev) - Javascript framework to avoid NodeJS and writing Javascript
 
-# Zdroje
+# Resources
 - <https://www.mfcr.cz/cs/o-ministerstvu/vzdelavani/rozpocet-v-kostce/statni-rozpocet-v-kostce-2022-47759>
-- <https://www.finance.cz/533787-dan-z-prijmu-a-prumerna-mzda/>
+- <https://www.financnisprava.cz/cs/dane/dane/dan-z-prijmu>
 - <https://learnpython.com/blog/how-to-use-virtualenv-python/>
 - <https://flexboxsheet.com/>
 - <https://grid.layoutit.com/>
@@ -67,8 +67,7 @@ flask run
 - <https://money.cz/novinky-a-tipy/mzdy-a-personalistika/konec-superhrube-mzdy-co-to-udela-s-vyplatou-zamestnancu/>
 - <https://www.czso.cz/csu/czso/cri/prumerne-mzdy-3-ctvrtleti-2022>
 - <https://www.podnikatel.cz/zakony/zakon-c-235-2004-sb-o-dani-z-pridane-hodnoty/uplne/#prilohy>
-- <https://cs.wikipedia.org/wiki/Spot%C5%99ebn%C3%AD_da%C5%88>
-- <https://www.businessinfo.cz/navody/provozovani-hazardnich-her-ppbi/3/>
+- <https://www.zakonyprolidi.cz/cs/2016-187>
 - <https://www.vlada.cz/assets/media-centrum/aktualne/Narodni-investicni-plan-CR-2020_2050.pdf>
 - <https://medium.com/@Mikepicker/build-a-multi-user-todo-list-app-with-pocketbase-in-a-single-html-file-8734bfb882fd>
 - <https://www.kurzy.cz/mzda/socialni-pojisteni/>
@@ -82,5 +81,8 @@ flask run
 - <https://www.vlada.cz/cz/ppov/protidrogova-politika/media/alkohol-_-dobry-sluha-nebo-zly-pan--prvni-vladni-zprava-o-alkoholu-v-ceske-republice--195338/>
 - <https://www.idnes.cz/ekonomika/domaci/hazard-zprava-protidrogovy-odbor-vedralova-automaty.A200721_123720_eko-doprava_fih>
 - <https://developer.mozilla.org/en-US/docs/Web/API/Screen/orientation>
+- <https://cs.wikipedia.org/wiki/Spot%C5%99ebn%C3%AD_da%C5%88#Reference>
+- <https://www.mfcr.cz/cs/verejny-sektor/statni-rozpocet/plneni-statniho-rozpoctu>
+- <https://www.idnes.cz/zpravy/nato/stihaci-lockheed-f-35-armada-obran-cupakova-usa-pilot.A230214_194540_zpr_nato_inc>
 - Budget spreadsheets in resources/
 
