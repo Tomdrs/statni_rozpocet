@@ -75,7 +75,7 @@ has an actual use (and which uses those are).
 
 V době, kdy jsem vymýšlel, co bych mohl vytvořit jako svůj maturitní projekt,
 se v médiích probírala možnost nákupu nových stíhacích letounů pro českou armádu.
-Odhadem se uváděla celková částka 48 miliard Kč. Slyšel jsem mnoho názorů o tom,
+Odhadem se uváděla celková částka 48 miliard Kč.\footfullcite{stihacky} Slyšel jsem mnoho názorů o tom,
 jak moc peněz to je a že by bylo lepší peníze investovat jinam. Zamyslel jsem se
 tedy nad tím, kde stát peníze získává a za co je pak utrácí. V souvislosti s tím mě napadlo,
 kolik vlastně člověk sám odvede na daních do státního rozpočtu a jak by se tedy
@@ -106,7 +106,7 @@ kalkulačka rozložila mezi jednotlivé výdaje a investice.
 Svoji teoretickou analýzu jsem začal hledáním údajů o státním rozpočtu. Stát musí být v
 těchto záležitostech transparentní, a tak na webu Ministerstva financí jsou k dispozici
 tabulky plnění státního rozpočtu, které uvádí jednotlivé důležité položky příjmů a výdajů
-státního rozpočtu. U každé položky je uvedeno, jaká hodnota se pro daný rok očekávala a
+státního rozpočtu.\footfullcite{plneni} U každé položky je uvedeno, jaká hodnota se pro daný rok očekávala a
 jaká finálně hodnota skutečně byla. Já jsem samozřejmě pracoval se skutečnými hodnotami,
 aby kalkulačka byla přesnější. Rozhodl jsem se pro práci s údaji z let 2020, 2021 a 2022, 
 protože v době dokončení projektu mají již vyplněné skutečné údaje. Počítal jsem s tím, že
@@ -114,11 +114,11 @@ v rámci správy databáze bude pak možné přidat údaje i pro jiné roky.
 
 Tyto údaje jsem si potřeboval pouze přepsat do databáze. Zpočátku jsem se potýkal s tím,
 že v souboru s údaji bylo více tabulek a uváděly různé příjmy. Na internetu jsem však poté
-dohledal, že existuje rozpočtové určení daní. Částka, kterou daňový poplatník odvede na daních,
+dohledal, že existuje rozpočtové určení daní.\footfullcite{urceni} Částka, kterou daňový poplatník odvede na daních,
 nemíří pouze do státního rozpočtu, ale dělí se. Část putuje do rozpočtu obcí, část do krajských
 rozpočtů, a teprve zbytek skončí ve státním rozpočtu. Některé daně se dokonce odvádí pouze
 do obecních a krajských rozpočtů. Veřejné zdravotní pojištění se také nepočítá do příjmů
-státního rozpočtu. Pochopil jsem tedy, že do databáze si potřebuji vypsat údaje z tabulky,
+státního rozpočtu.\footfullcite{plneni} Pochopil jsem tedy, že do databáze si potřebuji vypsat údaje z tabulky,
 která zohledňuje opravdu pouze příjmy státního rozpočtu a ne celkové daňové příjmy.
 
 \section{Konkrétní státní investice}
@@ -127,7 +127,7 @@ Vedle údajů o státním rozpočtu jsem také potřeboval získat příklady ko
 a jejich náklady. Myslím si, že pro uživatele jsou snadno představitelnější a pochopitelnější
 konkrétní investice (např. nákup stíhacích letounů nebo dostavba Pražského okruhu) než
 obecné pojmy státních výdajů (např. neinvestiční transfery rozpočtům územní úrovně nebo ostatní
-běžné výdaje). Velmi dobře mi v tomto ohledu pomohl národní investiční plán na roky 2020 až 2050.
+běžné výdaje). Velmi dobře mi v tomto ohledu pomohl národní investiční plán na roky 2020 až 2050.\footfullcite{plan}
 Plán jsem prošel a vybral jsem si z něj důležité a velké investice, které jsem zapsal do databáze.
 Samozřejmě je možné přidávat další investice z plánu prostřednictvím správy databáze aplikace.
 
@@ -158,7 +158,7 @@ DPH se dělí podle procentuálního odvodu do tří kategorií - základní saz
 sazba a druhá snížená sazba. V druhé snížené sazbě se odvádí daň ve výši 10 \%, a to především
 z vodného a stočného, nákupu knih, hudby, léků a z ubytovacích služeb. V první snížené sazbě to
 je 15 \% a vyměřuje se pro potraviny a gastronomické služby, veřejnou dopravu a léčební pomůcky.
-Základní sazba je 21 \% a vztahuje se na všechny ostatní nákupy a útraty. Od uživatele
+Základní sazba je 21 \% a vztahuje se na všechny ostatní nákupy a útraty.\footfullcite{dph} Od uživatele
 tedy potřebuji zjistit, kolik průměrné měsíčně utratí za dané kategorie.
 
 \subsection{Daň z příjmu}
@@ -174,7 +174,7 @@ z příjmů, stát musí uhradit daňovému plátci rozdíl. V extrémních př�
 slevě na děti zaplatit jednotlivci více, než by jinak jednotlivec celkově odvedl do státního
 rozpočtu. Na slevu má nárok pouze jeden z rodičů. K dani z příjmů patří ještě daň z kapitálových
 příjmů. To je také 15 \%, ale vyměřuje se pouze, pokud za rok plátce zaznamená zisk z kapitálových
-příjmů vyšší než 100 000 Kč. Pro výpočet musí uživatel zadat svůj hrubý příjem, počet dětí,
+příjmů vyšší než 100 000 Kč.\footfullcite{prijmy} Pro výpočet musí uživatel zadat svůj hrubý příjem, počet dětí,
 pokud na ně uplatňuje slevu, a kapitálové příjmy.
 
 \subsection{Sociální pojištění}
@@ -187,11 +187,11 @@ kolonku vyplnili ti, co pracují jako zaměstnanci, ale na zkrácený úvazek. O
 bych daň vypočítal. Pro klasické zaměstnance je to pak jednoduché. Zaměstnanec  na sociální
 pojištění sám odvádí 6,5 \% ze své hrubé mzdy a k tomu za něj zaměstnavatel odvádí ještě
 24,8 \% z hrubé mzdy. Ve své aplikaci zohledňuji i peníze odvedené zaměstnavatelem, protože
-je také vnímám jako odměnu za práci zaměstnance.
+je také vnímám jako odměnu za práci zaměstnance.\footfullcite{socpoj}
 
 \subsection{Spotřební daně a daň z hazardu}
 
-Daň z hazardu je 23 \%, spotřební daň z paliv je v průměru 11,5 Kč/l, spotřební daň z piva je 0,32 Kč/l, spotřební daň z lihovin je 322,5 Kč na litr ethanolu a spotřební daň za jednu cigaretu je 2,9 Kč. Uživatel tedy do kolonek zadá průměrnou částku, kterou prohraje na hazardu, kolik utratí za paliva, kolik vypije piva a lihovin a kolik vykouří cigaret za měsíc.
+Daň z hazardu je 23 \%\footfullcite{hazard}, spotřební daň z paliv je v průměru 11,5 Kč/l, spotřební daň z piva je 0,32 Kč/l, spotřební daň z lihovin je 322,5 Kč na litr ethanolu a spotřební daň za jednu cigaretu je 2,9 Kč\footfullcite{spotrebni}. Uživatel tedy do kolonek zadá průměrnou částku, kterou prohraje na hazardu, kolik utratí za paliva, kolik vypije piva a lihovin a kolik vykouří cigaret za měsíc.
 
 \subsection{Finální částka}
 
@@ -199,8 +199,8 @@ V instrukcích jsem upřesnil, že uživatelé mají do každé kolonky vyplnit 
 Pomocí výše uvedených procentuálních sazeb kalkulačka spočítá, kolik peněz uživatel odvedl na
 daních za vybrané položky a samozřejmě to vynásobí dvanácti, aby výsledkem byl údaj za celý rok.
 U vybraných daní také zohlední rozpočtové určení daní. Z prostředků odvedených prostřednictvím
-DPH a daně z příjmů fyzických osob míří do státního rozpočtu pouze 64,38 \%. U daně z hazardu
-je to 70 \%. Výsledkem výpočtů je celková částka, kterou uživatel za rok odvedl do státního rozpočtu.
+DPH a daně z příjmů fyzických osob míří do státního rozpočtu pouze 64,38 \%\footfullcite{urceni}. U daně z hazardu
+je to 70 \%\footfullcite{hazard}. Výsledkem výpočtů je celková částka, kterou uživatel za rok odvedl do státního rozpočtu.
 
 \section{Rozbor uplatnění odvedené částky}
 
@@ -270,14 +270,14 @@ S použitím JavaScriptu přímo v prohlížeči, bez žádného mezikroku jako 
 s frameworkem AlpineJS se mi podařilo mít na frontendu pouze jeden jazyk a pouze
 jednu malou knihovnu jako závislost.
 
-\subsection{Flask framework}
+\subsection{Flask framework\footfullcite{flask}}
 V Pythonu jsem slyšel o dvou knihovnách pro tvorbu webových aplikací - Flask a Django. Django se mi zdálo
 jako moc složité pro moje účely, a to byl hlavní důvod, proč jsem zvolil Flask. Pro Flask také existuje
 kurz na Codecademy, který má velký překryv s dalšími kurzy, které jsem splnil v přípravě na maturitní projekt,
 volba Flasku mi tedy ušetřila čas.
 
-\subsection{AlpineJS framework}
-O této knihovně jsem se dozvěděl z youtube videa na kanálu \emph{Fireship}. Líbilo se mi, že s ním můžu
+\subsection{AlpineJS framework\footfullcite{alpine}}
+O této knihovně jsem se dozvěděl z youtube videa na kanálu \emph{Fireship}.\footfullcite{fireship} Líbilo se mi, že s ním můžu
 vepisovat chování rovnou do HTML, bez toho, aniž bych musel psát velké množství JavaScriptu. AlpineJS se
 dá do libovolné stránky vložit pomocí \emph{<script>} tagu, díky čemuž jsem se opět vyhnul studiu NodeJS
 a dalších, složitějších technologií.
@@ -485,7 +485,7 @@ během vývoje zbytku aplikace dělat v tabulkách drobné úpravy). Tabulku na 
 jsem přidal až na závěr.
 
 Když jsem byl spokojený s daty, ze kterých moje aplikace vychází, vytvořil jsem nový Flaskový projekt.
-Pro základní nastavení projektu jsem použil nástroj Nix, o kterém jsem se dozvěděl díky bratrovi, který
+Pro základní nastavení projektu jsem použil nástroj Nix\footfullcite{nix}, o kterém jsem se dozvěděl díky bratrovi, který
 mi doporučil a nainstaloval NixOS jakožto \emph{"nerozbitný Linux"}. Je nutné podotknout, že Nix a NixOS
 není to samé. Termín Nix označuje dvě věci - Nix jazyk a Nix balíčkovač, který je na tom jazyce postavený.
 NixOS je distribuce postavená na Nixu - balíčkovači. Nix jakožto balíčkovač, build systém a nástroj pro
@@ -685,7 +685,7 @@ Posledním problémem, který jsem řešil, byl vývoj mobilní verze. Po přeč
 k žávěru, že detekovat, zda se nacházím na mobilním zařízení, není vůbec jednoduchá záležitost. Použití
 \emph{@media queries} podle šířky displeje není jistota, protože mobilní zařízení mají různá rozlišení.
 
-Pomocí \emph{@media queries} nebo JavaScriptu je také možné zjistit, zda obrazovka podporuje
+Pomocí \emph{@media queries}\footfullcite{media_queries} nebo JavaScriptu je také možné zjistit, zda obrazovka podporuje
 ovládání dotykem. Některé prohlížeče ale hlásí podporu dotyku vždy, i když zařízení dotykové
 není, nebo naopak nehlásí podporu dotyku, i když zařízení dotykovou obrazovku má.
 
@@ -817,7 +817,7 @@ Projekt byl vyvinut s Pythonem 3.10.9, tuto verzi a každou novější můžeme 
 Je důležité podotknout, že některé instalace Pythonu jsou spíš minimalistické a neobsahují nástroje
 jako \emph{pip} a \emph{venv/virtualenv}, které je potom potřeba doinstalovat separátně.
 
-\subsection{PocketBase}
+\subsection{PocketBase\footfullcite{pocketbase}}
 PocketBase je asi nejméně známý software, co je potřeba nainstalovat pro zprovoznění aplikace.
 V případě, že nebude dostupný v balíčkovači linuxové distribuce, je zapotřebí jej nainstalovat
 buď stažením archivu z webu projektu:
@@ -1080,7 +1080,6 @@ poradit, když jsem měl potíže, a vždy se mnou ochotně projekt konzultoval.
 funkční aplikace, která poskytuje zajímavé údaje, a mně přinesla její tvorba mnohé zkušenosti.
 
 %%% Seznam použité literatury
-\nocite{einstein}\nocite{latexcompanion}\nocite{knuthwebsite}
 \printbibliography[title={Seznam použité literatury},heading={bibintoc}]
 
 %%% Seznam obrázků
@@ -1100,3 +1099,4 @@ funkční aplikace, která poskytuje zajímavé údaje, a mně přinesla její t
 %\appendix
 
 \end{document}
+
