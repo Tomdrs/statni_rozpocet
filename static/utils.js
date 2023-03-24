@@ -27,6 +27,41 @@ function remove_first_match(arr, condition) {
     }
 }
 
+
+// https://stackoverflow.com/questions/9038625/detect-if-device-is-ios
+// ...
+// Apple is run by bad people who hate fun
+function detect_ios_method2() {
+    return [
+    'iPad Simulator',
+    'iPhone Simulator',
+    'iPod Simulator',
+    'iPad',
+    'iPhone',
+    'iPod'
+    ].includes(navigator.platform)
+    // iPad on iOS 13 detection
+    || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+}
+
+// https://stackoverflow.com/questions/9038625/detect-if-device-is-ios
+// ...
+// Agony
+function detect_ios_method3() {
+    var iosQuirkPresent = function () {
+        var audio = new Audio();
+
+        audio.volume = 0.5;
+        return audio.volume === 1;   // volume cannot be changed from "1" on iOS 12 and below
+    };
+
+    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    var isAppleDevice = navigator.userAgent.includes('Macintosh');
+    var isTouchScreen = navigator.maxTouchPoints >= 1;   // true for iOS 13 (and hopefully beyond)
+
+    return isIOS || (isAppleDevice && (isTouchScreen || iosQuirkPresent()));
+}
+
 function detect_mobile() {
     // https://stackoverflow.com/questions/3007480/determine-if-user-navigated-from-mobile-safari
     var ua = window.navigator.userAgent;
@@ -37,6 +72,8 @@ function detect_mobile() {
     return (
         screen.orientation.type == "portrait-primary" ||
         screen.orientation.type == "portrait-secondary" ||
-        iOSSafari
+        iOSSafari ||
+        detect_ios_method2() ||
+        detect_ios_method3()
     );
 }
