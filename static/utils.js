@@ -28,8 +28,15 @@ function remove_first_match(arr, condition) {
 }
 
 function detect_mobile() {
+    // https://stackoverflow.com/questions/3007480/determine-if-user-navigated-from-mobile-safari
+    var ua = window.navigator.userAgent;
+    var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+    var webkit = !!ua.match(/WebKit/i);
+    var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+
     return (
         screen.orientation.type == "portrait-primary" ||
-        screen.orientation.type == "portrait-secondary"
+        screen.orientation.type == "portrait-secondary" ||
+        iOSSafari
     );
 }
